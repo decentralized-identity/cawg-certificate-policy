@@ -1,0 +1,4 @@
+[appendix]
+== Version history
+
+_This section is non-normative._
