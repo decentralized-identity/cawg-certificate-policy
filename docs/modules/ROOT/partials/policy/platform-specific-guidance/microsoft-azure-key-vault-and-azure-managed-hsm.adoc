@@ -1,0 +1,7 @@
+[[microsoft-azure-key-vault-and-azure-managed-hsm]]
+=== Microsoft Azure Key Vault and Azure managed HSM
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://learn.microsoft.com/en-us/azure/key-vault/managed-hsm/key-attestation?tabs=windows[Azure Managed HSM key attestation documentation].
+====

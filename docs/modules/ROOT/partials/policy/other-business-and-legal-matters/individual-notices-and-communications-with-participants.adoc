@@ -1,0 +1,12 @@
+[[individual-notices-and-communications-with-participants]]
+=== Individual notices and communications with participants
+
+[[written-communication]]
+==== Written communication
+
+All official notices and communications between the <<certification-authority,CA>> and the <<subscriber,subscriber>> MUST be in writing and conveyed electronically or by mail.
+
+[[individual-notices-and-communications-with-participants-contact-information]]
+==== Contact information
+
+All parties MUST maintain accurate and up-to-date contact information to facilitate effective communication.

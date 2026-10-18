@@ -1,0 +1,4 @@
+[[repositories]]
+=== Repositories
+
+The <<certification-authority,CA>> MUST make revocation information for <<subordinate-ca,subordinate CA>> <<certificate,certificates>> and <<subscriber,subscriber>> <<certificate,certificates>> available in accordance with this policy.

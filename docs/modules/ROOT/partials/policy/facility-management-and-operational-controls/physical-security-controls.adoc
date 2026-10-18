@@ -1,0 +1,20 @@
+[[physical-security-controls]]
+=== Physical security controls
+
+[[site-security]]
+==== Site security
+
+. The <<certification-authority,CA>>’s facilities housing critical <<public-key-infrastructure,PKI>> infrastructure and sensitive data MUST be located in a secure environment with controlled access.
+This MAY be a dedicated facility or a secure area within a larger building.
+. Physical security measures, such as locks, access control systems, and visitor management procedures, should be implemented to prevent unauthorized physical access.
+
+[[restricted-areas]]
+==== Restricted areas
+
+. Areas containing sensitive systems or data, such as server rooms or data centers, MUST have restricted access, limited to authorized personnel only.
+. Multi-factor authentication mechanisms MUST be deployed for accessing these restricted areas.
+
+[[equipment-security]]
+==== Equipment security
+
+Critical equipment, including servers, network devices, and any <<hardware-security-module,hardware security modules (HSMs)>>, MUST be physically secured to prevent unauthorized access, tampering, or theft.

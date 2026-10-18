@@ -1,0 +1,15 @@
+[[crl-profile-2]]
+=== CRL profile
+
+[IMPORTANT,role=todo]
+====
+See identically-named <<crl-profile>> in this same major section. Can we merge these?
+====
+
+This <<certificate-policy,CP>> does not require <<certification-authority,CAs>> to implement <<certificate-revocation-list,CRLs>> to support certificate revocation status checking.
+Should the <<certification-authority,CA>> choose to implement <<certificate-revocation-list,CRLs>> for their <<certification-authority,CA>> or <<subscriber,subscriber>> certificates, the <<certificate-revocation-list,CRLs>> MUST conform with the minimum <<certificate-revocation-list,CRL>> profile specified in RFC 5280 Section 5.
+
+[IMPORTANT,role=todo]
+====
+Add link to RFC.
+====

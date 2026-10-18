@@ -1,0 +1,40 @@
+[[other-aspects-of-key-pair-management]]
+=== Other aspects of key pair management
+
+[[public-key-archival]]
+==== Public key archival
+
+No stipulation.
+
+[[certificate-operational-periods-and-key-pair-usage-periods]]
+==== Certificate operational periods and key pair usage periods
+
+[options="header",cols="3,5"]
+|===
+| Generation
+| <<certificate,certificate>> Maximum Validity Period
+
+| Strict and multipurpose
+| 825 days
+
+| Legacy
+| 1185 days
+|===
+
+[IMPORTANT,role=todo]
+====
+Validity: 825 and 1,185 days with a Legacy generation is S/MIME carry-over.
+C2PA caps end-entity certificates at 366 days.
+Suggest a single profile with a 366-day maximum.
+====
+
+For the purpose of calculations, a day is measured as 86,400 seconds.
+Any amount of time greater than this, including fractional seconds and/or leap seconds, MUST represent an additional day.
+For this reason, <<subscriber,subscriber>> <<certificate,certificates>> SHOULD NOT be issued for the maximum permissible time by default, in order to account for such adjustments.
+
+Where escrow is supported in accordance with <<key-escrow-and-recovery>>, the <<certification-authority,CA>> MAY retain <<subscriber,subscriber>> <<private-key,private keys>> past the <<certificate,certificate>> Maximum Validity Period.
+
+[[controls-for-subscriber-keys]]
+==== Controls for subscriber keys
+
+<<control,Control>> requirements for <<subscriber,subscriber>> keys MAY vary by the <<assurance-level,assurance level>> of the implementation.

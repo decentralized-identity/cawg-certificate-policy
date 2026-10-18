@@ -1,0 +1,13 @@
+[[requirements-for-validating-dynamic-evidence]]
+== Requirements for validating dynamic evidence
+
+[IMPORTANT,role=todo]
+====
+C2PA leftover: everything from here to the end of the document (AL1/AL2 tables, generator product objectives, Android/Apple/cloud attestation guidance) is C2PA device-attestation material with no meaning for a person’s or newsroom’s identity certificate.
+Suggest deleting it; if CAWG wants assurance levels, define identity assurance levels mapped to the organization, Sponsor and <<individual,individual>> validation types.
+<<assurance-level,Assurance level>> is currently used without a definition.
+====
+
+include::partial$policy/requirements-for-validating-dynamic-evidence/requirements-for-assurance-level-1-certificates.adoc[]
+
+include::partial$policy/requirements-for-validating-dynamic-evidence/requirements-for-assurance-level-2-certificates.adoc[]

@@ -1,0 +1,36 @@
+[[compliance-audits]]
+=== Compliance audits
+
+[[regular-audits]]
+==== Regular audits
+
+. The <<certification-authority,CA>> MUST undergo regular compliance audits conducted by an independent, qualified third-party auditor.
+. Audits MUST assess the <<certification-authority,CA>>’s adherence to this <<certificate-policy,CP>>, relevant industry standards (e.g., WebTrust for <<certification-authority,CA>>), and any applicable legal or regulatory requirements.
+. The audit frequency MUST depend on the risk profile and assurance level, but at a minimum, annual audits are recommended.
+
+[IMPORTANT,role=todo]
+====
+Audits: annual audits are only recommended and WebTrust is an example.
+Suggest annual audits MUST be done under WebTrust for CAs plus WebTrust S/MIME, or ETSI EN 319 411-1.
+====
+
+[[audit-scope]]
+==== Audit scope
+
+Audits SHOULD cover all aspects of the <<certification-authority,CA>>’s operations relevant to this <<certificate-policy,CP>>, with particular emphasis on:
+
+. <<certificate,certificate>> issuance, renewal, and revocation processes;
+. <<attestation,attestation>> validation procedures;
+. key management practices within devices or applications and the <<certification-authority,CA>>’s infrastructure;
+. logical and procedural security controls;
+. personnel security and training related to attestation validation and certificate management; and
+. incident response and disaster recovery procedures.
+
+[[audit-reports]]
+==== Audit reports
+
+. The <<certification-authority,CA>> SHOULD make audit reports available to the CAWG steering committee and other authorized parties upon request.
+. Audit reports SHOULD clearly identify any non-conformities or areas for improvement.
+. Audit reports SHOULD be in International English or be accompanied by a professional translation to English.
+. The <<certification-authority,CA>> SHOULD take corrective action to address any 
+identified deficiencies.

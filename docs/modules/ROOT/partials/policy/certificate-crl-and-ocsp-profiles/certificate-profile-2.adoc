@@ -1,0 +1,1080 @@
+[[certificate-profile-2]]
+=== Certificate profile
+
+The <<certification-authority,CA>> MUST meet the technical requirements set forth in <<publication>>, <<key-sizes>>, and <<public-key-parameters-generation-and-quality-checking>>.
+
+<<certification-authority,CAs>> MUST generate non-sequential <<certificate,certificate>> serial numbers greater than zero (0) and less than 2^159 containing at least 64 bits of output from a <<cryptographically-secure-pseudo-random-number-generator,CSPRNG>>.
+
+[[certificate-profile-version-numbers]]
+==== Version number(s)
+
+<<certificate,Certificates>> MUST be of type X.509 v3.
+
+[[certificate-content-and-extensions-application-of-rfc-6818]]
+==== Certificate content and extensions; application of RFC 6818
+
+This section specifies the additional requirements for <<certificate,certificate>> content and extensions for <<certificate,certificates>>.
+
+[[certificate-content-and-extensions-root-ca-certificates]]
+===== Root CA certificates
+
+. `basicConstraints` (MUST be present)
++
+This extension MUST be marked critical.
+The `cA` field MUST be set `true`.
+The `pathLenConstraint` field SHOULD NOT be present.
+
+. `keyUsage` (MUST be present)
++
+This extension MUST be marked critical.
+Bit positions for `keyCertSign` and `cRLSign` MUST be set.
+If the <<root-certification-authority,root CA>> <<private-key,private key>> is used for signing <<online-certificate-status-protocol,OCSP>> responses, then the `digitalSignature` bit MUST be set.
+
+. `certificatePolicies` (SHOULD NOT be present)
++
+This extension SHOULD NOT be present.
+
+. `extKeyUsage` (MUST NOT be present)
++
+This extension MUST NOT be present.
+
+. `subjectKeyIdentifier` (MUST be present)
++
+This extension MUST NOT be marked critical.
+It MUST contain a value that is included in the `keyIdentifier` field of the `authorityKeyIdentifier` extension in <<certificate,certificates>> issued by the <<root-certification-authority,root CA>>.
+
+[[certificate-content-and-extensions-subordinate-ca-certificates]]
+===== Subordinate CA certificates
+
+. `certificatePolicies` (MUST be present)
++
+This extension SHOULD NOT be marked critical.
++
+All ``policyIdentifier``s included in this extension MUST be included in accordance with <<certificate-content-and-extensions-subordinate-ca-certificates>>.
++
+If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, <<relying-party,relying party>> Agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
+If a qualifier of type `id-qt-unotice` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.2) is included, then it MUST contain `explicitText` and MUST NOT contain `noticeRef`.
+
+. `cRLDistributionPoints` (MUST be present)
++
+This extension MUST NOT be marked critical.
+It MUST contain the HTTP URL of the <<certification-authority,CA>>’s <<certificate-revocation-list,CRL>> service.
+
+. `authorityInformationAccess` (SHOULD be present)
++
+This extension MUST NOT be marked critical.
++
+It SHOULD contain the HTTP URL of the <<issuing-ca,issuing CA>> <<certificate,certificate>> (`accessMethod` = 1.3.6.1.5.5.7.48.2).
+It MAY contain the HTTP URL of the <<issuing-ca,issuing CA>> <<online-certificate-status-protocol,OCSP>> responder (`accessMethod` = 1.3.6.1.5.5.7.48.1).
+
+. `basicConstraints` (MUST be present)
++
+This extension MUST be marked critical.
+The `cA` field MUST be set `true`.
+The `pathLenConstraint` field MAY be present.
+
+. `keyUsage` (MUST be present)
++
+This extension MUST be marked critical.
+Bit positions for `keyCertSign` and `cRLSign` MUST be set.
+If the <<subordinate-ca,subordinate CA>> <<private-key,private key>> is used for signing <<online-certificate-status-protocol,OCSP>> responses, then the `digitalSignature` bit MUST be set.
+
+. `nameConstraints` (MAY be present)
++
+This extension SHOULD be marked critical.
++
+NOTE: Non-critical name constraints are an exception to https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.10[RFC 5280 §4.2.1.10]; however, they MAY be used until the `nameConstraints` extension is supported by application software suppliers whose software is used by a substantial portion of relying parties worldwide.
+
+. `extKeyUsage` (MAY be present for <<cross-certificate,cross certificates>>; MUST be present otherwise)
++
+For <<cross-certificate,cross certificates>> that share a <<subject,subject>> <<distinguished-name,distinguished name>> and <<subject,subject>> <<public-key,public key>> with a <<root-certification-authority-certificate,root CA certificate>> operated in accordance with these requirements, this extension MAY be present.
+If present, this extension SHOULD NOT be marked critical.
+This extension MUST only contain usages for which the <<issuing-ca,issuing CA>> has verified the <<cross-certificate,cross certificate>> is authorized to assert.
+This extension MUST NOT contain the `anyExtendedKeyUsage` usage.
++
+For all other <<subordinate-ca,subordinate CA>> <<certificate,certificates>>, including <<technically-constrained-subordinate-ca-certificate,technically-constrained subordinate CA certificates>>, this extension MUST be present and SHOULD NOT be marked critical.
++
+NOTE: While https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12[RFC 5280 §4.2.1.12] notes that this extension will generally only appear within end-entity certificates, these requirements make use of this extension to further protect relying parties by limiting the scope of subordinate certificates, as implemented by a number of application software suppliers.
++
+For <<subordinate-ca,subordinate CA>> <<certificate,certificates>> that will be used to issue S/MIME <<certificate,certificates>>, the value `id-kp-emailProtection` MUST be present.
+The values `id-kp-serverAuth`, `id-kp-codeSigning`, `id-kp-timeStamping`, and `anyExtendedKeyUsage` MUST NOT be present.
+Other values MAY be present.
+
+. `authorityKeyIdentifier` (MUST be present)
++
+This extension MUST NOT be marked critical.
+It MUST contain a `keyIdentifier` field and it MUST NOT contain a `authorityCertIssuer` or `authorityCertSerialNumber` field.
+
+. `subjectKeyIdentifier` (MUST be present)
++
+This extension MUST NOT be marked critical.
+It MUST contain a value that is included in the `keyIdentifier` field of the `authorityKeyIdentifier` extension in <<certificate,certificates>> issued by the <<subordinate-ca,subordinate CA>>.
+
+[[certificate-content-and-extensions-subscriber-certificates]]
+===== Subscriber certificates
+
+. `certificatePolicies` (MUST be present)
++
+This extension SHOULD NOT be marked critical.
+It MUST include exactly one of the reserved `policyIdentifiers` listed in <<reserved-certificate-policy-identifiers>>, and MAY contain one or more identifiers documented by the <<certification-authority,CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
++
+If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, <<relying-party,relying party>> agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
+If a qualifier of type `id-qt-unotice` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.2) is included, then it MUST contain `explicitText` and MUST NOT contain `noticeRef`.
++
+[IMPORTANT,role=todo]
+====
+Why allow plain HTTP URLs?
+====
+
+. `cRLDistributionPoints` (MUST be present)
++
+This extension SHOULD NOT be marked critical.
+It MUST contain at least one `distributionPoint` whose `fullName` value includes a GeneralName of type `uniformResourceIdentifier` that includes a URI where the <<issuing-ca,issuing CA>>’s <<certificate-revocation-list,CRL>> can be retrieved.
++
+[IMPORTANT,role=todo]
+====
+Two contradictory profile sets: these S/MIME BR profiles require a CRL distribution point, but the later CRL Profile says CAs need not implement CRLs.
+There are two CRL Profile and two OCSP Profile sections, and the root pathLenConstraint differs between them.
+Suggest keeping one profile set; the YAML ones are the better base.
+====
++
+[options="header",cols="2,5"]
+|===
+| Generation
+| Allowed URI scheme
+
+| Strict and Multipurpose
+| Every `uniformResourceIdentifier` MUST have the URI scheme HTTP.
+Other schemes MUST NOT be present.
+
+| Legacy
+| At least one `uniformResourceIdentifier` MUST have the URI scheme HTTP.
+Other schemes (LDAP, FTP, ...)
+MAY be present.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+====
+
+. `authorityInformationAccess` (SHOULD be present)
++
+This extension MUST NOT be marked critical.
+
+.. `id-ad-ocsp`
++
+The `authorityInformationAccess` extension MAY contain one or more `accessMethod` values of type `id-ad-ocsp` that specifies the URI of the <<issuing-ca,issuing CA>>’s <<online-certificate-status-protocol,OCSP>> responder.
++
+[options="header",cols="2,5"]
+|===
+| Generation
+| Allowed URI scheme
+
+| Strict and Multipurpose
+| When provided, every `accessMethod` MUST have the URI scheme HTTP.
+Other schemes MUST NOT be present.
+
+| Legacy
+| When provided, at least one `accessMethod` MUST have the URI scheme HTTP.
+Other schemes (LDAP, FTP, ...)
+MAY be present.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+====
+
+.. `id-ad-caIssuers`
++
+The `authorityInformationAccess` extension SHOULD contain at least one `accessMethod` value of type `id-ad-caIssuers` that specifies the URI of the <<issuing-ca,issuing CA>>’s <<certificate,certificate>>.
++
+[options="header",cols="2,5"]
+|===
+| Generation
+| Allowed URI scheme
+
+| Strict and Multipurpose
+| When provided, every `accessMethod` MUST have the URI scheme HTTP.
+Other schemes MUST NOT be present.
+
+| Legacy
+| When provided, at least one `accessMethod` MUST have the URI scheme HTTP.
+Other schemes (LDAP, FTP, ...)
+MAY be present.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+====
+
+. `basicConstraints` (optional)
++
+This extension MAY be present.
+The `cA` field MUST NOT be `true`.
+`pathLenConstraint` field MUST NOT be present.
+
+. `keyUsage` (MUST be present)
++
+This extension SHOULD be marked critical.
++
+[options="header",cols="2,4,4,4"]
+|===
+| Generation
+| `rsaEncryption`
+| `id-ecPublicKey`
+| `id-Ed25519`* and *`id-Ed448`
+
+| Strict
+| For signing only, bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+For key management only, bit positions MUST be set for `keyEncipherment`.<br>For dual use, bit positions MUST be set for `digitalSignature` and `keyEncipherment` and MAY be set for `nonRepudiation`.
+| For signing only, bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+For key management only, bit positions MUST be set for `keyAgreement` and MAY be set for `encipherOnly` or `decipherOnly`.
+For dual use, bit positions MUST be set for `digitalSignature` and `keyAgreement`, MAY be set for `nonRepudiation`, and MAY be set for `encipherOnly` or `decipherOnly` (only if `keyAgreement` is set).
+| Bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+
+| Multipurpose and Legacy
+| For signing only, bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+For key management only, bit positions MUST be set for `keyEncipherment` and MAY be set for `dataEncipherment`.
+For dual use, bit positions MUST be set for `digitalSignature` and `keyEncipherment`, MAY be set for `nonRepudiation`, and MAY be set for `dataEncipherment`.
+| For signing only, bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+For key management only, bit positions MUST be set for `keyAgreement` and MAY be set for `encipherOnly` or `decipherOnly`.
+For dual use, bit positions MUST be set for `digitalSignature` and `keyAgreement`, MAY be set for `nonRepudiation`, and MAY be set for `encipherOnly` or `decipherOnly` (only if `keyAgreement` is set).
+| Bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+====
++
+Other bit positions MUST NOT be set.
++
+[options="header",cols="2,4,4"]
+|===
+| Generation
+| `id-ml-dsa`
+| `id-ml-kem`
+
+| Legacy and Multipurpose and Strict
+| Bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
+Other bit positions MUST NOT be set.
+| `keyEncipherment` MUST be the only key usage set.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+====
+
+. `extKeyUsage` (MUST be present)
++
+[options="header",cols="2,5"]
+|===
+| Generation
+| `KeyPurposeId`
+
+| Strict
+| `id-kp-emailProtection` MUST be present.
+Other values MUST NOT be present.
+
+| Multipurpose and Legacy
+| `id-kp-emailProtection` MUST be present.
+Other values MAY be present.
+|===
++
+[IMPORTANT,role=todo]
+====
+Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
+
+Critical, <<extended-key-usage,EKU>>: subscriber certificates must carry `id-kp-emailProtection` and Strict allows nothing else.
+That makes every CAWG certificate a working S/MIME email certificate, and a Strict certificate can never carry `id-kp-documentSigning`, which CAWG Identity <<assertion,assertion>> 1.3 requires validators to accept.
+Suggest requiring a CAWG <<extended-key-usage,EKU>> (for example `cawg-kp-identitySigning` under the CAWG PEN) and/or `id-kp-documentSigning`, and prohibiting `emailProtection`, `serverAuth`, `codeSigning`, `timeStamping`, C2PA claimSigning and `anyExtendedKeyUsage`.
+====
++
+The values `id-kp-serverAuth`, `id-kp-codeSigning`, `id-kp-timeStamping`, and `anyExtendedKeyUsage` MUST NOT be present.
+
+. `authorityKeyIdentifier` (MUST be present)
++
+This extension MUST NOT be marked critical.
+The `keyIdentifier` field MUST be present.
+`authorityCertIssuer` and `authorityCertSerialNumber` fields MUST NOT be present.
+
+. `subjectAlternativeName` (MUST be present)
++
+This extension SHOULD NOT be marked critical unless the `subject` field is an empty sequence.
++
+The value of this extension MUST be encoded as specified in <<subject-alternative-name-extension>>.
+
+. <<legal-entity-identifier,Legal entity identifier>> (optional)
++
+[options="header",cols="2,5"]
+|===
+| Generation
+| <<legal-entity-identifier,LEI>>
+
+| `Organization-validated`
+| <<legal-entity-identifier,LEI>> (1.3.6.1.4.1.52266.1) MAY be present and MUST NOT be marked critical.
+Role (1.3.6.1.4.1.52266.2) MUST NOT be present.
+
+| `Sponsor-validated`
+| <<legal-entity-identifier,LEI>> (1.3.6.1.4.1.52266.1) or for role (1.3.6.1.4.1.52266.2) MAY be present and MUST NOT be marked critical.
+
+| `Individual-validated`
+| Prohibited
+|===
++
+The <<legal-entity-identifier,legal entity identifier (LEI)>> is a 20-character, alphanumeric code used in accordance with ISO 17442-1:2020, Clause 6 and ISO 17442-2:2020, Clause 4.
++
+[IMPORTANT,role=todo]
+====
+Add links to ISO docs if possible.
+====
++
+The <<certification-authority,CA>> MUST verify that the `RegistrationStatus` for the <<legal-entity-identifier,LEI>> record is `ISSUED` and the `EntityStatus` is `ACTIVE`.
+The <<certification-authority,CA>> MUST only allow use of an <<legal-entity-identifier,LEI>> if the `ValidationSources` entry is `FULLY_CORROBORATED`.
+An <<legal-entity-identifier,LEI>> MUST NOT be used if `ValidationSources` entry is `PARTIALLY_CORROBORATED`, `PENDING`, or `ENTITY_SUPPLIED_ONLY`.
++
+In cases where the “role” <<legal-entity-identifier,LEI>> is used, the <<certification-authority,CA>> MUST verify that the <<legal-entity-identifier,LEI>> data reference is assigned to the <<individual,individual>> <<subject,subject>> whose identity has been verified in accordance with <<authentication-of-individual-identity>>.
+
+. `subjectKeyIdentifier` (SHOULD be present)
++
+This extension MUST NOT be marked critical.
+It SHOULD contain a value that is derived from the <<public-key,public key>> included in the <<subscriber,subscriber>> <<certificate,certificate>>.
+
+[[all-certificates]]
+===== All certificates
+
+All fields and extensions MUST be set in accordance with https://datatracker.ietf.org/doc/html/rfc5280[RFC 5280].
+The <<certification-authority,CA>> MUST NOT issue a <<certificate,certificate>> that contains a `keyUsage` flag, `extKeyUsage` value, <<certificate,certificate>> extension, or other data not specified in <<certificate-content-and-extensions-root-ca-certificates>>, <<certificate-content-and-extensions-subordinate-ca-certificates>>, or <<certificate-content-and-extensions-subscriber-certificates>> unless the <<certification-authority,CA>> is aware of a reason for including the data in the <<certificate,certificate>>.
+If the <<certification-authority,CA>> includes fields or extensions in a <<certificate,certificate>> that are not specified but are otherwise permitted by these requirements, then the <<certification-authority,CA>> MUST document the processes and procedures that the <<certification-authority,CA>> employs for the validation of information contained in such fields and extensions in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+
+<<certification-authority,CAs>> MUST NOT issue a <<certificate,certificate>> with:
+
+. Extensions that do not apply in the context of the public Internet (such as an `extKeyUsage` value for a service that is only valid in the context of a privately managed network), unless:
+
+.. such value falls within an <<object-identifier,OID>> arc for which the <<applicant,applicant>> demonstrates ownership, or
+.. the <<applicant,applicant>> can otherwise demonstrate the right to assert the data in a public context; or
+.. the extension is defined within an open standards specification and intended for use by other organizations.
+A <<certificate,certificate>> that includes such an extension MUST conform to the specifications of the open standard and of these requirements.
+
+. Field or extension values which have not been validated according to the processes and procedures described in these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+
+[[algorithm-object-identifiers]]
+==== Algorithm object identifiers
+
+[[subjectpublickeyinfo]]
+===== Subjectpublickeyinfo
+
+The following requirements apply to the `subjectPublicKeyInfo` field within a <<certificate,certificate>>.
+No other encodings are permitted.
+
+[[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-rsa]]
+====== RSA
+
+The <<certification-authority,CA>> MUST indicate an RSA key using the `rsaEncryption` (<<object-identifier,OID>>: 1.2.840.113549.1.1.1) algorithm identifier.
+The parameters MUST be present, and MUST be an explicit `NULL`.
+
+The <<certification-authority,CA>> MUST NOT use a different algorithm, such as the `id-RSASSA-PSS (<<object-identifier,OID>>: 1.2.840.113549.1.1.10) algorithm identifier, to indicate an RSA key.
+
+When encoded, the `AlgorithmIdentifier` for RSA keys MUST be byte-for-byte identical with the following hex-encoded bytes: `300d06092a864886f70d0101010500`
+
+Effective 15 September 2026 the <<certification-authority,CA>> MUST NOT sign a certificate using a signature algorithm that incorporates SHA-1.
+
+Prior to 15 September 2026 the <<certification-authority,CA>> MUST revoke any unexpired <<subordinate-ca,subordinate CA>> <<certificate,certificate>> whose signature algorithm incorporates SHA-1.
+
+[IMPORTANT,role=todo]
+====
+Date-specific limitations are a likely holdover from S/MIME. Consider removing.
+====
+
+[[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-ecdsa]]
+====== ECDSA
+
+The <<certification-authority,CA>> MUST indicate an ECDSA key using the `id-ecPublicKey` (<<object-identifier,OID>>: 1.2.840.10045.2.1) algorithm identifier.
+The parameters MUST use the `namedCurve` encoding.
+
+* For P-256 keys, the `namedCurve` MUST be `secp256r1` (<<object-identifier,OID>>: 1.2.840.10045.3.1.7).
+* For P-384 keys, the `namedCurve` MUST be `secp384r1` (<<object-identifier,OID>>: 1.3.132.0.34).
+* For P-521 keys, the `namedCurve` MUST be `secp521r1` (<<object-identifier,OID>>: 1.3.132.0.35).
+
+When encoded, the `AlgorithmIdentifier` for ECDSA keys MUST be byte-for-byte identical with the following hex-encoded bytes:
+
+* For P-256 keys, `301306072a8648ce3d020106082a8648ce3d030107`.
+* For P-384 keys, `301006072a8648ce3d020106052b81040022`.
+* For P-521 keys, `301006072a8648ce3d020106052b81040023`.
+
+[[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-eddsa]]
+====== EdDSA
+
+The <<certification-authority,CA>> MUST indicate an EdDSA key using one of the following algorithm identifiers below:
+
+* For Curve25519 keys, the `algorithm` MUST be `id-Ed25519` (<<object-identifier,OID>>: 1.3.101.112).
+* For Curve448 keys, the `algorithm` MUST be `id-Ed448` (<<object-identifier,OID>>: 1.3.101.113).
+
+The parameters for EdDSA keys MUST be absent.
+
+When encoded, the `AlgorithmIdentifier` for EdDSA keys MUST be byte-for-byte identical with the following hex-encoded bytes:
+
+* For Curve25519 keys, `300506032b6570`.
+* For Curve448 keys, `300506032b6571`.
+
+[[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-ml-dsa]]
+====== ML-DSA
+
+[IMPORTANT,role=todo]
+====
+Neither CAWG nor C2PA has allowed ML-DSA encryption. Should we remove this section?
+====
+
+The <<certification-authority,CA>> MUST indicate an ML-DSA key using one of the following algorithm identifiers below:
+
+* `ML-DSA-44` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17), or
+* `ML-DSA-65` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18), or
+* `ML-DSA-87` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
+
+The parameters for ML-DSA keys MUST be absent.
+The <<certification-authority,CA>> MUST NOT use HashML-DSA; only “pure” ML-DSA is permitted.
+
+When encoded, the `AlgorithmIdentifier` for ML-DSA keys MUST be byte-for-byte identical with the following hex-encoded bytes:
+
+* For ML-DSA-44, `300b0609608648016503040311`.
+* For ML-DSA-65, `300b0609608648016503040312`.
+* For ML-DSA-87, `300b0609608648016503040313`.
+
+[[ml-kem]]
+====== ML-KEM
+
+[IMPORTANT,role=todo]
+====
+Neither CAWG nor C2PA has allowed ML-KEM encryption. Should we remove this section?
+====
+
+The <<certification-authority,CA>> MUST indicate an ML-KEM key using one of the following algorithm identifiers below:
+
+* `ML-KEM-512` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.1), or
+* `ML-KEM-768` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.2), or
+* `ML-KEM-1024` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.3).
+
+The parameters for ML-KEM keys MUST be absent.
+
+When encoded, the `AlgorithmIdentifier` for ML-KEM keys MUST be byte-for-byte identical with the following hex-encoded bytes:
+
+* For ML-KEM-512, `300b0609608648016503040401`.
+* For ML-KEM-768, `300b0609608648016503040402`.
+* For ML-KEM-1024, `300b0609608648016503040403`.
+
+[[signature-algorithmidentifier]]
+===== Signature `AlgorithmIdentifier`
+
+All objects signed by a <<certification-authority,CA>> <<private-key,private key>> MUST conform to these requirements on the use of the `AlgorithmIdentifier` or `AlgorithmIdentifier`-derived type in the context of signatures.
+
+In particular, it applies to all of the following objects and fields:
+
+* the `signatureAlgorithm` field of a <<certificate,certificate>>,
+* the `signature` field of a `TBSCertificate` (for example, as used by a <<certificate,certificate>>),
+* the `signatureAlgorithm` field of a `CertificateList`,
+* the `signature` field of a `TBSCertList`, and
+* the `signatureAlgorithm` field of a `BasicOCSPResponse`.
+
+No other encodings are permitted for these fields.
+
+[[certificate-profile-algorithm-object-identifiers-signature-algorithmidentifier-rsa]]
+====== RSA
+
+The <<certification-authority,CA>> MUST use one of the following signature algorithms and encodings.
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the specified hex-encoded bytes.
+
+* `RSASSA-PKCS1-v1_5` with SHA-256:
++
+Encoding: `300d06092a864886f70d01010b0500`.
+
+* `RSASSA-PKCS1-v1_5` with SHA-384:
++
+Encoding: `300d06092a864886f70d01010c0500`.
+
+* `RSASSA-PKCS1-v1_5` with SHA-512:
++
+Encoding: `300d06092a864886f70d01010d0500`.
+
+* RSASSA-PSS with SHA-256, MGF-1 with SHA-256, and a salt length of 32 bytes:
++
+Encoding:
++
+[source]
+----
+304106092a864886f70d01010a3034a00f300d0609608648016503040201
+0500a11c301a06092a864886f70d010108300d0609608648016503040201
+0500a203020120
+----
+
+* RSASSA-PSS with SHA-384, MGF-1 with SHA-384, and a salt length of 48 bytes:
++
+Encoding:
++
+[source]
+----
+304106092a864886f70d01010a3034a00f300d0609608648016503040202
+0500a11c301a06092a864886f70d010108300d0609608648016503040202
+0500a203020130
+----
+
+* RSASSA-PSS with SHA-512, MGF-1 with SHA-512, and a salt length of 64 bytes:
++
+Encoding:
++
+[source]
+----
+304106092a864886f70d01010a3034a00f300d0609608648016503040203
+0500a11c301a06092a864886f70d010108300d0609608648016503040203
+0500a203020140
+----
+
+[[certificate-profile-algorithm-object-identifiers-signature-algorithmidentifier-ecdsa]]
+====== ECDSA
+
+The <<certification-authority,CA>> MUST use the appropriate signature algorithm and encoding based upon the signing key used.
+
+If the signing key is P-256, the signature MUST use ECDSA with SHA-256.
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300a06082a8648ce3d040302`.
+
+If the signing key is P-384, the signature MUST use ECDSA with SHA-384.
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300a06082a8648ce3d040303`.
+
+If the signing key is P-521, the signature MUST use ECDSA with SHA-512.
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300a06082a8648ce3d040304`.
+
+[[certificate-profile-algorithm-object-identifiers-signature-algorithmidentifier-eddsa]]
+====== EdDSA
+
+The <<certification-authority,CA>> MUST use the appropriate signature algorithm and encoding based upon the signing key used.
+
+If the signing key is Curve25519, the signature algorithm MUST be id-Ed25519 (<<object-identifier,OID>>: 1.3.101.112).
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300506032b6570`.
+
+If the signing key is Curve448, the signature algorithm MUST be id-Ed448 (<<object-identifier,OID>>: 1.3.101.113).
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300506032b6571`.
+
+[[certificate-profile-algorithm-object-identifiers-signature-algorithmidentifier-ml-dsa]]
+====== ML-DSA
+
+[IMPORTANT,role=todo]
+====
+Neither CAWG nor C2PA has allowed ML-DSA encryption. Should we remove this section?
+====
+
+The <<certification-authority,CA>> MUST use the appropriate signature algorithm and encoding based upon the signing key used.
+
+If the signing key is ML-DSA-44, the signature algorithm MUST be `id-ml-dsa-44` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17).
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040311`.
+
+If the signing key is ML-DSA-65, the signature algorithm MUST be `id-ml-dsa-65` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18).
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040312`.
+
+If the signing key is ML-DSA-87, the signature algorithm MUST be `id-ml-dsa-87` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
+When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040313`.
+
+[[name-forms]]
+==== Name forms
+
+Attribute values MUST be encoded according to https://datatracker.ietf.org/doc/html/rfc5280[RFC 5280].
+
+[[name-encoding]]
+===== Name encoding
+
+For every valid certification path (as defined by https://datatracker.ietf.org/doc/html/rfc5280#section-6[RFC 5280 §6]):
+
+* For each <<certificate,certificate>> in the certification path, the encoded content of the <<issuer,issuer>> <<distinguished-name,distinguished name>> field of a <<certificate,certificate>> MUST be byte-for-byte identical with the encoded form of the <<subject,subject>> <<distinguished-name,distinguished name>> field of the <<issuing-ca,issuing CA>> <<certificate,certificate>>.
+* For each <<certification-authority,CA>> <<certificate,certificate>> in the certification path, the encoded content of the <<subject,subject>> <<distinguished-name,distinguished name>> field of a <<certificate,certificate>> MUST be byte-for-byte identical among all <<certificate,certificates>> whose <<subject,subject>> <<distinguished-name,distinguished names>> can be compared as equal according to https://datatracker.ietf.org/doc/html/rfc5280#section-7.1[RFC 5280 §7.1], and including expired and revoked <<certificate,certificates>>.
+
+[[subject-information-subscriber-certificates]]
+===== Subject information: Subscriber certificates
+
+By issuing the <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
+
+<<subject,Subject>> attributes MUST NOT contain only metadata such as `.`, `-`, and ` ` (i.e., space) characters, and/or any other indication that the value is absent, incomplete, or not applicable.
+
+[[subject-alternative-name-extension]]
+====== Subject alternative name extension
+
+* *Certificate field:* `extensions:subjectAltName`
+
+* *Required/optional:* MUST be present
+
+* *Contents:* This extension MUST contain at least one `GeneralName` entry of the following types:
++
+The <<certification-authority,CA>> MAY include `GeneralName` entries of type `directoryName` provided that the information contained in the `Name` complies with the requirements set forth in Sections <<subscriber-subject-distinguished-name-fields>> through <<subject-dn-attributes-for-individual-validated-profile>>, according to the <<certificate-type,certificate type>>.
+Additionally, information contained in the `Name` MUST be validated according to <<naming>>, <<authentication-of-organization-identity>>, and/or <<authentication-of-individual-identity>>, as appropriate for the <<certificate-type,certificate type>>.
++
+For Legacy and Multipurpose Generation profiles, then the <<certification-authority,CA>> MAY include `otherName` entries of any type, provided that the <<certification-authority,CA>> has validated the field value according to its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
++
+[IMPORTANT,role=todo]
+====
+We likely don't need to carry forward the legacy generation from S/MIME.
+====
++
+The <<certification-authority,CA>> MUST NOT include `GeneralName` entries that do not conform to the requirements of this section.
+
+[[subscriber-subject-distinguished-name-fields]]
+====== Subject distinguished name fields
+
+. *Certificate field:* `subject:commonName` (<<object-identifier,OID>> 2.5.4.3) +
+*Contents:* If present, this attribute MUST contain one of the following values verified in accordance with <<initial-identity-validation>>.
++
+[options="header", cols="2,4"]
+|===
+| <<certificate-type,certificate type>>
+| Contents
+
+| `Organization-validated`
+| `subject:organizationName` or mailbox address
+
+| `Sponsor-validated`
+| <<personal-name,personal name>>, <<pseudonym,pseudonym>>, or mailbox address
+
+| `Individual-validated`
+| <<personal-name,personal name>>, <<pseudonym,pseudonym>>, or mailbox address
+|===
++
+[IMPORTANT,role=todo]
+====
+Review use of mailbox address.
+====
++
+If present, the <<personal-name,personal name>> MUST contain a name of the <<subject,subject>>.
+The <<personal-name,personal name>> SHOULD be presented as `subject:givenName` and/or `subject:surname`.
+The <<personal-name,personal name>> MAY be in the <<subject,subject>>’s preferred presentation format or a format preferred by the <<certification-authority,CA>> or <<enterprise-ra,enterprise RA>>, but MUST be a meaningful representation of the <<subject,subject>>’s name as verified under <<authentication-of-individual-identity>>.
++
+If the `subject:commonName` contains a <<pseudonym,pseudonym>>, then the `subject:givenName` and/or `subject:surname` attributes MUST NOT be present.
+If present, the <<pseudonym,pseudonym>> MUST contain the `subject:pseudonym` if that <<subject,subject>> attribute is also present.
++
+If the `subject:commonName` contains a <<personal-name,personal name>>, then the `subject:pseudonym` attribute MUST NOT be present.
++
+NOTE: Like all other <<certificate,certificate>> attributes, `subject:commonName` and `subject:emailAddress` MUST comply with the attribute upper bounds defined in https://datatracker.ietf.org/doc/html/rfc5280[RFC 5280].
++
+Additional specifications for naming are provided in <<naming>>.
+
+. *Certificate field:* `subject:organizationName` (<<object-identifier,OID>> 2.5.4.10) +
+*Contents:* If present, the `subject:organizationName` field MUST contain the <<subject,subject>>’s full legal organization name and/or an <<assumed-name,assumed name>> as verified under <<authentication-of-organization-identity>>.
+If both are included, the <<assumed-name,assumed name>> MUST appear first, followed by the full legal organization name in parentheses.
+The <<certification-authority,CA>> MAY include information in this field that differs slightly from the verified name, such as common variations or abbreviations, provided that the <<certification-authority,CA>> documents the difference and any abbreviations used are locally accepted abbreviations; e.g., if the official record shows “Company Name Incorporated”, the <<certification-authority,CA>> MAY use “Company Name Inc.” or “Company Name.”
+
+. *Certificate field:* `subject:organizationalUnitName` (<<object-identifier,OID>>: 2.5.4.11) +
+*Contents:* If present, the <<certification-authority,CA>> MUST confirm that the `subject:organizationalUnitName` is the full legal organization name of an <<affiliate,affiliate>> of the `subject:organizationName` in the <<certificate,certificate>> and has been verified in accordance with the requirements of <<authentication-of-organization-identity>>.
+The <<certification-authority,CA>> MAY include information in this field that differs slightly from the verified name, such as common variations or abbreviations, provided that the <<certification-authority,CA>> documents the difference and any abbreviations used are locally accepted abbreviations.
+
+. *Certificate field:* `subject:organizationIdentifier` (2.5.4.97) +
+*Contents:* If present, the `subject:organizationIdentifier` field MUST contain a <<registration-reference,registration reference>> for a <<legal-entity,legal entity>> assigned in accordance to the identified registration scheme.
+The <<registration-reference,registration reference>> SHOULD be unique where the registration scheme and jurisdiction provide unique identifiers.
++
+The `subject:organizationIdentifier` MUST be encoded as a `PrintableString` or `UTF8String`.
++
+The registration scheme identified in the <<certificate,certificate>> MUST be the result of the verification performed in accordance with <<authentication-of-organization-identity>>.
++
+If the <<registration-reference,registration reference>> is assigned at the country level, the registration scheme MUST be identified using the following structure in the presented order:
++
+--
+* 3 character registration scheme identifier; and
+* 2 character ISO 3166-1 country code for the nation in which the registration scheme is operated, or as described in Note 1; and
+* a hyphen-minus `-` (`0x2D` (ASCII), `U+002D` (UTF-8)); and
+* registration reference allocated in accordance with the identified registration scheme (or as described in the <<ntr-registration-scheme,note about the `NTR` registration scheme>>).
+--
++
+If the <<registration-reference,registration reference>> is assigned at the subdivision (state or province) level and is not unique at the national level, the registration scheme MUST be identified using the following structure in the presented order:
++
+--
+* 3 character registration scheme identifier; and
+* 2 character ISO 3166-1 country code for the nation in which the registration scheme is operated; and
+* plus `+` (`0x2B` (ASCII), `U+002B` (UTF-8)); and
+* up-to-3 character ISO 3166-2 identifier for the subdivision; and
+* a hyphen-minus `-` (`0x2D` (ASCII), `U+002D` (UTF-8)); and
+* registration reference allocated in accordance with the identified registration scheme.
+--
++
+<<registration-reference,Registration references>> MAY contain hyphens but registration schemes, ISO 3166-1 country codes, and ISO 3166-2 identifiers MUST NOT contain hyphens.
+Therefore if more than one hyphen appears in the structure, the leftmost hyphen is a separator, and the remaining hyphens are part of the <<registration-reference,registration reference>>.
+For example:
++
+--
+* `NTRGB-12345678` (NTR scheme, Great Britain, registration reference at country level is 12345678).
+* `NTRUS+CA-12345678` (NTR Scheme, United States - California, registration reference at state level is 12345678).
+* `PSDBE-NBB-1234.567.890` (PSD Scheme, Belgium, national competent authority identifier is NBB, registration reference assigned by the NCA is 1234.567.890).
+* `VATEL-123456789` (VAT Scheme, Greece using EU Council Directive 2006/112/EC as amended, registration reference is 12345678).
+--
++
+Registration schemes listed in [.line-through]#Appendix A# are recognized as valid under these requirements.
++
+[IMPORTANT,role=todo]
+====
+Could not find Appendix A in Google Doc.
+====
++
+The <<certification-authority,CA>> MUST:
++
+--
+.. confirm that the organization represented by the <<registration-reference,registration reference>> is the same as the organization named in the `organizationName` field as specified in <<subscriber-subject-distinguished-name-fields>>; and
+.. further verify the <<registration-reference,registration reference>> matches other information verified in accordance with <<authentication-of-organization-identity>>.
+--
++
+NOTE: With the exception of the <<legal-entity-identifier,LEI>> and INT registration schemes, if a `subject:countryName` is present in the <<certificate,certificate>> the country code used in the registration scheme identifier MUST match that of the `subject:countryName` in the <<certificate,certificate>>.
++
+For the VAT registration scheme, the country prefix described in Article 215 of EU Council Directive 2006/112/EC, as amended, MAY be used instead of the ISO 3166-1 country code.
+If the country prefix described in Article 215 of EU Council Directive 2006/112/EC is used, the `subject:countryName` attribute, if present, MUST contain the corresponding ISO 3166-1 country code.
++
+For the <<legal-entity-identifier,LEI>> registration scheme, the ISO 3166-1 code `XG` MUST be used.
++
+[NOTE]
+--
+For the following types of entities that do not have an identifier from the registration schemes listed in [.line-through]#Appendix A#:
+
+[IMPORTANT,role=todo]
+====
+Could not find Appendix A in Google Doc.
+====
+
+* For government entities, the CA MUST enter the registration scheme identifier `GOV` followed by the 2 character ISO 3166-1 country code for the nation in which the government entity is located. If the government entity is verified at a subdivision (state or province) level, then a plus `+` (`0x2B` (ASCII), `U+002B` (UTF-8)) followed by an ISO 3166-2 identifier for the subdivision (up to three alphanumeric characters) is added.
+* For international organization entities, the CA MUST enter the registration scheme identifier `INT` followed by the ISO 3166-1 code `XG`.
+An international organization entity is founded by a constituent document, e.g., a charter, treaty, convention or similar document, signed by, or on behalf of, a minimum of two sovereign state governments.
+For example:
+** `GOVUS` (government entity, United States)
+** `GOVUS+CA` (government entity, United States - California)
+** `INTXG` (international organization)
+--
++
+[NOTE#ntr-registration-scheme]
+--
+For the `NTR` registration scheme, when the organization or <<legal-entity,legal entity>> is registered in the European Union or the European Economic Area, the <<registration-reference,registration reference>> MAY use the <<european-unique-identifier,EUID>> identifier.
+When the organization or <<legal-entity,legal entity>> is registered in Germany, the <<registration-reference,registration reference>> SHOULD use the <<european-unique-identifier,EUID>> identifier.
+The structure of the <<european-unique-identifier,EUID>> MUST be as follows:
+
+* 2 character ISO 3166-1 country code, which must match the country code used in the leading string `NTR`; and
+* the business register identifier for the particular section or office of the domestic register that assigned the registration reference; and
+* dot-sign `.` (`U+002E`); and
+* the registration reference allocated by the domestic register.
+
+For example:
+
+* `NTRDE-DER3306.HRB12345` (`DE` is the country code for Germany, `R3306` is the business register identifier for the district court in Cologne, and `HRB12345` is the locally-assigned registration reference).
+--
+
+. *Certificate field:* `subject:givenName` (2.5.4.42) and/or `subject:surname` (2.5.4.4) +
+*Contents:* If present, the `subject:givenName` field and `subject:surname` field MUST contain a <<natural-person,natural person>> <<subject,subject>>’s name as verified under <<authentication-of-individual-identity>>.
+<<subject,Subjects>> with a single legal name MUST provide the name in the `subject:surname` attribute.
+The `subject:givenName` and/or `subject:surname` MUST NOT be present if the `subject:pseudonym` is present.
+
+. *Certificate field:* `subject:pseudonym` (2.5.4.65) +
+*Contents:* The `subject:pseudonym` MUST NOT be present if the `subject:givenName` and/or `subject:surname` are present.
+If present, the `subject:pseudonym` field MUST be verified according to <<anonymity-or-pseudonymity-of-subscribers>>.
+
+. *Certificate field:* `subject:serialNumber` (2.5.4.5) +
+*Contents:* If present, the `subject:serialNumber` MAY be used to contain an identifier assigned by the <<certification-authority,CA>> or <<registration-authority,RA>> to identify and/or to disambiguate the <<subscriber,subscriber>>.
++
+In addition, the `subject:serialNumber` MAY be used in the `Sponsor-validated` and `Individual-validated` profiles to contain a <<natural-person,natural person>> identifier as described in ETSI EN 319 412-1 §5.1.3.
+Registration schemes listed in <<appendix-a---registration-schemes, A>> are recognized as valid under these requirements.
+The <<certification-authority,CA>> MUST confirm that the <<individual,individual>> represented by the <<natural-person,natural person>> Identifier is the same as the <<certificate,certificate>> <<subject,subject>> in accordance with <<authentication-of-individual-identity>>.
++
+[IMPORTANT,role=todo]
+====
+Link to ETSI document section?
+====
+
+. *Certificate field:* `subject:title` (2.5.4.12) +
+*Contents:* If present, the `subject:title` field MUST contain only a organizational role/title or a regulated professional designation verified according to <<authentication-of-individual-identity>>.
+
+. *Certificate field:* Number and street: `subject:streetAddress` (<<object-identifier,OID>>: 2.5.4.9) +
+*Contents:* If present, the `subject:streetAddress` field MUST contain the <<subject,subject>>’s street address information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
+The `subject:streetAddress` field MUST only be used if the `subject:localityName` or `subject:stateOrProvinceName` field is present.
+
+. *Certificate field:* `subject:localityName` (<<object-identifier,OID>>: 2.5.4.7) +
+*Contents:* If present, the `subject:localityName` field MUST contain the <<subject,subject>>’s locality information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
+If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with <<subscriber-subject-distinguished-name-fields>> (n), the `subject:localityName` field MAY contain the <<subject,subject>>’s locality and/or state or province information.
+The `subject:localityName` field MUST only be used if the `subject:countryName` field is present.
++
+[IMPORTANT,role=todo]
+====
+Check `(n)` reference. Likely incorrect given Asciidoc migration.
+====
+
+. *Certificate field:* `subject:stateOrProvinceName` (<<object-identifier,OID>>: 2.5.4.8) +
+*Contents:* If present, the `subject:stateOrProvinceName` field MUST contain the <<subject,subject>>’s state or province information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
+If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with <<subscriber-subject-distinguished-name-fields>> (n), the `subject:stateOrProvinceName` field MAY contain the full name of the <<subject,subject>>’s country information.
+The `subject:stateOrProvinceName` field MUST only be used if the `subject:countryName` field is present.
+
+. *Certificate field:* `subject:postalCode` (<<object-identifier,OID>>: 2.5.4.17) +
+*Contents:* If present, the `subject:postalCode` field MUST contain the <<subject,subject>>’s ZIP or postal information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
+The `subject:postalCode` field MUST only be used if the `subject:countryName` field is present.
+
+. *Certificate field:* `subject:countryName` (<<object-identifier,OID>>: 2.5.4.6) +
+*Contents:* If present, the `subject:countryName` MUST contain the two-letter ISO 3166-1 country code associated with the location of the <<subject,subject>> verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
+If a <<country,country>> is not represented by an official ISO 3166-1 country code, the <<certification-authority,CA>> MUST specify the ISO 3166-1 user-assigned code of `XX` indicating that an official ISO 3166-1 alpha-2 code has not been assigned.
+
+[[subject-dn-attributes-for-organization-validated-profile]]
+====== Subject DN attributes for `organization-validated` profile
+
+[options="header",cols="2,2"]
+|===
+| Attribute
+| Use
+
+| `commonName`
+| MAY
+
+| `organizationName`
+| MUST
+
+| `organizationalUnitName`
+| MAY
+
+| `organizationIdentifier`
+| MUST
+
+| `givenName`
+| MUST NOT
+
+| `surname`
+| MUST NOT
+
+| `pseudonym`
+| MUST NOT
+
+| `serialNumber`
+| MAY
+
+| `emailAddress`
+| MAY
+
+| `title`
+| MUST NOT
+
+| `streetAddress`
+| MAY
+
+| `localityName`
+| MAY
+
+| `stateOrProvinceName`
+| MAY
+
+| `postalCode`
+| MAY
+
+| `countryName`
+| MAY
+
+| Other
+| MAY
+|===
+
+[[subject-dn-attributes-for-sponsor-validated-profile]]
+====== Subject DN attributes for `sponsor-validated` profile
+
+[options="header",cols="2,2"]
+|===
+| Attribute
+| Use
+
+| `commonName`
+| MAY
+
+| `organizationName`
+| MUST
+
+| `organizationalUnitName`
+| MAY
+
+| `organizationIdentifier`
+| MUST
+
+| `givenName`
+| MAY
+
+| `surname`
+| MAY
+
+| `pseudonym`
+| MAY
+
+| `serialNumber`
+| MAY
+
+| `emailAddress`
+| MAY
+
+| `title`
+| MAY
+
+| `streetAddress`
+| MAY
+
+| `localityName`
+| MAY
+
+| `stateOrProvinceName`
+| MAY
+
+| `postalCode`
+| MAY
+
+| `countryName`
+| MAY
+
+| Other
+| MAY
+|===
+
+[[subject-dn-attributes-for-individual-validated-profile]]
+====== Subject DN attributes for `individual-validated` profile
+
+[options="header",cols="2,2"]
+|===
+| Attribute
+| Use
+
+| `commonName`
+| MAY
+
+| `organizationName`
+| MUST NOT
+
+| `organizationalUnitName`
+| MUST NOT
+
+| `organizationIdentifier`
+| MUST NOT
+
+| `givenName`
+| MAY
+
+| `surname`
+| MAY
+
+| `pseudonym`
+| MAY
+
+| `serialNumber`
+| MAY
+
+| `emailAddress`
+| MAY
+
+| `title`
+| MAY
+
+| `streetAddress`
+| MAY
+
+| `localityName`
+| MAY
+
+| `stateOrProvinceName`
+| MAY
+
+| `postalCode`
+| MAY
+
+| `countryName`
+| MAY
+
+| Other
+| MAY
+|===
+
+[[subject-information-root-certificates-and-subordinate-ca-certificates]]
+===== Subject information: Root certificates and subordinate CA certificates
+
+By issuing a <<subordinate-ca,subordinate CA>> <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
+
+[[subject-distinguished-name-fields]]
+====== Subject distinguished name fields
+
+. *Certificate field:* `subject:commonName` (<<object-identifier,OID>> 2.5.4.3) +
+*Required/optional:* MUST be present +
+*Contents:* This field SHOULD contain an identifier for the <<certificate,certificate>> such that the <<certificate,certificate>>’s name is unique across all <<certificate,certificates>> issued by the <<issuing-ca,issuing CA>>.
+
+. *Certificate field:* `subject:organizationName` (<<object-identifier,OID>> 2.5.4.10) +
+*Required/optional:* MUST be present +
+*Contents:* This field
+MUST contain either the <<subject,subject>> <<certification-authority,CA>>’s name or <<assumed-name,DBA>> as verified under <<verification-of-assumed-name>>.
+The <<certification-authority,CA>> MAY include information in this field that differs slightly from the verified name, such as common variations or abbreviations, provided that the <<certification-authority,CA>> documents the difference and any abbreviations used are locally accepted abbreviations; e.g., if the official record shows “Company Name Incorporated,” the <<certification-authority,CA>> MAY use “Company Name Inc.” or “Company Name.”
+
+. *Certificate field:* `subject:countryName` (<<object-identifier,OID>>: 2.5.4.6) +
+*Required/optional:* MUST be present +
+*Contents:* This field MUST contain the two‐letter ISO 3166‐1 country code for the country in which the <<certification-authority,CA>>’s place of business is located.
+
+. *Other <<subject,subject>> attributes:*
+Other attributes MAY be present within the subject field.
+If present, other attributes MUST contain information that has been verified by the <<certification-authority,CA>>.
+
+[[name-constraints]]
+==== Name constraints
+
+For a <<subordinate-ca,subordinate CA>> <<certificate,certificate>> to be considered <<technically-constrained-subordinate-ca-certificate,technically-constrained>>, the <<certificate,certificate>> MUST include an <<extended-key-usage,extended key usage (EKU)>> extension specifying all <<extended-key-usage,extended key usages>> for which the <<subordinate-ca,subordinate CA>> <<certificate,certificate>> is authorized to issue <<certificate,certificates>>.
+The `anyExtendedKeyUsage` `KeyPurposeId` MUST NOT appear within this extension.
+
+[IMPORTANT,role=todo]
+====
+Open question: Shall CAWG use name constraints?
+
+Review comment: Rather than name constraints, scope trust with a dedicated CAWG issuing CA (pathLen=0, CAWG EKU, CAWG policy OID) and list that certificate as the trust anchor, not the issuer’s root.
+Trusting a CA for CAWG then doesn’t trust its TLS, S/MIME, or C2PA business.
+====
+
+[[certificate-policy-object-identifier]]
+==== Certificate policy object identifier
+
+This section describes the content requirements for the <<root-certification-authority,root CA>>, <<subordinate-ca,subordinate CA>>, and <<subscriber,subscriber>> <<certificate,certificates>> as they relate to the identification of <<certificate-policy,certificate policy>>.
+
+[[reserved-certificate-policy-identifiers]]
+===== Reserved certificate policy identifiers
+
+The following CA/Browser Forum <<certificate-policy,certificate policy>> identifiers are reserved for use by <<certification-authority,CAs>> to assert that a <<certificate,certificate>> complies with these requirements.
+
+[options="header", cols="2,2"]
+|===
+| <<certificate-type,certificate type>>
+| Policy identifier
+
+| `Organization-validated`
+| 2.23.140.1.5.2.1
+
+| `Sponsor-validated`
+| 2.23.140.1.5.3.1
+
+| `Individual-validated`
+| 2.23.140.1.5.4.1
+|===
+
+[IMPORTANT,role=todo]
+====
+These OIDs likely need to be replaced with CAWG-specific OIDs.
+====
+
+[[certificate-policy-object-identifier-root-ca-certificates]]
+===== Root CA certificates
+
+A <<root-certification-authority-certificate,root CA certificate>> SHOULD NOT contain the `certificatePolicies` extension.
+If present, the extension MUST conform to the requirements set forth for <<certificate,certificates>> issued to <<subordinate-ca,subordinate CAs>> in <<certificate-policy-object-identifier-subordinate-ca-certificates>>.
+
+[[certificate-policy-object-identifier-subordinate-ca-certificates]]
+===== Subordinate CA certificates
+
+A <<certificate,certificate>> issued to a <<subordinate-ca,subordinate CA>> that is not an <<affiliate,affiliate>> of the <<issuing-ca,issuing CA>>:
+
+. MUST include one or more explicit policy identifiers defined in <<reserved-certificate-policy-identifiers>>, that indicate the <<subordinate-ca,subordinate CA>>’s adherence to and compliance with these requirements and MAY contain one or more identifiers documented by the <<subordinate-ca,subordinate CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>; and
+. MUST NOT contain the `anyPolicy` identifier (2.5.29.32.0).
+
+A <<certificate,certificate>> issued to a <<subordinate-ca,subordinate CA>> that is an <<affiliate,affiliate>> of the <<issuing-ca,issuing CA>> MUST include a set of policy identifiers from one of the two options below:
+
+. One or more explicit policy identifiers defined in <<reserved-certificate-policy-identifiers>>, that indicate the <<subordinate-ca,subordinate CA>>’s adherence to and compliance with these requirements and MAY contain one or more identifiers documented by the <<subordinate-ca,subordinate CA>> in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>; or
+. The `anyPolicy` identifier (2.5.29.32.0).
+
+The <<subordinate-ca,subordinate CA>> and the <<issuing-ca,issuing CA>> MUST represent, in their <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, that all <<certificate,certificates>> containing a policy identifier indicating compliance with these requirements are issued and managed in accordance with these requirements.
+
+[[certificate-policy-object-identifier-subscriber-certificates]]
+===== Subscriber certificates
+
+A <<certificate,certificate>> issued to a <<subscriber,subscriber>> MUST contain, within the <<certificate,certificate>>’s `certificatePolicies` extension, a policy identifier that is specified in <<reserved-certificate-policy-identifiers>>.
+
+The <<certificate,certificate>> MAY also contain additional policy identifier(s) documented by the <<issuing-ca,issuing CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.

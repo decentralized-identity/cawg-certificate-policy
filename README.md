@@ -17,6 +17,20 @@ The site content is built using [Antora](https://antora.org), which takes Asciid
 
 The primary content of this document is available in [docs/modules/ROOT/pages/index.adoc](https://github.com/decentralized-identity/cawg-certificate-profile/blob/main/docs/modules/ROOT/pages/index.adoc) in this repo.
 
+## AsciiDoc source style
+
+Write each sentence on its own line, without adding blank lines within a paragraph.
+Keep code blocks, inline markup, and URLs intact.
+Use `https://example.com[title]` for external web links, without a `link:` prefix.
+Use descriptive, lowercase, hyphen-separated anchor names (for example, `standard-terms`) rather than generated IDs.
+Base section anchors and `.adoc` file names on the visible section title; keep `index.adoc` for section directories.
+Keep shared partial names such as `common/terms.adoc` and `common/toc.adoc` consistent across projects.
+Qualify repeated names with their parent section context or a numeric suffix such as `-2`, and update includes and cross-references when renaming an anchor or file.
+For defined terms, base the anchor on the full primary name, excluding parenthetical abbreviations and alternate names.
+Use smart quotation marks and apostrophes in prose; preserve literal punctuation in code, URLs, and AsciiDoc syntax.
+Place sentence-ending periods inside closing quotation marks in prose.
+Write TODOs as visible IMPORTANT admonitions with `role=todo`, not as hidden comments; the site styles their label as `TO DO`.
+
 ## Local preview
 
 You can render the site of this content locally if you wish to test the appearance of changes you are making. To do this:
@@ -38,3 +52,7 @@ Open file:///(root of this repo)/build/site/index.html in a browser to view your
 ```
 
 Antora does not have a live-preview feature, so you will need to re-run this command to ensure that the rendered site reflects any changes you have made.
+
+Local preview also works from a linked Git worktree, including uncommitted changes.
+Use the project's installed Antora CLI and site generator (both pinned to 3.2.1).
+After updating these dependencies, run `npm install` before building; invoking a newer CLI with `npx antora@3.2` alone can still load an older locally installed site generator.

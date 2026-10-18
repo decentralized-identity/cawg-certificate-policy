@@ -1,0 +1,13 @@
+[[governing-law]]
+=== Governing law
+
+[[jurisdiction]]
+==== Jurisdiction
+
+This <<certificate-policy,CP>> and any agreements arising from it MUST be governed by MUST be construed pursuant to the laws of the State of Delaware (without regard to conflict of laws principles).
+The state and federal courts of Delaware, U.S.A. MUST have jurisdiction and the parties waive any other jurisdiction.
+
+[IMPORTANT,role=todo]
+====
+“MUST be governed by” vs “MUST be construed pursuant to”: choose one.
+====

@@ -1,0 +1,12 @@
+[[publication-and-repository-responsibilities]]
+== Publication and repository responsibilities
+
+This section outlines the mechanisms for disseminating the <<certificate-policy,certificate policy>> and the practices for maintaining a repository of issued certificates.
+
+include::partial$policy/publication-and-repository-responsibilities/repositories.adoc[]
+
+include::partial$policy/publication-and-repository-responsibilities/publication.adoc[]
+
+include::partial$policy/publication-and-repository-responsibilities/repositories-2.adoc[]
+
+include::partial$policy/publication-and-repository-responsibilities/time-or-frequency-of-publication.adoc[]

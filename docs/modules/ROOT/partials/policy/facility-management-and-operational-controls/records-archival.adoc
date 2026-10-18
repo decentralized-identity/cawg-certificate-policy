@@ -1,0 +1,51 @@
+[[records-archival]]
+=== Records archival
+
+[[types-of-records-archived]]
+==== Types of records archived
+
+The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST archive all audit logs (as set forth in <<types-of-events-recorded>>).
+
+Additionally, the <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST archive:
+
+. documentation related to the security of their <<certificate,certificate>> systems, <<certificate,certificate>> management systems, <<root-certification-authority,root CA>> systems, and <<delegated-third-party,delegated third party>> systems; and
+. documentation related to their verification, issuance, and revocation of <<certificate-request,certificate requests>> and <<certificate,certificates>>.
+
+[[retention-period-for-archive]]
+==== Retention period for archive
+
+Archived audit logs (as set forth in <<types-of-records-archived>>, MUST be retained for a period of at least two (2) years from their record creation timestamp, or as long as they are required to be retained per <<retention-period-for-audit-log>>, whichever is longer.
+
+Additionally, the <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST retain, for at least two (2) years:
+
+. all archived documentation related to the security of <<certificate,certificate>> systems, <<certificate,certificate>> management systems, <<root-certification-authority,root CA>> systems and <<delegated-third-party,delegated third party>> systems (as set forth in <<types-of-records-archived>>); and
+. all archived documentation relating to the verification, issuance, and revocation of <<certificate-request,certificate requests>> and <<certificate,certificates>> (as set forth in <<types-of-records-archived>>) after the later occurrence of:
+.. such records and documentation were last relied upon in the verification, issuance, or revocation of <<certificate-request,certificate requests>> and <<certificate,certificates>>; or
+.. the expiration of the <<subscriber,subscriber>> <<certificate,certificates>> relying upon such records and documentation.
+
+NOTE: While these requirements set the minimum retention period, the <<certification-authority,CA>> MAY choose a greater value as more appropriate in order to be able to investigate possible security or other types of incidents that will require retrospection and examination of past records archived.
+
+[[protection-of-archive]]
+==== Protection of archive
+
+No stipulation.
+
+[[archive-backup-procedures]]
+==== Archive backup procedures
+
+No stipulation.
+
+[[requirements-for-time-stamping-of-records]]
+==== Requirements for time-stamping of records
+
+No stipulation.
+
+[[archive-collection-system-internal-or-external]]
+==== Archive collection system (internal or external)
+
+No stipulation.
+
+[[procedures-to-obtain-and-verify-archive-information]]
+==== Procedures to obtain and verify archive information
+
+No stipulation.

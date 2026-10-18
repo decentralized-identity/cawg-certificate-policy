@@ -1,4 +1,9 @@
 [appendix]
+[[version-history]]
 == Version history
 
 _This section is non-normative._
+
+*14 October 2026*
+
+* Initial draft.

@@ -1,0 +1,21 @@
+[[personnel-controls]]
+=== Personnel controls
+
+[[clearances]]
+==== Clearances
+
+The <<certification-authority,CA>>’s policies and procedures MUST specify the background checks and clearance procedures required for <<trusted-role,trusted roles>> and non-trusted roles.
+As a minimum, verification checks on permanent staff MUST be performed at the time of job application and every five years for those individuals undertaking <<trusted-role,trusted roles>>.
+
+[[training-and-awareness]]
+==== Training and awareness
+
+. All personnel involved in <<certification-authority,CA>> operations MUST undergo regular security awareness training, including <<public-key-infrastructure,PKI>> concepts, data protection, incident response, attestation validation (if applicable), and their specific roles and responsibilities.
+. Periodic retraining MUST occur to verify the continued trustworthiness of personnel involved in the activities related to key management and certificate management.
+This training MUST be performed if there is a material change in <<public-key-infrastructure,PKI>> operation.
+
+[[access-control]]
+==== Access control
+
+. Access to <<certification-authority,CA>> systems and data MUST be granted on a need-to-know basis, adhering to the principle of least privilege.
+. Strong password policies, multi-factor authentication, and regular access reviews MUST be implemented.

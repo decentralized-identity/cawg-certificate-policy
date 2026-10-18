@@ -1,0 +1,125 @@
+[[audit-logging-procedures]]
+=== Audit logging procedures
+
+[[types-of-events-recorded]]
+==== Types of events recorded
+
+The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST record events related to the security of their <<certificate,certificate>> systems, <<certificate,certificate>> management systems, <<root-certification-authority,root CA>> systems, and <<delegated-third-party,delegated third party>> systems.
+The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST record events related to their actions taken to process a <<certificate-request,certificate request>> and to issue a <<certificate,certificate>>, including all information generated and documentation received in connection with the <<certificate-request,certificate request>>; the time and date; and the personnel involved.
+The <<certification-authority,CA>> MUST make these records available to its <<qualified-auditor,qualified auditor>> as proof of the <<certification-authority,CA>>’s compliance with these requirements.
+
+The <<certification-authority,CA>> MUST record at least the following events:
+
+. <<certification-authority,CA>> <<certificate,certificate>> and key lifecycle events, including:
+
+.. key generation, backup, storage, recovery, archival, and destruction;
+.. <<certificate-request,certificate requests>>, renewal, and re-key requests, and revocation;
+.. approval and rejection of <<certificate-request,certificate requests>>;
+.. cryptographic device lifecycle management events;
+.. generation of <<certificate-revocation-list,certificate revocation lists>>;
+.. signing of <<online-certificate-status-protocol,OCSP>> responses (as described in <<certificate-revocation-and-suspension>> and [.line-through]##certificate status services##; and
++
+[IMPORTANT,role=todo]
+====
+No corresponding certificate status services section appears in the Google Doc.
+Determine whether to create one, and link to it here and from the audit logging requirements if appropriate.
+====
+
+.. introduction of new <<certificate-profile,certificate profiles>> and retirement of existing <<certificate-profile,certificate profiles>>.
+
+. <<subscriber,Subscriber>> <<certificate,certificate>> lifecycle management events, including:
+
+.. <<certificate-request,certificate requests>>, renewal, and re-key requests, and revocation;
+.. all verification activities stipulated in these requirements and the <<certification-authority,CA>>’s <<certification-practice-statement,certification practice statement>>;
+.. approval and rejection of <<certificate-request,certificate requests>>;
+.. issuance of <<certificate,certificates>>;
+.. generation of <<certificate-revocation-list,certificate revocation lists>>; and
+.. signing of <<online-certificate-status-protocol,OCSP>> responses (as described in <<certificate-revocation-and-suspension>> and [.line-through]##certificate status services##).
++
+[IMPORTANT,role=todo]
+====
+No corresponding certificate status services section appears in the Google Doc.
+Determine whether to create one, and link to it here and from the audit logging requirements if appropriate.
+====
+
+. Security events, including:
+
+.. successful and unsuccessful <<public-key-infrastructure,PKI>> system access attempts;
+.. <<public-key-infrastructure,PKI>> and security system actions performed;
+.. security profile changes;
+.. installation, update, and removal of software on a <<certificate,certificate>> System;
+.. system crashes, hardware failures, and other anomalies;
+.. relevant router and firewall activities (as described in <<router-and-firewall-activities-logs>>); and
+.. entries to and exits from the <<certification-authority,CA>> facility.
+
+Log records MUST include at least the following elements:
+
+. date and time of event,
+. identity of the person making the journal record (when applicable), and
+. description of the event.
+
+[[router-and-firewall-activities-logs]]
+===== Router and firewall activities logs
+
+Logging of router and firewall activities necessary to meet the requirements of <<types-of-events-recorded>> MUST at a minimum include:
+
+. successful and unsuccessful login attempts to routers and firewalls; and
+. logging of all administrative actions performed on routers and firewalls, including configuration changes, firmware updates, and access control modifications; and
+. logging of all changes made to firewall rules, including additions, modifications, and deletions; and
+. logging of all system events and errors, including hardware failures, software crashes, and system restarts.
+
+[[frequency-of-processing-audit-log]]
+==== Frequency of processing audit log
+
+No stipulation.
+
+[[retention-period-for-audit-log]]
+==== Retention period for audit log
+
+The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST retain, for at least two (2) years:
+
+[IMPORTANT,role=todo]
+====
+Retention too short: two years (and one year for the repository) is the BR minimum.
+Provenance content is validated for decades, so evidence of who was vetted should outlive that.
+Suggest the life of the issuing CA plus 7 years.
+====
+
+. <<certification-authority,CA>> <<certificate,certificate>> and key lifecycle management event records (as set forth in <<types-of-events-recorded>> (1)) after the later occurrence of:
+
+.. the destruction of the <<certification-authority,CA>> <<private-key,private key>>, or
+.. the revocation or expiration of the final <<certification-authority,CA>> <<certificate,certificate>> in that set of <<certificate,certificates>> that have an X.509v3 `basicConstraints` extension with the `cA` field set to true and which share a common <<public-key,public key>> corresponding to the <<certification-authority,CA>> <<private-key,private key>>;
+
+. <<subscriber,subscriber>> <<certificate,certificate>> lifecycle management event records (as set forth in <<types-of-events-recorded>> (2)) after the expiration of the <<subscriber,subscriber>> <<certificate,certificate>>;
+. any security event records (as set forth in <<types-of-events-recorded>> (3)) after the event occurred.
+
+NOTE: While these requirements set the minimum retention period, the <<certification-authority,CA>> MAY choose a greater value as more appropriate in order to be able to investigate possible security or other types of incidents that will require retrospection and examination of past audit log events.
+
+[[protection-of-audit-log]]
+==== Protection of audit log
+
+No stipulation.
+
+[[audit-log-backup-procedures]]
+==== Audit log backup procedures
+
+No stipulation.
+
+[[audit-collection-system-internal-vs-external]]
+==== Audit collection system (internal vs. external)
+
+No stipulation.
+
+[[notification-to-event-causing-subject]]
+==== Notification to event-causing subject
+
+No stipulation.
+
+[[vulnerability-assessments]]
+==== Vulnerability assessments
+
+The <<certification-authority,CA>>’s security program MUST include an annual risk assessment that:
+
+. identifies foreseeable internal and external threats that could result in unauthorized access, disclosure, misuse, alteration, or destruction of any <<certificate-data,certificate data>> or <<certificate-management-process,certificate management processes>>;
+. assesses the likelihood and potential damage of these threats, taking into consideration the sensitivity of the <<certificate-data,certificate data>> and <<certificate-management-process,certificate management processes>>; and
+. assesses the sufficiency of the policies, procedures, information systems, technology, and other arrangements that the <<certification-authority,CA>> has in place to counter such threats.

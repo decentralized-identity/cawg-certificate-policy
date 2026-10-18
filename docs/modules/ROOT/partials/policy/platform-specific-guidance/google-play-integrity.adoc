@@ -1,0 +1,7 @@
+[[google-play-integrity]]
+=== Google Play Integrity
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://developer.android.com/google/play/integrity/verdicts[Google Play Integrity documentation].
+====

@@ -1,0 +1,41 @@
+[[platform-specific-guidance]]
+== Platform-specific guidance
+
+[IMPORTANT,role=todo]
+====
+Many references to “generator product” in this section. Will need to be reworded for CAWG context.
+====
+
+[IMPORTANT,role=todo]
+====
+Should this section be non-normative?
+====
+
+While the <<certification-authority,CA>> is required to validate the above requirements, the specific methods for doing so varies by the specific service/platform.
+This section attempts to provide specific guidance for different types of platforms and attestation methods.
+
+Generally, key and platform attestation flows require the <<certification-authority,CA>> to issue a unique, dynamic challenge (usually referred to as a nonce) to the entity from which it is requesting attestation.
+Platform attestation providers in turn include the challenge nonce in the attestation report, and the <<certification-authority,CA>> MUST verify that the challenge nonce in the attestation report matches the one that it issued to the instance of the generator product requesting certificates.
+<<certification-authority,CAs>> MUST follow the recommendations of attestation service/platform providers when generating nonces.
+
+include::partial$policy/platform-specific-guidance/android-key-attestation.adoc[]
+
+include::partial$policy/platform-specific-guidance/google-play-integrity.adoc[]
+
+include::partial$policy/platform-specific-guidance/apple-app-attest.adoc[]
+
+include::partial$policy/platform-specific-guidance/qualcomm-wireless-edge-services-qwes.adoc[]
+
+include::partial$policy/platform-specific-guidance/ietf-remote-attestation-procedures-rats.adoc[]
+
+include::partial$policy/platform-specific-guidance/aws-key-management-service.adoc[]
+
+include::partial$policy/platform-specific-guidance/aws-nitro-enclaves-attestation.adoc[]
+
+include::partial$policy/platform-specific-guidance/microsoft-azure-key-vault-and-azure-managed-hsm.adoc[]
+
+include::partial$policy/platform-specific-guidance/microsoft-azure-attestation.adoc[]
+
+include::partial$policy/platform-specific-guidance/google-cloud-platform-cloud-hsm-key-attestation.adoc[]
+
+include::partial$policy/platform-specific-guidance/google-cloud-confidential-vm-attestation.adoc[]

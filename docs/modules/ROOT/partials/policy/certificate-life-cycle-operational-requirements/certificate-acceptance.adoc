@@ -1,0 +1,13 @@
+[[certificate-acceptance]]
+=== Certificate acceptance
+
+. <<certificate,Certificate>> acceptance by the <<subscriber,subscriber>> MUST indicate the <<subscriber,subscriber>>’s acceptance of the terms of a <<subscriber-agreement,subscriber agreement>> that includes required stipulations of this <<certificate-policy,CP>>.
+. The acceptance MUST be implicit through successful installation and use of the certificate by an instance of the generator product.
++
+[IMPORTANT,role=todo]
+====
+C2PA leftover: implicit acceptance by a generator product is the device model.
+A person or organization should accept the certificate explicitly through the Subscriber Agreement.
+====
+. <<certificate,Certificates>> issued under this <<certificate-policy,CP>> are to be used exclusively by individual or organizations named as subjects of the certificates, to digitally sign CAWG claims at the <<assurance-level,assurance level>> indicated by the certificate.
+Any usage for any other purpose is strictly prohibited.

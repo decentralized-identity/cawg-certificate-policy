@@ -1,0 +1,148 @@
+[[android-key-attestation]]
+=== Android key attestation
+
+Android key attestation can be used for validating the security attributes of a <<subscriber,subscriber>>’s CAWG claim signing key, validating the identity and integrity of the instance of the generator product requesting certificates, and validating the integrity of the Android platform on which the application is running.
+
+[IMPORTANT,role=todo]
+====
+Not sure what the security objectives paragraph was intended to state. Possibly mangled in Asciidoc conversion.
+====
+
+Security objectives addressed by this service/platform: .
+security objective 1 .
+security objective 2 .
+security objective 3 .
+security objective 4
+
+[[resources]]
+==== Resources
+
+[IMPORTANT,role=todo]
+====
+The following links are provided by Google. Non-normative references?
+====
+
+. https://developer.android.com/privacy-and-security/security-key-attestation[Main documentation]
+. https://developer.android.com/privacy-and-security/security-key-attestation[attestation certificate structure] and https://source.android.com/docs/security/features/keystore/attestation#schema[schema for the `attestation` X.509v3 extension]
+. https://github.com/google/android-key-attestation[Helper libraries]
+
+[[guidance-on-values]]
+==== Guidance on values
+
+[[guidance-on-values-for-assurance-level-1]]
+===== Guidance on values for assurance level 1
+
+No stipulation.
+
+[[guidance-on-values-for-assurance-level-2]]
+===== Guidance on values for assurance level 2
+
+Based on the values of the attributes in the Android Key <<attestation,attestation>> <<certificate,certificate>> https://source.android.com/docs/security/features/keystore/attestation#schema[`attestation` extension]
+
+[IMPORTANT,role=todo]
+====
+Consider linking the Security objectives and other requirement sources to the relevant parts of this document?
+====
+
+[IMPORTANT,role=todo]
+====
+Formatting needs work here. Long `identifierNames` are distorting the column-width preferences I am requesting.
+====
+
+[options="header",cols="4,4,4"]
+|===
+| Requirement source
+| Attestation certificate chain attribute
+| Value
+
+| security objective O.3, security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `attestationSecurityLevel`
+| `1` (`TrustedEnvironment`) or `2` (`StrongBox`)
+
+| security objective O.3, security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `keyMintSecurityLevel`
+| `1` (`TrustedEnvironment`) or `2` (`StrongBox`)
+
+| security objective O.1, security objective O.2, security objective O.3, security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `attestationChallenge`
+| Matches the value of the challenge issued by the <<certification-authority,CA>>
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `softwareEnforced.attestationApplicationID` [Tag 709] → `package_infos` → set element → `package_name`
+| Matches the package name of the <<subscriber,subscriber>>’s generator product app that’s registered with the <<certification-authority,CA>>
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `softwareEnforced.attestationApplicationID` [Tag 709] → `package_infos` → set element → `version`
+| Matches one of the versions of the <<subscriber,subscriber>>’s generator product app that’s registered with the <<certification-authority,CA>>
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `softwareEnforced.attestationApplicationID` [Tag 709] → `signature_digests` → set element
+| Matches the SHA-256 digests of the <<subscriber,subscriber>>’s generator product app’s signing certificates registered with the <<certification-authority,CA>>
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.purpose` [Tag 1]
+| Set with an item whose value is equivalent to: `SIGN`/`2` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/KeyPurpose.aidl[KeyPurpose.aidl]
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.algorithm` [Tag 2]
+| Equivalent to `RSA`/`1` or `EC`/ `3` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/Algorithm.aidl[Algorithm.aidl]
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.keySize` [Tag 3]
+| For RSA keys, one of: `2048`, `3072`, `4096`.
+For EC keys, one of: `256`, `384`, `521`
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.digest` [Tag 5]
+| Set with items whose values are equivalent to: `SHA_2_256`/`4` `SHA_2_384`/`5`, or `SHA_2_512`/`6` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/Digest.aidl[Digest.aidl]
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.padding` [Tag 6]
+| [For RSA keys only] Equivalent to: `RSA_PSS`/`3` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/PaddingMode.aidl[PaddingMode.aidl]
+
+| claim signing <<certificate-profile,certificate profile>> constraint
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.ecCurve` [Tag 10]
+| Equivalent to: `P_256`/`1`, `P_384`/`2`, or `P_521`/`3` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/EcCurve.aidl[EcCurve.aidl] Please note: Matches the corresponding value in Tag 3 for EC keys.
+
+| security objective O.2
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.origin` [Tag 702]
+| Equivalent to: `GENERATED`/`0` as described in https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/security/keymint/aidl/android/hardware/security/keymint/KeyOrigin.aidl[KeyOrigin.aidl]
+
+| security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.rootOfTrust` [Tag 704] → `deviceLocked` [Element 2 of sequence]
+| Equivalent to `true`
+
+| security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.rootOfTrust` [Tag 704] → `verifiedBootState` [Element 3 of sequence]
+| `0` ( `Verified`)
+
+| security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.osPatchLevel` [Tag 706]
+| 4 months or less relative to the month of the CSR submission.
+Cannot be in the future relative to the month of the CSR submission.
+For example, for a CSR submitted in the month of August 2026, an acceptable value would be any of `202608`, `202607`, `202606`, or `202605`.
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.attestationIdBrand` [Tag 710]
+| If <<subscriber,subscriber>>’s generator product app is intended to run on only a specific OEM device brand, matches the value registered with the <<certification-authority,CA>>
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.attestationIdManufacturer` [Tag 716]
+| If <<subscriber,subscriber>>’s generator product app is intended to run on only a specific OEM device brand, matches the value registered with the <<certification-authority,CA>>
+
+| security objective O.1
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.attestationIdModel` [Tag 717]
+| If <<subscriber,subscriber>>’s generator product app is intended to run on only a specific OEM device model, matches the value registered with the <<certification-authority,CA>>
+
+| security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.vendorPatchLevel` [Tag 718]
+| 90 days or less from the date of the CSR submission.
+Cannot be in the future relative to the date of the CSR submission.
+For example, for a CSR submitted on June 20th, 2026, a value of `20260505` is acceptable (46 day difference), while a value of `20260105` is not (166 day difference).
+
+| security objective O.4
+| Leaf certificate → 1.3.6.1.4.1.11129.2.1.17 → `hardwareEnforced.bootPatchLevel` [Tag 718]
+| 90 days or less from the date of the CSR submission.
+Cannot be in the future relative to the date of the CSR submission.
+For example, for a CSR submitted on June 20th, 2026, a value of `20260505` is acceptable (46 day difference), while a value of `20260105` is not (166 day difference).
+|===

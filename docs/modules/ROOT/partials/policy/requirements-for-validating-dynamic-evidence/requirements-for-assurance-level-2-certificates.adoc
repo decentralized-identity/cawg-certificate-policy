@@ -1,0 +1,61 @@
+[[requirements-for-assurance-level-2-certificates]]
+=== Requirements for assurance level 2 certificates
+
+[[assurance-level-2-objective-1]]
+==== O.1 Conforming GP instance provides proof of its eligibility during automated certificate enrollment.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the entity attempting certificate enrollment is an instance of a <<subscriber,subscriber>>’s generator product, through requesting and validating verifiable, hardware-backed artifacts that attest to the package names, hashes, code signing certificates or other certificates of the entity requesting certificate enrollment.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+[[assurance-level-2-objective-2]]
+==== O.2 GP TOE protects the confidentiality of the signing key.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the key pair for which certificate enrollment is being attempted is generated and stored within a hardware-backed platform keystore service or Key Management Service, by requesting and validating verifiable, hardware-backed artifacts that attest to the security attributes of the key and its possession by an instance of the <<subscriber,subscriber>>’s generator product.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+[[assurance-level-2-objective-3]]
+==== O.3 - GP TOE protects the Claim Generator from exploits, misconfiguration and misuse.
+
+[IMPORTANT,role=todo]
+====
+Consider having numbered subsections or a numbered list where there are multiple requirements such as this.
+====
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has booted securely into authenticated software images by requesting and validating verifiable artifacts backed by a hardware root of trust.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+*Requirement:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
+
+. the recency of application of security patches of the Claim Generator integrated with the instance of the generator product requesting certificate enrollment is no older than 90 days
+. that the revision (e.g. version, branch, or commit identifier) of the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is one that is registered in good standing with the <<certification-authority,CA>>, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+[[assurance-level-2-objective-4]]
+==== O.4 - GP TOE protects the asset and assertions from being tampered with at generation.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which software in the GP TOE that processes/modifies the Digital Content and/or <<assertion,assertions>> is running has booted securely into authenticated software images, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which all such software in the GP TOE is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+*Requirement:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
+
+. the recency of application of security patches of all such software in the GP TOE is no older than 90 days
+. that the revision (e.g. version, branch, or commit identifier) of the all such software in the GP TOE attempting certificate enrollment is one that is registered in good standing with the <<certification-authority,CA>>, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+
+<<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
+
+[[assurance-level-2-objective-5]]
+==== O.5 - GP TOE protects the traffic between subsystems and components of those subsystems from being intercepted and/or modified.
+
+No stipulation.
+
+[[assurance-level-2-objective-6]]
+==== O.6 - Hosting environment is protected from exploit, misconfiguration and misuse.
+
+No stipulation.

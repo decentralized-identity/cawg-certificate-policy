@@ -1,0 +1,4 @@
+[[certificate-renewal]]
+=== Certificate renewal
+
+<<certificate,Certificate>> renewal with the same key is not permitted, and the <<certification-authority,CA>> MUST NOT issue a new certificate for a key pair for which it had previously issued a certificate.

@@ -1,0 +1,24 @@
+[[certificate-life-cycle-operational-requirements]]
+== Certificate life-cycle operational requirements
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-application.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/enrollment-process-and-responsibilities.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-application-processing.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-acceptance.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/key-pair-and-certificate-usage.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-renewal.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-re-key.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-modification.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/certificate-revocation-and-suspension.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/end-of-subscription.adoc[]
+
+include::partial$policy/certificate-life-cycle-operational-requirements/key-escrow-and-recovery.adoc[]

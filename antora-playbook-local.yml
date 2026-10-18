@@ -1,12 +1,13 @@
 # Use this playbook when building locally.
 
 site:
-  title: Certificate Profile
-  start_page: certificate-profile::index.adoc
+  title: Certificate Policy
+  start_page: certificate-policy::index.adoc
 content:
   sources:
   - url: .
     branches: HEAD
+    worktrees: true
     tags: []
     start_path: docs
 
