@@ -52,7 +52,7 @@ This extension SHOULD NOT be marked critical.
 +
 All ``policyIdentifier``s included in this extension MUST be included in accordance with <<certificate-content-and-extensions-subordinate-ca-certificates>>.
 +
-If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, <<relying-party,relying party>> Agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
+If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>, <<relying-party,relying party>> Agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
 If a qualifier of type `id-qt-unotice` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.2) is included, then it MUST contain `explicitText` and MUST NOT contain `noticeRef`.
 
 . `cRLDistributionPoints` (MUST be present)
@@ -116,9 +116,9 @@ It MUST contain a value that is included in the `keyIdentifier` field of the `au
 . `certificatePolicies` (MUST be present)
 +
 This extension SHOULD NOT be marked critical.
-It MUST include exactly one of the reserved `policyIdentifiers` listed in <<reserved-certificate-policy-identifiers>>, and MAY contain one or more identifiers documented by the <<certification-authority,CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+It MUST include exactly one of the reserved `policyIdentifiers` listed in <<reserved-certificate-policy-identifiers>>, and MAY contain one or more identifiers documented by the <<certification-authority,CA>> in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 +
-If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, <<relying-party,relying party>> agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
+If the value of this extension includes a `PolicyInformation` which contains a qualifier of type `id-qt-cps` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.1), then the value of the qualifier MUST be a HTTP or HTTPS URL for the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>, <<relying-party,relying party>> agreement, or other pointer to online policy information provided by the <<issuing-ca,issuing CA>>.
 If a qualifier of type `id-qt-unotice` (<<object-identifier,OID>>: 1.3.6.1.5.5.7.2.2) is included, then it MUST contain `explicitText` and MUST NOT contain `noticeRef`.
 +
 [IMPORTANT,role=todo]
@@ -349,7 +349,7 @@ It SHOULD contain a value that is derived from the <<public-key,public key>> inc
 
 All fields and extensions MUST be set in accordance with https://datatracker.ietf.org/doc/html/rfc5280[RFC 5280].
 The <<certification-authority,CA>> MUST NOT issue a <<certificate,certificate>> that contains a `keyUsage` flag, `extKeyUsage` value, <<certificate,certificate>> extension, or other data not specified in <<certificate-content-and-extensions-root-ca-certificates>>, <<certificate-content-and-extensions-subordinate-ca-certificates>>, or <<certificate-content-and-extensions-subscriber-certificates>> unless the <<certification-authority,CA>> is aware of a reason for including the data in the <<certificate,certificate>>.
-If the <<certification-authority,CA>> includes fields or extensions in a <<certificate,certificate>> that are not specified but are otherwise permitted by these requirements, then the <<certification-authority,CA>> MUST document the processes and procedures that the <<certification-authority,CA>> employs for the validation of information contained in such fields and extensions in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+If the <<certification-authority,CA>> includes fields or extensions in a <<certificate,certificate>> that are not specified but are otherwise permitted by these requirements, then the <<certification-authority,CA>> MUST document the processes and procedures that the <<certification-authority,CA>> employs for the validation of information contained in such fields and extensions in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 <<certification-authority,CAs>> MUST NOT issue a <<certificate,certificate>> with:
 
@@ -360,7 +360,7 @@ If the <<certification-authority,CA>> includes fields or extensions in a <<certi
 .. the extension is defined within an open standards specification and intended for use by other organizations.
 A <<certificate,certificate>> that includes such an extension MUST conform to the specifications of the open standard and of these requirements.
 
-. Field or extension values which have not been validated according to the processes and procedures described in these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+. Field or extension values which have not been validated according to the processes and procedures described in these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 [[algorithm-object-identifiers]]
 ==== Algorithm object identifiers
@@ -592,7 +592,7 @@ For every valid certification path (as defined by https://datatracker.ietf.org/d
 [[subject-information-subscriber-certificates]]
 ===== Subject information: Subscriber certificates
 
-By issuing the <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
+By issuing the <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
 
 <<subject,Subject>> attributes MUST NOT contain only metadata such as `.`, `-`, and ` ` (i.e., space) characters, and/or any other indication that the value is absent, incomplete, or not applicable.
 
@@ -608,7 +608,7 @@ By issuing the <<certificate,certificate>>, the <<certification-authority,CA>> r
 The <<certification-authority,CA>> MAY include `GeneralName` entries of type `directoryName` provided that the information contained in the `Name` complies with the requirements set forth in Sections <<subscriber-subject-distinguished-name-fields>> through <<subject-dn-attributes-for-individual-validated-profile>>, according to the <<certificate-type,certificate type>>.
 Additionally, information contained in the `Name` MUST be validated according to <<naming>>, <<authentication-of-organization-identity>>, and/or <<authentication-of-individual-identity>>, as appropriate for the <<certificate-type,certificate type>>.
 +
-For Legacy and Multipurpose Generation profiles, then the <<certification-authority,CA>> MAY include `otherName` entries of any type, provided that the <<certification-authority,CA>> has validated the field value according to its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+For Legacy and Multipurpose Generation profiles, then the <<certification-authority,CA>> MAY include `otherName` entries of any type, provided that the <<certification-authority,CA>> has validated the field value according to its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 +
 [IMPORTANT,role=todo]
 ====
@@ -984,7 +984,7 @@ If a <<country,country>> is not represented by an official ISO 3166-1 country co
 [[subject-information-root-certificates-and-subordinate-ca-certificates]]
 ===== Subject information: Root certificates and subordinate CA certificates
 
-By issuing a <<subordinate-ca,subordinate CA>> <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
+By issuing a <<subordinate-ca,subordinate CA>> <<certificate,certificate>>, the <<certification-authority,CA>> represents that it followed the procedure set forth in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>> to verify that, as of the <<certificate,certificate>>’s issuance date, all of the <<subject-information,subject information>> was accurate.
 
 [[subject-distinguished-name-fields]]
 ====== Subject distinguished name fields
@@ -1062,7 +1062,7 @@ If present, the extension MUST conform to the requirements set forth for <<certi
 
 A <<certificate,certificate>> issued to a <<subordinate-ca,subordinate CA>> that is not an <<affiliate,affiliate>> of the <<issuing-ca,issuing CA>>:
 
-. MUST include one or more explicit policy identifiers defined in <<reserved-certificate-policy-identifiers>>, that indicate the <<subordinate-ca,subordinate CA>>’s adherence to and compliance with these requirements and MAY contain one or more identifiers documented by the <<subordinate-ca,subordinate CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>; and
+. MUST include one or more explicit policy identifiers defined in <<reserved-certificate-policy-identifiers>>, that indicate the <<subordinate-ca,subordinate CA>>’s adherence to and compliance with these requirements and MAY contain one or more identifiers documented by the <<subordinate-ca,subordinate CA>> in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>; and
 . MUST NOT contain the `anyPolicy` identifier (2.5.29.32.0).
 
 A <<certificate,certificate>> issued to a <<subordinate-ca,subordinate CA>> that is an <<affiliate,affiliate>> of the <<issuing-ca,issuing CA>> MUST include a set of policy identifiers from one of the two options below:
@@ -1070,11 +1070,11 @@ A <<certificate,certificate>> issued to a <<subordinate-ca,subordinate CA>> that
 . One or more explicit policy identifiers defined in <<reserved-certificate-policy-identifiers>>, that indicate the <<subordinate-ca,subordinate CA>>’s adherence to and compliance with these requirements and MAY contain one or more identifiers documented by the <<subordinate-ca,subordinate CA>> in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>; or
 . The `anyPolicy` identifier (2.5.29.32.0).
 
-The <<subordinate-ca,subordinate CA>> and the <<issuing-ca,issuing CA>> MUST represent, in their <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, that all <<certificate,certificates>> containing a policy identifier indicating compliance with these requirements are issued and managed in accordance with these requirements.
+The <<subordinate-ca,subordinate CA>> and the <<issuing-ca,issuing CA>> MUST represent, in their <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>, that all <<certificate,certificates>> containing a policy identifier indicating compliance with these requirements are issued and managed in accordance with these requirements.
 
 [[certificate-policy-object-identifier-subscriber-certificates]]
 ===== Subscriber certificates
 
 A <<certificate,certificate>> issued to a <<subscriber,subscriber>> MUST contain, within the <<certificate,certificate>>’s `certificatePolicies` extension, a policy identifier that is specified in <<reserved-certificate-policy-identifiers>>.
 
-The <<certificate,certificate>> MAY also contain additional policy identifier(s) documented by the <<issuing-ca,issuing CA>> in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The <<certificate,certificate>> MAY also contain additional policy identifier(s) documented by the <<issuing-ca,issuing CA>> in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.

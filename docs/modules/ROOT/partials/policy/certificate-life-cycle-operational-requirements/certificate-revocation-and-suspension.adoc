@@ -34,10 +34,10 @@ Revisit reference to mailboxes. Probably not relevant for CAWG.
 ====
 --
 . the <<certification-authority,CA>> is made aware of a material change in the information contained in the <<certificate,certificate>>,
-. the <<certification-authority,CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>,
+. the <<certification-authority,CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>,
 . the <<certification-authority,CA>> determines or is made aware that any of the information appearing in the <<certificate,certificate>> is inaccurate,
 . the <<certification-authority,CA>>’s right to issue <<certificate,certificates>> under these requirements expires or is revoked or terminated, unless the <<certification-authority,CA>> has made arrangements to continue maintaining the CRL/OCSP <<repository,repository>>,
-. revocation is required by the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, or
+. revocation is required by the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>, or
 . the <<certification-authority,CA>> is made aware of a demonstrated or proven method that exposes the <<subscriber,subscriber>>’s <<private-key,private key>> to compromise or if there is clear evidence that the specific method used to generate the <<private-key,private key>> was flawed.
 
 [[reasons-for-revoking-a-subordinate-ca-certificate]]
@@ -49,11 +49,11 @@ The <<issuing-ca,issuing CA>> MUST revoke a <<subordinate-ca,subordinate CA>> <<
 . the <<subordinate-ca,subordinate CA>> notifies the <<issuing-ca,issuing CA>> that the original <<certificate-request,certificate request>> was not authorized and does not retroactively grant authorization;
 . the <<issuing-ca,issuing CA>> obtains evidence that the <<subordinate-ca,subordinate CA>>’s <<private-key,private key>> corresponding to the <<public-key,public key>> in the <<certificate,certificate>> suffered a <<key-compromise,key compromise>> or no longer complies with the requirements of <<key-sizes>> and <<public-key-parameters-generation-and-quality-checking>>;
 . the <<issuing-ca,issuing CA>> obtains evidence that the <<certificate,certificate>> was misused;
-. the <<issuing-ca,issuing CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with or that <<subordinate-ca,subordinate CA>> has not complied with this document or the applicable <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>;
+. the <<issuing-ca,issuing CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with or that <<subordinate-ca,subordinate CA>> has not complied with this document or the applicable <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>;
 . the <<issuing-ca,issuing CA>> determines that any of the information appearing in the <<certificate,certificate>> is inaccurate or misleading;
 . the <<issuing-ca,issuing CA>> or <<subordinate-ca,subordinate CA>> ceases operations for any reason and has not made arrangements for another <<certification-authority,CA>> to provide revocation support for the <<certificate,certificate>>;
 . the <<issuing-ca,issuing CA>>’s or <<subordinate-ca,subordinate CA>>’s right to issue <<certificate,certificates>> under these requirements expires or is revoked or terminated, unless the <<issuing-ca,issuing CA>> has made arrangements to continue maintaining the CRL/OCSP <<repository,repository>>; or
-. revocation is required by the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+. revocation is required by the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 [[who-can-request-revocation]]
 ==== Who can request revocation
@@ -65,7 +65,7 @@ Additionally, <<subscriber,subscribers>>, <<relying-party,relying parties>>, <<a
 ==== Procedure for revocation request
 
 The <<certification-authority,CA>> MUST provide a process for <<subscriber,subscribers>> to request revocation of their own <<certificate,certificates>>.
-The process MUST be described in the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The process MUST be described in the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 The <<certification-authority,CA>> MUST maintain a continuous 24x7 ability to accept and respond to revocation requests and <<certificate-problem-report,certificate problem reports>>.
 
 The <<certification-authority,CA>> MUST provide clear instructions for reporting suspected <<private-key,private key>> compromise, <<certificate,certificate>> misuse, or other types of fraud, compromise, misuse, inappropriate conduct, or any other matter related to <<certificate,certificates>>.
