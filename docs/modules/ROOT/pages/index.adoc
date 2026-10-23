@@ -25,4 +25,6 @@ include::partial$common/toc.adoc[]
 
 include::partial$policy/index.adoc[]
 
+include::partial$registration-schemes.adoc[]
+
 include::partial$version-history.adoc[]

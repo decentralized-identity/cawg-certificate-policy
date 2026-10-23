@@ -45,7 +45,7 @@ If present, the `subject:pseudonym` attribute MUST be:
 . an identifier verified based on government-issued identity documents.
 
 <<pseudonym,Pseudonym>> <<certificate,certificates>> are not anonymous.
-<<certification-authority,CAs>> and <<enterprise-ra,enterprise RAs>> MUST treat <<individual,individual>> identity information relating to a <<pseudonym,pseudonym>> as private in accordance with <<information-treated-as-private>>.
+<<certification-authority,CAs>> and <<enterprise-ra,enterprise RAs>> MUST treat <<individual,individual>> identity information relating to a <<pseudonym,pseudonym>> as private in accordance with <<privacy-of-personal-information>>.
 
 [[uniqueness-of-names]]
 ==== Uniqueness of names
