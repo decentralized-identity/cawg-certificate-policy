@@ -164,3 +164,11 @@ For ML-KEM key pairs: no stipulation.
 . <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>> and <<cross-certificate,cross certificates>>;
 . <<certificate,Certificates>> for infrastructure purposes (administrative role certificates, internal <<certification-authority,CA>> operational device certificates); and
 . <<certificate,Certificates>> for <<online-certificate-status-protocol,OCSP>> response verification.
+
+
+--
+[IMPORTANT,role=todo]
+====
+There's a near-duplicate section "Key pair and certificate usage."
+====
+--

@@ -3,6 +3,15 @@
 
 This section defines the requirements for compliance audits and assessments to verify adherence to this <<certificate-policy,CP>> and maintain the integrity of the <<public-key-infrastructure,PKI>> system, specifically focusing on the processes and controls surrounding the issuance and management of certificates.
 
+--
+[IMPORTANT,role=todo]
+====
+C2PA is revisiting its audit requirements.
+
+Currently, with CAWG issuing through S/MIME BRs, the audits are mandated on CAs. We can incorporate the same requirements as C2PA when that is settled if preferred, but I would recommend retaining the annual third party audits as mandatory.
+====
+--
+
 include::partial$policy/compliance-audit-and-other-assessments/compliance-audits.adoc[]
 
 include::partial$policy/compliance-audit-and-other-assessments/other-assessments.adoc[]

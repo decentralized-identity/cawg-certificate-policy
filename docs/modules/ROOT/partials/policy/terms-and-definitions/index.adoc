@@ -907,6 +907,13 @@ A <<certification-authority,certification authority>> whose <<certificate,certif
 --
 A <<natural-person,natural person>> or <<legal-entity,legal entity>> to whom a <<certificate,certificate>> is issued and who is legally bound by a <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>>.
 --
++
+--
+[IMPORTANT,role=todo]
+====
+Second definition is out of sequence. Favor the earlier definition as it appears more CAWG-specific.
+====
+--
 
 [[subscriber-agreement]]Subscriber agreement::
 +

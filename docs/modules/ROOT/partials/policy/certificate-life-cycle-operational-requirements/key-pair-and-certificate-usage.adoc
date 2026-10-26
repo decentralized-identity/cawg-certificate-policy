@@ -2,6 +2,7 @@
 === Key pair and certificate usage
 
 . <<private-key,Private keys>> corresponding to root certificates MUST NOT be used to create signatures except for the following purposes:
+
 .. Self-signed certificates to represent the <<root-certification-authority,root CA>> itself;
 .. <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>> and cross-certified <<certification-authority,CA>> certificates;
 .. <<certificate,Certificates>> for <<ocsp-responder,OCSP responders>>; and
@@ -18,3 +19,10 @@ Any usage for any other purpose is strictly prohibited.
 . Time stamping certificates issued under this <<certificate-policy,CP>> are to be used exclusively by the time stamping authority or unit named as subjects of the certificates to provide time stamping services.
 . <<ocsp-responder,OCSP responder>> certificates issued under this <<certificate-policy,CP>> are to be used exclusively to sign <<online-certificate-status-protocol,OCSP>> responses for certificates issued by the <<ocsp-responder,OCSP responder>> certificate’s <<issuing-ca,issuing CA>>.
 . Any other use of a <<private-key,private key>> or certificate shall be deemed as misuse and its corresponding certificate subject to revocation per <<certificate-revocation-list,certificate revocation>>.
+
+--
+[IMPORTANT,role=todo]
+====
+There's a near-duplicate section "Key usage purposes."
+====
+--

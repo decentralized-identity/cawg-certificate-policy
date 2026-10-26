@@ -35,3 +35,10 @@ One of these individuals must deliberately command the <<root-certification-auth
 All <<certification-authority,CA>> certificate issuance MUST be performed by personnel in <<trusted-role,trusted roles>> under the principles of multiple person control and split knowledge.
 . Time stamping <<certificate,certificate>> issuance MUST follow identification, authentication, and verification processes as documented in the <<certification-authority,CA>>’s business practices.
 . Claim signing <<certificate,certificate>> issuance MUST be subject to the process outlined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.
++
+--
+[IMPORTANT,role=todo]
+====
+Check link to this section.
+====
+--

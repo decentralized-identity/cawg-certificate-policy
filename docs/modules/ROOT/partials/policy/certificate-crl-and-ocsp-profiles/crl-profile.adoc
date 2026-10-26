@@ -25,6 +25,8 @@ The <<repository,repository>> MUST NOT include <<certificate-revocation-list,CRL
 [IMPORTANT,role=todo]
 ====
 Revisit reference to legacy/strict generations. Likely holdover from S/MIME.
+
+Remove sections talking about `certificateHold`.
 ====
 
 * If a `reasonCode` <<certificate-revocation-list,CRL>> entry extension is present, the `CRLReason` MUST indicate the most appropriate reason for revocation of the <<certificate,certificate>>, as defined by the <<certification-authority,CA>> within its <<certificate-policy,CP>>/<<certification-practice-statement,CPS>>.

@@ -116,6 +116,15 @@ For the status of <<subordinate-ca,subordinate CA>> <<certificate,certificates>>
 
 The value of the `nextUpdate` field MUST NOT be more than twelve months beyond the value of the `thisUpdate` field.
 
+--
+[IMPORTANT,role=todo]
+====
+Use of MUST and MUST NOT potentially conflicts with optionality of CRLs. Maybe preface by saying "If CRLs are used ..."
+
+Suggested new wording: For the use of certificate status information, whether sourced by CRL or OCSP, participants shall make every reasonable effort to use the newest/freshest possible status information when evaluating certificate status as part of a CAWG transaction.
+====
+--
+
 [[maximum-latency-for-crls]]
 ==== Maximum latency for CRLs
 

@@ -123,3 +123,10 @@ The <<certification-authority,CA>>’s security program MUST include an annual r
 . identifies foreseeable internal and external threats that could result in unauthorized access, disclosure, misuse, alteration, or destruction of any <<certificate-data,certificate data>> or <<certificate-management-process,certificate management processes>>;
 . assesses the likelihood and potential damage of these threats, taking into consideration the sensitivity of the <<certificate-data,certificate data>> and <<certificate-management-process,certificate management processes>>; and
 . assesses the sufficiency of the policies, procedures, information systems, technology, and other arrangements that the <<certification-authority,CA>> has in place to counter such threats.
+
+--
+[IMPORTANT,role=todo]
+====
+Duplicate section with audit logging. Should probably move it to its own section separately from facility controls.
+====
+--
