@@ -8,7 +8,7 @@
 
 include::partial$abstract.adoc[]
 
-*Version 1.0 Draft 14 October 2026* · xref:version-history[xrefstyle=basic]
+*Version 1.0 Draft 26 October 2026* · xref:version-history[xrefstyle=basic]
 
 [IMPORTANT]
 =====
