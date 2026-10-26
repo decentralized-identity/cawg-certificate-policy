@@ -15,3 +15,5 @@ Currently, with CAWG issuing through S/MIME BRs, the audits are mandated on CAs.
 include::partial$policy/compliance-audit-and-other-assessments/compliance-audits.adoc[]
 
 include::partial$policy/compliance-audit-and-other-assessments/other-assessments.adoc[]
+
+include::partial$policy/compliance-audit-and-other-assessments/review-of-delegated-parties.adoc[]

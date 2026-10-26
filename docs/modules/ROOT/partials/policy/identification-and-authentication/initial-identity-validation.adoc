@@ -39,12 +39,7 @@ The <<certification-authority,CA>> or <<registration-authority,RA>> MUST collect
 . <<jurisdiction-of-incorporation,Jurisdiction of incorporation>> or registration of the <<legal-entity,legal entity>>; and
 . Identifier and type of identifier for the <<legal-entity,legal entity>>.
 
-The identifier MUST be included in the <<certificate,certificate>> `subject:organizationIdentifier` as specified in <<subscriber-subject-distinguished-name-fields>> and <<appendix-a---registration-schemes, Appendix A>>.
-
-[IMPORTANT,role=todo]
-====
-Fix up link to Appendix A. Not quite sure where this was meant to go.
-====
+The identifier MUST be included in the <<certificate,certificate>> `subject:organizationIdentifier` as specified in <<subscriber-subject-distinguished-name-fields>> and <<appendix-a---registration-schemes>>.
 
 [[validation-of-organization-identity]]
 ===== Validation of organization identity
@@ -105,7 +100,7 @@ The <<certification-authority,CA>>, <<registration-authority,RA>>, or <<enterpri
 . Address (if displayed in <<subject,subject>>); and
 . Further information as needed to uniquely identify the <<applicant,applicant>>.
 
-The <<certification-authority,CA>> or <<registration-authority,RA>> MUST comply with applicable data protection legislation in the gathering and retention of evidence relating to <<individual,individual>> identity supporting this requirement in accordance with <<information-treated-as-private>>.
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST comply with applicable data protection legislation in the gathering and retention of evidence relating to <<individual,individual>> identity supporting this requirement in accordance with <<privacy-of-personal-information>>.
 
 [[attribute-collection-of-individual-identity]]
 ===== Attribute collection of individual identity
