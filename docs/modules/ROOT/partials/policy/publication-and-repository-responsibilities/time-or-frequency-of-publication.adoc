@@ -1,5 +1,5 @@
 [[time-or-frequency-of-publication]]
 === Time or frequency of publication
 
-The <<certification-authority,CA>> MUST develop, implement, enforce, and annually update a <<certificate-policy,certificate policy>> and/or <<certification-practice-statement,certification practice statement>> (<<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>) that describes in detail how the <<certification-authority,CA>> implements the latest version of these requirements.
-The <<certification-authority,CA>> MUST review and update its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> at least every 365 days, incrementing the version number and adding a dated changelog entry, even if no other changes are made to the document.
+The <<certification-authority,CA>> MUST develop, implement, enforce, and annually update a <<certificate-policy,certificate policy>> and/or <<certification-practice-statement,certification practice statement>> (<<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>) that describes in detail how the <<certification-authority,CA>> implements the latest version of these requirements.
+The <<certification-authority,CA>> MUST review and update its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>> at least every 365 days, incrementing the version number and adding a dated changelog entry, even if no other changes are made to the document.
