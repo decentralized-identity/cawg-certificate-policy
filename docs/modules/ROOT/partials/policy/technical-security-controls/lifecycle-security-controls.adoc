@@ -1,0 +1,13 @@
+[[lifecycle-security-controls]]
+=== Lifecycle security controls
+
+. Throughout the certificate lifecycle, from issuance to revocation, security controls MUST be in place to ensure the confidentiality, integrity, and availability of certificates and associated data.
+. <<certificate,Certificate>> issuance and revocation processes MUST be protected against unauthorized actions and tampering.
+
+. <<certificate,Certificate>> status information MUST be readily available and accessible to relying parties as defined in [.line-through]##certificate status services## and the relevant <<certificate-profile,certificate profiles>>.
+
+[IMPORTANT,role=todo]
+====
+No corresponding certificate status services section appears in the Google Doc.
+Determine whether to create one, and link to it here and from the audit logging requirements if appropriate.
+====

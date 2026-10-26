@@ -1,0 +1,32 @@
+[[crl-profile]]
+=== CRL profile
+
+[[crl-profile-version-numbers]]
+==== Version number(s)
+
+No stipulation.
+
+[[crl-and-crl-entry-extensions]]
+==== CRL and CRL entry extensions
+
+If present, the `reasonCode` (<<object-identifier,OID>> 2.5.29.21) extension MUST NOT be marked critical.
+
+If a <<certificate-revocation-list,CRL>> entry is for a <<root-certification-authority,root CA>> or <<subordinate-ca,subordinate CA>> <<certificate,certificate>>, including <<cross-certificate,cross certificates>>, this <<certificate-revocation-list,CRL>> entry extension MUST be present.
+The `CRLreason` of certificateHold (6) MUST NOT be used for <<root-certification-authority,root CA>> or <<subordinate-ca,subordinate CA>> <<certificate,certificates>>.
+
+If a <<certificate-revocation-list,CRL>> entry is for a <<certificate,certificate>> not technically capable of causing issuance, this <<certificate-revocation-list,CRL>> entry extension SHOULD be present, but MAY be omitted, subject to the following requirements:
+
+* The `CRLReason` indicated MUST NOT be `unspecified` (0).
+If the reason for revocation is unspecified, <<certification-authority,CAs>> MUST omit the `reasonCode` entry extension.
+
+* The <<repository,repository>> MAY include <<certificate-revocation-list,CRL>> entries that have a `CRLreason` of `certificateHold` (6) for <<certificate,certificates>> that include the <<certificate-policy,certificate policy>> identifiers for the Legacy or Multipurpose Generations.
+The <<repository,repository>> MUST NOT include <<certificate-revocation-list,CRL>> entries that have a `CRLreason` of `certificateHold` (6) for <<certificate,certificates>> that include the <<certificate-policy,certificate policy>> identifiers for the Strict Generation.
++
+[IMPORTANT,role=todo]
+====
+Revisit reference to legacy/strict generations. Likely holdover from S/MIME.
+
+Remove sections talking about `certificateHold`.
+====
+
+* If a `reasonCode` <<certificate-revocation-list,CRL>> entry extension is present, the `CRLReason` MUST indicate the most appropriate reason for revocation of the <<certificate,certificate>>, as defined by the <<certification-authority,CA>> within its <<certificate-policy,CP>>/<<certification-practice-statement,CPS>>.

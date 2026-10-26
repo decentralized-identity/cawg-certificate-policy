@@ -1,0 +1,12 @@
+[[publication]]
+=== Publication
+
+This <<certificate-policy,CP>> and the <<cawg-trust-list,CAWG trust list>> containing <<certification-authority,CAs>> that issue certificates under this <<certificate-policy,CP>> MUST be made publicly available on the CAWG website (https://cawg.io[https://cawg.io]), ensuring transparency and accessibility for all interested parties.
+
+[IMPORTANT,role=todo]
+====
+Update link once CAWG chooses its new name.
+====
+
+A <<certification-authority,CA>> issuing certificates under this <<certificate-policy,CP>> is required to disclose certain business practices as defined in this <<certificate-policy,CP>>.
+This requirement may be met with a publicly disclosed <<certification-practice-statement,CPS>> or another method defined by the <<certification-authority,CA>> in consultation with CAWG.

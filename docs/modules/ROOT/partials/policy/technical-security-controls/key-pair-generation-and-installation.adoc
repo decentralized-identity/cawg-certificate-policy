@@ -1,0 +1,174 @@
+[[key-pair-generation-and-installation]]
+=== Key pair generation and installation
+
+[[key-pair-generation-and-installation-by-cas]]
+==== Key pair generation and installation by CAs
+
+. The <<certification-authority,certification authority>> MUST maintain effective controls to provide reasonable assurance that the integrity of keys and certificates it manages is established and protected throughout their life cycles.
+
+. The <<certification-authority,CA>> MUST maintain controls to provide reasonable assurance that <<certification-authority,CA>> key pairs are generated in accordance with the <<certification-authority,CA>>’s disclosed business practices and defined procedures specified within detailed key generation ceremony scripts.
+
+. The <<certification-authority,CA>>’s disclosed business practices MUST include but are not limited to:
+.. generation of <<certification-authority,CA>> keys are undertaken in a physically- or cloud-secured environment;
+.. generation of <<certification-authority,CA>> keys are performed by personnel in <<trusted-role,trusted roles>> under the principles of multiple-person control and split knowledge;
+.. generation of <<certification-authority,CA>> keys occur within FIPS 140-2 Level 2 or higher, FIPS 140-3 Level 2 or higher, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 or higher cryptographic modules meeting the applicable technical and business requirements as disclosed in the <<certification-authority,CA>>’s business practices;
++
+[IMPORTANT,role=todo]
+====
+Inconsistent: CA keys may be generated at FIPS 140 Level 2 but must be stored at Level 3.
+Suggest Level 3 for both.
+====
+.. generation of <<certification-authority,CA>> keys are witnessed by an independent party and/or recorded; and
+.. <<certification-authority,CA>> key generation activities are logged.
+
+. The <<certification-authority,CA>> key generation script includes the following:
+.. definition of roles and participant responsibilities;
+.. approval for conduct of the key generation ceremony;
+.. cryptographic hardware (or cloud-based <<hardware-security-module,HSM>>) and activation materials required for the ceremony;
+.. specific steps performed during the key generation ceremony;
+.. physical security requirements for the ceremony location (if not using cloud-based <<hardware-security-module,HSM>>);
+.. procedures for secure storage of cryptographic hardware and activation materials following the key generation ceremony (if not using cloud-based <<hardware-security-module,HSM>>)
+.. sign-off from participants and witnesses indicating whether key generation ceremony was performed in accordance with the detailed key generation ceremony script; and
+.. notation of any deviations from the key generation ceremony script.
+
+The <<certification-authority,CA>> MUST reject a <<certificate-request,certificate request>> if one or more of the following conditions are met:
+
+. the <<key-pair,key pair>> does not meet the requirements set forth in <<key-sizes>> and/or <<public-key-parameters-generation-and-quality-checking>>;
+. there is clear evidence that the specific method used to generate the <<private-key,private key>> was flawed;
+. the <<certification-authority,CA>> is aware of a demonstrated or proven method that exposes the <<applicant,applicant>>’s <<private-key,private key>> to compromise;
+. the <<certification-authority,CA>> has previously been made aware that the <<applicant,applicant>>’s <<private-key,private key>> has suffered a <<key-compromise,key compromise>>, such as through the provisions of <<reasons-for-revoking-a-subscriber-certificate>>; or
+. the <<certification-authority,CA>> is aware of a demonstrated or proven method to easily compute the <<applicant,applicant>>’s <<private-key,private key>> based on the <<public-key,public key>> (such as a Debian weak key, see https://wiki.debian.org/SSLkeys[https://wiki.debian.org/SSLkeys]).
+
+The <<certification-authority,CA>> or a <<delegated-third-party,delegated third party>> MAY generate the <<private-key,private key>> on behalf of the <<subscriber,subscriber>>.
+
+[[private-key-delivery-to-subscriber]]
+==== Private key delivery to subscriber
+
+Parties other than the <<subscriber,subscriber>> MUST NOT archive the <<subscriber,subscriber>> <<private-key,private key>> without authorization by the <<subscriber,subscriber>>.
+
+If the <<certification-authority,CA>> or any of its designated <<registration-authority,RAs>> become aware that a <<subscriber,subscriber>>’s <<private-key,private key>> has been communicated to a person or organization not authorized by the <<subscriber,subscriber>>, then the <<certification-authority,CA>> MUST revoke all <<certificate,certificates>> that include the <<public-key,public key>> corresponding to the communicated <<private-key,private key>>.
+
+If the <<certification-authority,CA>> or a <<delegated-third-party,delegated third party>> generates the <<private-key,private key>> on behalf of the <<subscriber,subscriber>> where the <<private-key,private keys>> will be transported to the <<subscriber,subscriber>>, then the entity generating the <<private-key,private key>> MUST either:
+
+. transport the <<private-key,private key>> in hardware with an activation method that is equivalent to 128 bits of encryption, where the material used to activate/protect the <<private-key,private key>> (e.g., a password used to secure a PKCS-12 file) must be delivered to the <<subscriber,subscriber>> securely and separately from the container holding the <<private-key,private key>>; or
+. encrypt the <<private-key,private key>> with at least 112 bits of encryption strength.
+
+Illustrative examples include:
+
+* Using a 128-bit AES key to wrap the <<private-key,private key>>.
+* Storing the key in a PKCS-12 file encrypted using a password and algorithm whose combination provides at least 112 bits of encryption strength.
+* Transporting the <<private-key,private key>> and/or PKCS-12 file and/or activation material via a TLS or other authenticated and encrypted network connection with at least 112 bits of encryption strength.
+* Other approaches that meet the requirements are allowed.
+
+The <<certification-authority,CA>> or <<delegated-third-party,delegated third party>> MUST NOT store <<subscriber,subscriber>> <<private-key,private keys>> in clear text.
+
+[[public-key-delivery-to-certificate-issuer]]
+==== Public key delivery to certificate issuer
+
+No stipulation.
+
+[[ca-public-key-delivery-to-relying-parties]]
+==== CA public key delivery to relying parties
+
+No stipulation.
+
+[[key-sizes]]
+==== Key sizes
+
+For RSA key pairs the <<certification-authority,CA>> MUST:
+
+* For keys corresponding to <<certification-authority,CA>> <<certificate,certificates>> (including Root, Subordinate and <<cross-certificate,cross certificates>>) signed on or after 15 September 2026 ensure that the modulus size, when encoded, is at least 4096 bits; and
++
+[IMPORTANT,role=todo]
+====
+Inconsistent: RSA 4096 here, but the YAML profiles say 3072 or larger, which matches C2PA.
+The 2027 rule below is also keyed to id-kp-emailProtection, which shouldn’t be in CAWG certificates.
+====
+* For keys corresponding to <<subscriber,subscriber>> <<certificate,certificates>>, ensure that the modulus size, when encoded, is at least 2048 bits; and
+* Ensure that the modulus size, in bits, is evenly divisible by 8.
+
+Effective 15 September 2027 the <<certification-authority,CA>> MUST NOT issue <<certificate,certificates>> from any <<certification-authority,CA>> if all of the following conditions are true:
+
+* the `tbsCertificate` contains `id-kp-emailProtection` in the `extKeyUsage` extension; and
+* the `tbsCertificate` contains a `subjectAltName` extension that complies with <<subject-alternative-name-extension>>; and
+* the <<certification-authority,CA>> <<certificate,certificate>>’s RSA Key modulus size, when encoded, is less than 3072 bits.
+
+NOTE: The paragraph above intends to prevent the issuance of S/MIME <<subscriber,subscriber>> <<certificate,certificates>> by existing <<subordinate-ca,subordinate CAs>> which have an RSA key size of less than 3072 bits.
+The issuance of Delegated <<online-certificate-status-protocol,OCSP>> Signing <<certificate,certificates>> by these <<certification-authority,CAs>> remains permitted.
+
+[IMPORTANT,role=todo]
+====
+Review references to S/MIME.
+Also the date-specific references are likely carried over from S/MIME and may not be needed here.
+====
+
+For ECDSA key pairs, the <<certification-authority,CA>> MUST:
+
+* Ensure that the key represents a valid point on the NIST P-256, NIST P-384, or NIST P-521 elliptic curve.
+
+For EdDSA key pairs, the <<certification-authority,CA>> MUST:
+
+* Ensure that the key represents a valid point on the Curve25519 or Curve448 elliptic curve.
+
+For ML-DSA key pairs, the <<certification-authority,CA>> MUST:
+
+* Ensure the Key uses one of the following parameter sets:
+** ML-DSA-44 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17), or
+** ML-DSA-65 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18), or
+** ML-DSA-87 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
+
+For ML-KEM key pairs, the <<certification-authority,CA>> MUST:
+
+[IMPORTANT,role=todo]
+====
+Algorithms: ML-KEM is a key-encapsulation mechanism and can’t sign, so it doesn’t belong in a signing-certificate policy (here, in the key usage table and in the algorithm IDs).
+ML-DSA and Ed448 aren’t in the C2PA 2.4 allowed list (ES256/384/512, PS256/384/512, Ed25519), which the CAWG X.509 credential inherits, so validators would reject them.
+Suggest marking them reserved for a future version.
+====
+
+* Ensure the key uses one of the following parameter sets:
+** ML-KEM-512 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.1), or
+** ML-KEM-768 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.2), or
+** ML-KEM-1024 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.3).
+
+No other algorithms or key sizes are permitted.
+
+[[public-key-parameters-generation-and-quality-checking]]
+==== Public key parameters generation and quality checking
+
+For RSA key pairs: the <<certification-authority,CA>> MUST confirm that the value of the public exponent is an odd number equal to 3 or more.
+Additionally, the public exponent SHOULD be in the range between 2^16 + 1 and 2^256 - 1.
+The modulus SHOULD also have the following characteristics: an odd number, not the power of a prime, and have no factors smaller than 752.
+(See NIST SP 800-89, Section 5.3.3.)
+
+For ECDSA key pairs: the <<certification-authority,CA>> SHOULD confirm the validity of all keys using either the ECC Full <<public-key,public key>> Validation Routine or the ECC Partial <<public-key,public key>> Validation Routine.
+(See NIST SP 800-56A: Revision 2, Sections 5.6.2.3.2 and 5.6.2.3.3.)
+
+[IMPORTANT,role=todo]
+====
+Add HTTP links to the NIST sections cited above.
+====
+
+For EdDSA key pairs: no stipulation.
+
+For ML-DSA key pairs: no stipulation.
+
+For ML-KEM key pairs: no stipulation.
+
+[[key-usage-purposes-as-per-x-509-v3-key-usage-field]]
+==== Key usage purposes (as per X.509 v3 key usage field)
+
+<<private-key,Private keys>> corresponding to <<root-certification-authority-certificate,root CA certificates>> MUST NOT be used to sign <<certificate,certificates>> except in the following cases:
+
+. Self-signed <<certificate,certificates>> to represent the <<root-certification-authority,root CA>> itself;
+. <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>> and <<cross-certificate,cross certificates>>;
+. <<certificate,Certificates>> for infrastructure purposes (administrative role certificates, internal <<certification-authority,CA>> operational device certificates); and
+. <<certificate,Certificates>> for <<online-certificate-status-protocol,OCSP>> response verification.
+
+
+--
+[IMPORTANT,role=todo]
+====
+There's a near-duplicate section "Key pair and certificate usage."
+====
+--

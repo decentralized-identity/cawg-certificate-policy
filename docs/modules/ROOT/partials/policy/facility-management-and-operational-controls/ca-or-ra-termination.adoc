@@ -1,0 +1,9 @@
+[[ca-or-ra-termination]]
+=== CA or RA termination
+
+[[termination-procedures]]
+==== Termination procedures
+
+. Procedures MUST be established for the orderly termination of the <<certification-authority,CA>>’s operations or the revocation of an <<registration-authority,RA>>’s delegation.
+. These procedures should address the secure handling and disposal of sensitive data, keys, and equipment.
+. Except where expedited action is necessitated in response to a <<certification-authority,CA>> or <<registration-authority,RA>> security incident, subscribers MUST receive advance notification, allowing them ample time to transition to alternative <<certification-authority,CAs>> or <<registration-authority,RAs>>.

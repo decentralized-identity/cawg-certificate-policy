@@ -1,0 +1,25 @@
+[[term-and-termination]]
+=== Term and termination
+
+[[term]]
+==== Term
+
+This <<certificate-policy,CP>> becomes effective when approved by the CAWG <<governing-authority,governing authority>>.
+Amendments to this <<certificate-policy,CP>> become effective upon publication.
+This <<certificate-policy,CP>> has no specified term.
+
+[[termination]]
+==== Termination
+
+This <<certificate-policy,CP>>, as amended from time to time, MUST remain in force until it is replaced by a new version.
+Termination of this <<certificate-policy,CP>> is at the discretion of the CAWG <<governing-authority,governing authority>>.
+
+[[termination-rights]]
+==== Termination rights
+
+No stipulation.
+
+[[post-termination-obligations]]
+==== Post-termination obligations
+
+No stipulation.

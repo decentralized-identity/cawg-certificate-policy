@@ -1,0 +1,82 @@
+[[overview]]
+== Overview
+
+This <<certificate-policy,certificate policy>> (<<certificate-policy,CP>>) establishes the requirements governing the issuance of <<claimsigning-certs,CAWG claim signing certificates>> for use by individuals or organizations abiding by the technical specifications developed by the https://cawg.io[Creator Assertions Working Group].
+
+The policy sets the requirements that MUST be met by a <<certification-authority,certification authority>> (<<certification-authority,CA>>) in the process of issuing <<claimsigning-certs,CAWG claim signing certificates>> to <<subscriber,subscriber>>s that intends to make CAWG claims on digital assets.
+
+<<claimsigning-certs,CAWG claim signing certificates>> under this policy MUST only be issued by <<certification-authority,certification authorities>> that have successfully passed the <<cawg-conformance-program,CAWG conformance program>>, as documented through their inclusion in the <<cawg-trust-list,CAWG trust list>>.
+Digital certificates issued under this <<certificate-policy,CP>> indicate an <<assurance-level,assurance level>> that can be used by a <<relying-party,relying party>> as part of its trust evaluation of an <<subscriber,subscriber>> that makes claims on CAWG assertions.
+
+<<certification-authority,Certification authorities>> that comply with this <<certificate-policy,certificate policy>> and want to issue certificates under the <<cawg-conformance-program,CAWG conformance program>> MUST apply to the CAWG <<governing-authority,governing authority>> for inclusion on the <<cawg-trust-list,CAWG trust list>>.
+
+This <<certificate-policy,certificate policy>> considers the Baseline Requirements for the Issuance and Management of Publicly-Trusted S/MIME Certificates, as adopted by the CA/Browser Forum.
+
+[IMPORTANT,role=todo]
+====
+Is the above paragraph still true and relevant?
+====
+
+These requirements describe three <<certificate,certificate>> profiles differentiated by the type of <<subject,subject>> that apply to CAWG claim-signing certificates:
+
+[options="header",cols="2,5"]
+|===
+| <<certificate-type,Certificate type>>
+| Description
+
+| organization-validated
+| Includes only organizational (<<legal-entity,legal entity>>) attributes in the <<subject,subject>>.
+
+| <<sponsor-validated,sponsor-validated>>
+| Combines <<individual,individual>> (<<natural-person,natural person>>) attributes in conjunction with a `subject:organizationName` (an associated <<legal-entity,legal entity>>) attribute.
+Registration for <<sponsor-validated,sponsor-validated>> <<certificate,certificates>> MAY be performed by an <<enterprise-ra,enterprise RA>>.
+
+| <<individual,individual>>-validated
+| Includes only <<individual,individual>> (<<natural-person,natural person>>) attributes in the <<subject,subject>>.
+|===
+
+The following <<certificate-policy,certificate policy>> identifiers are reserved for use by <<certification-authority,CAs>> as a means of asserting compliance with this document as follows:
+
+[IMPORTANT,role=todo]
+====
+These are the CA/B Forum S/MIME Legacy OIDs (2.23.140.1.5.{2,3,4}.1).
+CAWG doesn’t own that arc, so it can’t use them to signal compliance with this policy, and the CAWG interim trust model already rejects Legacy certificates.
+Suggest getting a CAWG IANA PEN (free, about a week) and defining {cawg} 1 1 as this CP’s OID, plus one OID per validation type.
+Issuers MAY also add the S/MIME BR Multipurpose/Strict OIDs when a certificate also meets the BR.
+====
+
+*organization-validated* +
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) organization-validated (2) legacy (1)}` (2.23.140.1.5.2.1); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) organization-validated (2) multipurpose (2)}` (2.23.140.1.5.2.2); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) organization-validated (2) strict (3)}` (2.23.140.1.5.2.3); and
+
+*<<sponsor-validated,sponsor-validated>>* +
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) sponsor-validated (3) legacy (1)}` (2.23.140.1.5.3.1); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) sponsor-validated (3) multipurpose (2)}` (2.23.140.1.5.3.2); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) sponsor-validated (3) strict (3)}` (2.23.140.1.5.3.3); and
+
+*<<individual,individual>>-validated* +
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) individual-validated (4) legacy (1)}` (2.23.140.1.5.4.1); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) individual-validated (4) multipurpose (2)}` (2.23.140.1.5.4.2); and
+
+`{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) smime-baseline(5) individual-validated (4) strict (3)}` (2.23.140.1.5.4.3).
+
+* *Title:* <<cawg-certificate-policy,CAWG certificate policy>>
+* *Identifier:* TBD
++
+[IMPORTANT,role=todo]
+====
+This document’s own identifier is still TBD; see the policy OID note above.
+====
+* *Current Version:* 1.0 draft
+* *Date of Approval:* TBD
+* *Organization:* The Creator <<assertion,Assertions>> Working Group (CAWG)
+
+include::partial$policy/overview/certificate-usage.adoc[]
+
+include::partial$policy/overview/policy-administration.adoc[]

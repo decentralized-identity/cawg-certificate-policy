@@ -1,0 +1,17 @@
+[[privacy-of-personal-information]]
+=== Privacy of personal information
+
+[[compliance-with-privacy-laws]]
+==== Compliance with privacy laws
+
+The <<certification-authority,CA>> commits to collecting and processing personal information in strict accordance with applicable privacy laws and regulations.
+
+[[purpose-limitation]]
+==== Purpose limitation
+
+Personal information MUST be collected and utilized solely for the purposes explicitly outlined in this <<certificate-policy,CP>>, including but not limited to identity verification and certificate issuance.
+
+[[data-subject-rights]]
+==== Data subject rights
+
+<<subscriber,Subscribers>> retain the right to access, rectify, or erase their personal information held by the <<certification-authority,CA>>, subject to legal and regulatory constraints.

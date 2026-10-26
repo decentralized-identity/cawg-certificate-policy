@@ -1,0 +1,20 @@
+[[enrollment-process-and-responsibilities]]
+=== Enrollment process and responsibilities
+
+Prior to the issuance of a <<certificate,certificate>>, the <<certification-authority,CA>> MUST obtain the following documentation from the <<applicant,applicant>>:
+
+. a <<certificate-request,certificate request>>, and
+. an executed <<subscriber-agreement,subscriber agreement>> and/or <<terms-of-use,terms of use>>.
+
+The <<certificate-request,certificate request>> and <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>> MUST be in a form prescribed by the <<certification-authority,CA>> and MUST comply with these requirements including <<representations-and-warranties>>.
+The <<certification-authority,CA>> SHOULD obtain any additional documentation the <<certification-authority,CA>> determines necessary to fulfill these requirements.
+
+The <<certificate-request,certificate request>> MUST contain a request from, or on behalf of, the <<applicant,applicant>> for the issuance of a <<certificate,certificate>>, and a certification by, or on behalf of, the <<applicant,applicant>> that all of the information contained therein is correct.
+
+One <<certificate-request,certificate request>> MAY suffice for multiple <<certificate,certificates>> to be issued to the same <<applicant,applicant>>, subject to the validation reuse periods described in <<performing-identification-and-authentication-functions>>, provided that each <<certificate,certificate>> is supported by a valid, current <<certificate-request,certificate request>> signed by the appropriate <<applicant,applicant>> representative on behalf of the <<applicant,applicant>>.
+
+A <<certification-authority,CA>> may rely on a previously verified <<certificate-request,certificate request>> to issue a replacement <<certificate,certificate>> if:
+
+. the previous <<certificate,certificate>> being referenced was not revoked,
+. the expiration date of the replacement <<certificate,certificate>> is the same as the previous <<certificate,certificate>> being referenced, and
+. the <<subject-information,subject information>> of the <<certificate,certificate>> is the same as the previous <<certificate,certificate>> being referenced.

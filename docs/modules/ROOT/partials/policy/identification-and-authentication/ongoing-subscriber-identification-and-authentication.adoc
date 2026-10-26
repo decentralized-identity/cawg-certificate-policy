@@ -1,0 +1,10 @@
+[[ongoing-subscriber-identification-and-authentication]]
+=== Ongoing subscriber identification and authentication
+
+The <<certification-authority,CA>> MUST re-authenticate the identity of the <<subscriber,subscriber>> after no more than TBD days since the last authentication, using the procedure described under <<initial-identity-validation>>.
+
+[IMPORTANT,role=todo]
+====
+Inconsistent: TBD days here, while the validation-data reuse rules allow 825 days.
+Pick one value; suggest re-validating organizations at least every 825 days and individuals no longer than the certificate validity.
+====

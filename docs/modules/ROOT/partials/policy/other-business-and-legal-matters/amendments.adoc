@@ -1,0 +1,17 @@
+[[amendments]]
+=== Amendments
+
+[[policy-modification]]
+==== Policy modification
+
+The CAWG <<governing-authority,governing authority>> retains the right to amend this <<certificate-policy,CP>> at any time, reflecting evolving security best practices, technological advancements, or regulatory changes.
+
+[[amendments-subscriber-notification]]
+==== Subscriber notification
+
+<<subscriber,Subscribers>> MUST be promptly notified of any material changes to the <<certificate-policy,CP>> through appropriate channels, ensuring they remain informed of their obligations and responsibilities.
+
+[[acceptance-of-amendments]]
+==== Acceptance of amendments
+
+Continued utilization of certificates after <<certificate-policy,CP>> amendments constitutes the <<subscriber,subscriber>>’s acceptance of the revised terms and conditions.

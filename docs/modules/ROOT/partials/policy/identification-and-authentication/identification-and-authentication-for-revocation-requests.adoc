@@ -1,0 +1,12 @@
+[[identification-and-authentication-for-revocation-requests]]
+=== Identification and authentication for revocation requests
+
+Revocation requests MAY be initiated by the <<subscriber,subscriber>>, the <<certification-authority,CA>>, or the CAWG.
+If the request is <<subscriber,subscriber>> or CAWG initiated, the <<certification-authority,CA>> MUST authenticate the requestor and verify the authenticity and validity of the revocation request.
+Once authentication is completed and the authenticity and validity of the request are verified, the <<certification-authority,CA>> MUST revoke the <<certificate,certificate>> within 72 hours.
+
+[IMPORTANT,role=todo]
+====
+Inconsistent: 72 hours here, but the revocation reasons section uses 24 hours and 5 days.
+Suggest keeping the 24h/5d timings and removing this sentence.
+====

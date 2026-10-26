@@ -1,0 +1,5 @@
+[[computer-security-controls]]
+=== Computer security controls
+
+. Security measures such as secure coding practices, code signing, and regular security updates MUST be employed.
+. <<certification-authority,CA>> systems MUST be secured from unauthorized access using multi-factor authentication security controls.

@@ -1,0 +1,12 @@
+[[repositories-2]]
+=== Repositories
+
+[IMPORTANT,role=todo]
+====
+There are two subsections titled "Repositories" here. Can we merge them?
+====
+
+A <<certification-authority,CA>> issuing certificates under this <<certificate-policy,CP>> MUST establish and maintain an internal, secure repository containing records of all certificates issued under this <<certificate-policy,CP>>.
+A record for an issued certificate MUST be stored for at least 1 year after its expiry date.
+Records in this repository MUST include essential details such as certificate serial numbers, subject names, validity periods, X.509v3 extensions and their values, and revocation status.
+The repository MUST be subject to stringent access controls and regular audits to ensure its integrity and confidentiality.

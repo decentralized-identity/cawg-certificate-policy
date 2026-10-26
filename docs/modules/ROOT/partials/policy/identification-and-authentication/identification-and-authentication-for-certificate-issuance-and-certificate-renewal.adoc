@@ -1,0 +1,6 @@
+[[identification-and-authentication-for-certificate-issuance-and-certificate-renewal]]
+=== Identification and authentication for certificate issuance and certificate renewal
+
+The <<certification-authority,CA>> MUST require the use of secure access credentials (for example, usernames and passwords, client certificates, or bearer tokens) for certificate enrollment.
+
+The <<certification-authority,CA>> MUST verify the <<subscriber,subscriber>>’s ownership of the key pair for which certificate issuance is requested, for example by verifying a signed <<certificate-signing-request,certificate signing request (CSR)>> provided by the <<subscriber,subscriber>>, or by inspecting relevant configuration in a key management system.

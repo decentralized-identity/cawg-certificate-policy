@@ -1,0 +1,7 @@
+[[apple-app-attest]]
+=== Apple App Attest
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server[Apple App Attest documentation].
+====

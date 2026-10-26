@@ -1,0 +1,20 @@
+[[network-security-controls]]
+=== Network security controls
+
+. The <<certification-authority,CA>> MUST enforce secure communication protocols and practices when interacting with the generator products or <<registration-authority,RAs>> during certificate operations.
++
+[IMPORTANT,role=todo]
+====
+Revisit use of “generator product” term.
+====
+
+. Network traffic MUST be protected against eavesdropping, tampering, and unauthorized access.
+. Remote access to <<certification-authority,CA>> systems, made by <<certification-authority,CA>> employees or external systems, if permitted, MUST require authentication.
+. Connections made by <<certification-authority,CA>> employees or <<certification-authority,CA>> systems to remote computer systems MUST be authenticated.
+. Access to diagnostic ports, as documented by the <<certification-authority,CA>>, MUST be securely controlled.
+. <<control,Controls>> (e.g., firewalls) MUST be in place to protect the <<certification-authority,CA>>’s internal network from any unauthorized access from any other network.
+. <<control,Controls>> MUST be in place to limit the network services (e.g., HTTP, FTP, etc.) available to authorized users in accordance with the <<certification-authority,CA>>’s access control policies.
+. The security attributes of all network services used by the <<certification-authority,CA>> organization MUST be documented by the <<certification-authority,CA>>.
+. Routing controls MUST be in place to ensure that computer connections and information flows do not breach the <<certification-authority,CA>>’s access control policy.
+. The <<certification-authority,CA>> MUST maintain local network components (e.g., firewalls and routers) in a physically secure environment and audit their configurations periodically for compliance with the <<certification-authority,CA>>’s configuration requirements.
+. Sensitive data MUST be encrypted when exchanged over public or untrusted networks.

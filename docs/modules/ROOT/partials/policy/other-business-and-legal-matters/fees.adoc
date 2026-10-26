@@ -1,0 +1,18 @@
+[[fees]]
+=== Fees
+
+[[fees-for-services]]
+==== Fees for services
+
+The <<certification-authority,CA>> MAY levy reasonable fees for services rendered under this <<certificate-policy,CP>>, encompassing certificate issuance, renewal, revocation, and technical support.
+The fee structure MUST be transparently published and readily accessible to <<subscriber,subscribers>>.
+
+[[fee-adjustments]]
+==== Fee adjustments
+
+The <<certification-authority,CA>> reserves the right to modify its fee structure with prior notification to <<subscriber,subscribers>>, ensuring transparency and predictability in cost management.
+
+[[subscriber-responsibility]]
+==== Subscriber responsibility
+
+The <<subscriber,subscriber>> assumes full responsibility for any and all fees incurred under this <<certificate-policy,CP>>.
