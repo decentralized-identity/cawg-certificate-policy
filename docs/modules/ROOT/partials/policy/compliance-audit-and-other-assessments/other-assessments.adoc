@@ -4,15 +4,9 @@
 [[vulnerability-assessments-and-penetration-tests]]
 ==== Vulnerability assessments and penetration tests
 
-. The <<certification-authority,CA>> SHOULD conduct regular vulnerability assessments and penetration tests on its infrastructure, systems, and attestation validation processes (if applicable) to identify and address security weaknesses.
+. The <<certification-authority,CA>> SHOULD conduct regular vulnerability assessments and penetration tests on its infrastructure, systems, and identity validation processes to identify and address security weaknesses.
 
-. These assessments SHOULD be performed by qualified security professionals and SHOULD also include reviews of the security of the generator product platforms and any attestation services used.
-+
-[IMPORTANT,role=todo]
-====
-Revisit reference to generator product. Likely holdover from C2PA.
-====
-
+. These assessments SHOULD be performed by qualified security professionals and SHOULD also include reviews of the security of any <<delegated-third-party,delegated third party>> or <<enterprise-ra,enterprise RA>> systems used for identity validation.
 . Remediation plans SHOULD be developed and implemented to address any identified vulnerabilities.
 
 [[security-incident-reviews]]

@@ -1,11 +1,5 @@
 [[certificate-re-key]]
 === Certificate re-key
 
-All requests for subscriber certificate re-key shall be treated identical to applications for new certificates, and the <<certification-authority,CA>> MUST perform the same identity validation processes as defined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.
-+
---
-[IMPORTANT,role=todo]
-====
-Check link to this section. Per discussion 26 October, we'll be prohibiting re-key anyway.
-====
---
+<<certificate,Certificate>> re-key is not permitted.
+A <<subscriber,subscriber>> that needs a <<certificate,certificate>> for a new <<key-pair,key pair>> MUST apply for a new <<certificate,certificate>>, and the <<certification-authority,CA>> MUST perform the identity validation processes defined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.

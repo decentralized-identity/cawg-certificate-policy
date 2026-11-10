@@ -22,7 +22,7 @@ The <<certification-authority,CA>> MAY reuse completed validations and/or suppor
 Validation of authority in accordance with <<validation-of-authority>>, MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>, unless a contract between the <<certification-authority,CA>> and the <<applicant,applicant>> specifies a different term.
 For example, the contract MAY include the perpetual assignment of roles until revoked by the <<applicant,applicant>> or <<certification-authority,CA>>, or until the contract expires or is terminated.
 
-. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>.
+. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 366 days prior to issuing the <<certificate,certificate>>.
 
 A prior validation MUST NOT be reused if any data or document used in the prior validation was obtained more than the maximum time permitted for reuse of the data or document prior to issuing the <<certificate,certificate>>.
 
@@ -34,11 +34,4 @@ One of these individuals must deliberately command the <<root-certification-auth
 . All <<certification-authority,CA>> <<certificate,certificates>> issued by the <<certification-authority,CA>> MUST follow a documented process.
 All <<certification-authority,CA>> certificate issuance MUST be performed by personnel in <<trusted-role,trusted roles>> under the principles of multiple person control and split knowledge.
 . Time stamping <<certificate,certificate>> issuance MUST follow identification, authentication, and verification processes as documented in the <<certification-authority,CA>>’s business practices.
-. Claim signing <<certificate,certificate>> issuance MUST be subject to the process outlined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.
-+
---
-[IMPORTANT,role=todo]
-====
-Check link to this section.
-====
---
+. <<cawg-identity-certificate,CAWG identity certificate>> issuance MUST be subject to the process outlined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.

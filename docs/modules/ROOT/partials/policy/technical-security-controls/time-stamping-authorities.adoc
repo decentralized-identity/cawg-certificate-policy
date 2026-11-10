@@ -9,10 +9,7 @@ The <<time-stamping-authority,TSA>> MAY operate several identifiable time-stamp 
 Does CAWG need to operate a TSA registry at launch? I’d recommend we delete this section.
 ====
 
-Two forms of <<time-stamping-authority,time-stamping authorities>> are permitted under this <<certificate-policy,CP>>:
-
-* Backend <<time-stamping-authority,TSA>>, operated as a service by the <<certification-authority,CA>>.
-* On-Device <<time-stamping-authority,TSA>>, intended for use on mobile/edge devices to support local time-stamping without requiring a network connection.
+Only backend <<time-stamping-authority,time-stamping authorities>>, operated as a service by the <<certification-authority,CA>>, are permitted under this <<certificate-policy,CP>>.
 
 [[general-tsa-requirements]]
 ==== General TSA requirements
@@ -32,13 +29,3 @@ A TSU MUST have a single time-stamp signing key active at a time.
 ==== Backend TSA
 
 . TSU signing keys MUST be generated and stored within a secure cryptographic device which is a trustworthy system that has been assured to EAL 4 or higher in accordance with ISO/IEC 15408, or equivalent internationally recognized evaluation criteria for IT security, or as meeting at least FIPS 140-2 level 3, FIPS 140-3 level 3, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 (or higher), which includes requirements to protect the <<private-key,private key>> and other assets against known threats.
-
-[[on-device-tsa]]
-==== On-device TSA
-
-. The On-Device <<time-stamping-authority,TSA>> MUST attempt to synchronize its time at least once every 24 hours with an online time source whose time values are traceable to at least one of the real time values distributed by a UTC(k) laboratory.
-The trusted online time source MAY be a Backend <<time-stamping-authority,TSA>> on the C2PA <<time-stamping-authority,TSA>> Trust List.
-In such a case, the On-Device <<time-stamping-authority,TSA>> MUST adhere to the following procedure:
-. The On-Device <<time-stamping-authority,TSA>> application MUST run in a <<tee,Trusted Execution Environment>>.
-The On-Device <<time-stamping-authority,TSA>> application can accept `MessageImprint` and `nonce` (optional) from outside of the <<tee,Trusted Execution Environment>>.
-. TSU signing keys MUST be generated and stored within a Trusted Execution Environment.

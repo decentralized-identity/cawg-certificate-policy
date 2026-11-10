@@ -39,12 +39,7 @@ The <<certification-authority,CA>> or <<registration-authority,RA>> MUST collect
 . <<jurisdiction-of-incorporation,Jurisdiction of incorporation>> or registration of the <<legal-entity,legal entity>>; and
 . Identifier and type of identifier for the <<legal-entity,legal entity>>.
 
-The identifier MUST be included in the <<certificate,certificate>> `subject:organizationIdentifier` as specified in <<subscriber-subject-distinguished-name-fields>> and <<appendix-a---registration-schemes, Appendix A>>.
-
-[IMPORTANT,role=todo]
-====
-Fix up link to Appendix A. Not quite sure where this was meant to go.
-====
+The identifier MUST be included in the <<certificate,certificate>> `subject:organizationIdentifier` as specified in <<subscriber-subject-distinguished-name-fields>> and Appendix A of the <<smime-baseline-requirements,S/MIME Baseline Requirements>>.
 
 [[validation-of-organization-identity]]
 ===== Validation of organization identity
@@ -218,7 +213,7 @@ If an <<mobile-driver-license,mDL>> is used to provide evidence, the <<certifica
 * is issued by an <<issuing-authority,issuing authority>> that is legally authorized by the relevant government or jurisdiction to issue driving licenses;
 * conforms to ISO/IEC 18013-5;
 * supports validation through the verification protocols defined in ISO/IEC 18013-7; and
-* can demonstrate a valid <<certificate,certificate>> chain from the Document <<signer,signer>> <<certificate,certificate>> to an <<issuing-authority,issuing authority>> <<certificate,certificate>> that is verifiable through a publicly available trust anchor or trust list approved by the issuing jurisdiction.
+* can demonstrate a valid <<certificate,certificate>> chain from the document signer <<certificate,certificate>> to an <<issuing-authority,issuing authority>> <<certificate,certificate>> that is verifiable through a publicly available trust anchor or trust list approved by the issuing jurisdiction.
 
 The <<certification-authority,CA>> MUST document and publish information describing the issung jurisdictions and <<mobile-driver-license,mDL>> versions it accepts.
 
@@ -306,7 +301,7 @@ If an <<mobile-driver-license,mDL>> is used to provide evidence, the <<certifica
 
 * Authenticate to the <<mobile-driver-license,mDL>> holder’s device and request data in conformance with ISO/IEC 18013-5 and ISO/IEC 18013-7;
 * Verify the authenticity and integrity of the <<mobile-driver-license,mDL>> data through validation of the Mobile Security Object (MSO) and its signature chain;
-* Validate the document <<signer,signer>> <<certificate,certificate>> chain against the issuing jurisdiction’s published trust infrastructure; and
+* Validate the document signer <<certificate,certificate>> chain against the issuing jurisdiction’s published trust infrastructure; and
 * Verify that the <<mobile-driver-license,mDL>> is current and has not been revoked or expired.
 
 The <<mobile-driver-license,mDL>> authentication MUST be performed in real-time as part of the identity validation process, and MUST NOT rely on previously captured <<mobile-driver-license,mDL>> data.
@@ -314,12 +309,7 @@ The <<mobile-driver-license,mDL>> authentication MUST be performed in real-time 
 [[non-verified-subscriber-information]]
 ==== Non-verified subscriber information
 
-<<subscriber,Subscriber>> information that has not been verified in accordance with these requirements MUST NOT be included in publicly-trusted S/MIME <<certificate,certificates>>.
-
-[IMPORTANT,role=todo]
-====
-Reword since this isn't an S/MIME policy document.
-====
+<<subscriber,Subscriber>> information that has not been verified in accordance with these requirements MUST NOT be included in <<certificate,certificates>> issued under this <<certificate-policy,CP>>.
 
 [[validation-of-authority]]
 ==== Validation of authority

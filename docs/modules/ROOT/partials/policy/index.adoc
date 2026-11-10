@@ -21,7 +21,3 @@ include::partial$policy/certificate-crl-and-ocsp-profiles/index.adoc[]
 include::partial$policy/compliance-audit-and-other-assessments/index.adoc[]
 
 include::partial$policy/other-business-and-legal-matters/index.adoc[]
-
-include::partial$policy/requirements-for-validating-dynamic-evidence/index.adoc[]
-
-include::partial$policy/platform-specific-guidance/index.adoc[]
