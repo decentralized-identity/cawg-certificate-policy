@@ -69,12 +69,7 @@ The process MUST be described in the <<certification-authority,CA>>’s <<certif
 The <<certification-authority,CA>> MUST maintain a continuous 24x7 ability to accept and respond to revocation requests and <<certificate-problem-report,certificate problem reports>>.
 
 The <<certification-authority,CA>> MUST provide clear instructions for reporting suspected <<private-key,private key>> compromise, <<certificate,certificate>> misuse, or other types of fraud, compromise, misuse, inappropriate conduct, or any other matter related to <<certificate,certificates>>.
-The <<certification-authority,CA>> MUST publicly disclose the instructions through a readily accessible online means and in Section 1.5.2 of their <<certification-practice-statement,CPS>>.
-
-[IMPORTANT,role=todo]
-====
-Do we know that the CPS will still have the same section 1.5.2 reference?
-====
+The <<certification-authority,CA>> MUST publicly disclose the instructions through a readily accessible online means and in Section 1.5.2 (Contact person) of their <<certification-practice-statement,CPS>>, which is structured according to <<rfc-3647,RFC 3647>>.
 
 [[revocation-request-grace-period]]
 ==== Revocation request grace period

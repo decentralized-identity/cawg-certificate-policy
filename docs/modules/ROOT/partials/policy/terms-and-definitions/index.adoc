@@ -194,10 +194,8 @@ An electronic document that uses a digital signature to bind a <<public-key,publ
 [[certificate-signing-request]]Certificate signing request (or CSR)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A message, typically formatted according to https://datatracker.ietf.org/doc/html/rfc2986[PKCS #10 (RFC 2986)], that an <<applicant,applicant>> sends to a <<certification-authority,CA>> to request a <<certificate,certificate>>.
+It contains the <<public-key,public key>> to be certified and is signed with the corresponding <<private-key,private key>>.
 --
 
 [[certification-authority]]Certification authority (or CA)::
@@ -258,10 +256,7 @@ A set of documents or files that defines requirements for <<certificate,certific
 [[certificate-request]]Certificate request::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+Communications described in <<certificate-application>> requesting the issuance of a <<certificate,certificate>>.
 --
 
 [[certificate-revocation-list]]Certificate revocation list (or CRL)::
@@ -279,10 +274,8 @@ This <<certificate-policy,CP>> defines <<certificate-profile,certificate profile
 [[common-name]]Common name (or CN)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The `commonName` attribute (OID 2.5.4.3) of a <<distinguished-name,distinguished name>>.
+In a <<subscriber,subscriber>> <<certificate,certificate>>, it contains a human-readable name for the <<subject,subject>>, as specified in <<subscriber-subject-distinguished-name-fields>>.
 --
 
 [[conformance-criteria]]Conformance criteria::
@@ -337,19 +330,14 @@ A government-issued identity document that is issued in a machine-processable fo
 [[digital-signature]]Digital signature::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The result of a cryptographic transformation of data using a <<private-key,private key>> which, when verified using the corresponding <<public-key,public key>>, provides assurance of the origin and integrity of the data.
 --
 
 [[distinguished-name]]Distinguished name (or DN)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+An X.500 name, consisting of an ordered sequence of attributes, that identifies the issuer or <<subject,subject>> of a <<certificate,certificate>>.
+See <<x-509>>.
 --
 
 [[domain-label]]Domain label::
@@ -368,10 +356,8 @@ An ordered list of one or more <<domain-label,domain labels>> assigned to a node
 [[domain-name-system]]Domain name system (or DNS)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The hierarchical, distributed naming system that maps domain names to IP addresses and other resource records.
+See <<rfc-8499>>.
 --
 
 [[electronic-identification]]Electronic identification (or eID)::
@@ -389,10 +375,8 @@ An employee or agent of an organization unaffiliated with the <<certification-au
 [[european-telecommunications-standards-institute]]European Telecommunications Standards Institute (or ETSI)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The European standards organization that develops standards for information and communications technologies, including the standards for trust service providers listed in <<normative-references>>.
+See https://www.etsi.org/[www.etsi.org].
 --
 
 [[european-unique-identifier]]European unique identifier (or EUID)::
@@ -405,10 +389,7 @@ The <<european-unique-identifier,EUID>> is specified in chapter 9 of the Annex c
 [[extended-key-usage]]Extended key usage (or EKU)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The X.509 <<certificate,certificate>> extension (OID 2.5.29.37), defined in https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12[RFC 5280, Section 4.2.1.12], that indicates one or more purposes for which the certified <<public-key,public key>> may be used, in addition to or in place of the basic purposes indicated in the key usage extension.
 --
 
 [[expiry-date]]Expiry date::
@@ -420,10 +401,7 @@ The “Not After” date in a <<certificate,certificate>> that defines the end o
 [[federal-information-processing-standard]]Federal Information Processing Standard (or FIPS)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending. (US Government)
-====
+A publicly announced standard developed by the <<national-institute-of-standards-and-technology,National Institute of Standards and Technology>> for use in computer systems by U.S. federal government agencies and their contractors, such as <<fips-140-2,FIPS 140-2>>.
 --
 
 [[fully-qualified-domain-name]]Fully-qualified domain name::
@@ -458,10 +436,8 @@ A government-operated legal entity, agency, department, ministry, branch, or sim
 [[hardware-security-module]]Hardware security module (or HSM)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A physical computing device that generates, stores, and protects cryptographic keys and performs cryptographic operations within a tamper-resistant boundary.
+See <<private-key-protection-and-cryptographic-module-engineering-controls>>.
 --
 
 [[individual]]Individual::
@@ -479,37 +455,26 @@ Refers to a <<certificate,certificate>> <<subject,subject>> that includes only <
 [[international-civil-aviation-organization]]International Civil Aviation Organization (or ICAO)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The United Nations specialized agency that sets international standards for civil aviation, including the specifications for machine readable travel documents in <<icao-doc-9303,ICAO Doc 9303>>.
 --
 
 [[international-organization-for-standardization]]International Organization for Standardization (or ISO)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The independent, non-governmental international organization that develops and publishes international standards.
+See https://www.iso.org/[www.iso.org].
 --
 
 [[issuer]]Issuer::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The entity named in the `issuer` field of a <<certificate,certificate>>, whose <<private-key,private key>> was used to sign that <<certificate,certificate>>.
 --
 
 [[issuing-authority]]Issuing authority::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The government agency or other authority that issues an identity document, such as a passport or mobile driving licence, that is presented as evidence of identity during <<initial-identity-validation,initial identity validation>>.
 --
 
 [[issuing-ca]]Issuing CA::
@@ -553,10 +518,8 @@ An association, corporation, partnership, proprietorship, trust, government enti
 [[legal-entity-identifier]]Legal entity identifier (or LEI)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A 20-character alphanumeric code, assigned in accordance with <<iso-17442-1,ISO 17442-1>>, that uniquely identifies a <<legal-entity,legal entity>>.
+LEI records are published by the Global Legal Entity Identifier Foundation (https://www.gleif.org/[GLEIF]).
 --
 
 [[linting]]Linting::
@@ -580,10 +543,7 @@ A driver license that is issued in digital format by an <<issuing-authority,issu
 [[national-institute-of-standards-and-technology]]National Institute of Standards and Technology (or NIST)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending. (US Government)
-====
+A non-regulatory agency of the U.S. Department of Commerce that develops measurement standards and guidelines, including the <<federal-information-processing-standard,FIPS>> publications and NIST Special Publications cited in this <<certificate-policy,CP>>.
 --
 
 [[natural-person]]Natural person::
@@ -595,10 +555,8 @@ An <<individual,individual>>; a human being as distinguished from a <<legal-enti
 [[name-constraint]]Name constraint::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A restriction, expressed in the `nameConstraints` extension (OID 2.5.29.30) of a <<certification-authority,CA>> <<certificate,certificate>>, on the namespace within which all <<subject,subject>> names in subsequent <<certificate,certificates>> in a certification path must be located.
+See https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.10[RFC 5280, Section 4.2.1.10] and <<name-constraints>>.
 --
 
 [[object-identifier]]Object identifier (or OID)::
@@ -749,19 +707,13 @@ The <<certification-authority,CA>> MUST impose these limitations as a contractua
 [[registration-reference]]Registration reference::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A unique identifier assigned to a <<legal-entity,legal entity>> under a registration scheme, such as a company number from a national trade register, a VAT number, or an <<legal-entity-identifier,LEI>>.
 --
 
 [[reliable-data-source]]Reliable data source::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+An identification document or source of data used to verify <<subject-identity-information,subject identity information>> that is generally recognized among commercial enterprises and governments as reliable, and which was created by a third party for a purpose other than the <<applicant,applicant>> obtaining a <<certificate,certificate>>.
 --
 
 [[reliable-method-of-communication]]Reliable method of communication::
@@ -833,7 +785,7 @@ The term *CAWG Trust Model* is introduced here but not used or defined anywhere 
 The above definition looks like a holdover from C2PA. Consider rewording to `referenced_assertions` and _named actor_ for consistency with terms used in the identity assertion spec
 ====
 
-In the context of the <<cawg-conformance-program,CAWG conformance program>>, an indiviual or organization identified as the <<subject,subject>> of a CAWG Signing <<certificate,certificate>>  is always the <<signer,signer>>.
+In the context of the <<cawg-conformance-program,CAWG conformance program>>, an individual or organization identified as the <<subject,subject>> of a CAWG Signing <<certificate,certificate>> is always the <<signer,signer>>.
 --
 
 [[sponsor-validated]]Sponsor-validated::
@@ -881,38 +833,19 @@ Check reference to mailbox. May not apply here.
 [[subject-information]]Subject information::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The information about the <<subject,subject>> that is included in a <<certificate,certificate>>, including the subject <<distinguished-name,distinguished name>> and the subject alternative name extension.
 --
 
 [[subject-public-key-info]]Subject public key info::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The `subjectPublicKeyInfo` field of a <<certificate,certificate>>, defined in https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7[RFC 5280, Section 4.1.2.7], which carries the <<subject,subject>>’s <<public-key,public key>> and identifies the algorithm with which the key is used.
 --
 
 [[subordinate-ca]]Subordinate CA::
 +
 --
 A <<certification-authority,certification authority>> whose <<certificate,certificate>> is signed by the <<root-certification-authority,root CA>>, or another <<subordinate-ca,subordinate CA>>.
---
-
-[[subscriber-2]]Subscriber::
-+
---
-A <<natural-person,natural person>> or <<legal-entity,legal entity>> to whom a <<certificate,certificate>> is issued and who is legally bound by a <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>>.
---
-+
---
-[IMPORTANT,role=todo]
-====
-Second definition is out of sequence. Favor the earlier definition as it appears more CAWG-specific.
-====
 --
 
 [[subscriber-agreement]]Subscriber agreement::
@@ -957,26 +890,17 @@ This is similar to how a notary acts for online documents.
 [[transport-layer-security]]Transport Layer Security (or TLS)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+The IETF protocol, defined in https://datatracker.ietf.org/doc/html/rfc8446[RFC 8446], that provides authenticated, confidential, and integrity-protected communication over a network.
 --
 
 [[trusted-execution-environment]]Trusted execution environment (or TEE)::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+A secure area of a processor, isolated from the main operating system, that protects the confidentiality and integrity of the code and data loaded into it.
 --
 
 [[trusted-role]]Trusted role::
 +
 --
-[IMPORTANT,role=todo]
-====
-Definition pending.
-====
+An employee or contractor of a <<certification-authority,CA>> or delegated third party who has authorized access to or control over <<certification-authority,CA>> operations.
 --

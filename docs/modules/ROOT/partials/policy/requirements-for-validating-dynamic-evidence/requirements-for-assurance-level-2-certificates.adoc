@@ -16,18 +16,13 @@
 [[assurance-level-2-objective-3]]
 ==== O.3 - GP TOE protects the Claim Generator from exploits, misconfiguration and misuse.
 
-[IMPORTANT,role=todo]
-====
-Consider having numbered subsections or a numbered list where there are multiple requirements such as this.
-====
-
-*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has booted securely into authenticated software images by requesting and validating verifiable artifacts backed by a hardware root of trust.
+*Requirement O.3.1:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has booted securely into authenticated software images by requesting and validating verifiable artifacts backed by a hardware root of trust.
 <<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
 
-*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+*Requirement O.3.2:* <<certification-authority,CA>> MUST verify that the platform on which the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
 <<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
 
-*Requirement:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
+*Requirement O.3.3:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
 
 . the recency of application of security patches of the Claim Generator integrated with the instance of the generator product requesting certificate enrollment is no older than 90 days
 . that the revision (e.g. version, branch, or commit identifier) of the Claim Generator integrated with the instance of the generator product attempting certificate enrollment is one that is registered in good standing with the <<certification-authority,CA>>, by requesting and validating verifiable artifacts backed by a hardware root of trust.
@@ -37,13 +32,13 @@ Consider having numbered subsections or a numbered list where there are multiple
 [[assurance-level-2-objective-4]]
 ==== O.4 - GP TOE protects the asset and assertions from being tampered with at generation.
 
-*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which software in the GP TOE that processes/modifies the Digital Content and/or <<assertion,assertions>> is running has booted securely into authenticated software images, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+*Requirement O.4.1:* <<certification-authority,CA>> MUST verify that the platform on which software in the GP TOE that processes/modifies the Digital Content and/or <<assertion,assertions>> is running has booted securely into authenticated software images, by requesting and validating verifiable artifacts backed by a hardware root of trust.
 <<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
 
-*Requirement:* <<certification-authority,CA>> MUST verify that the platform on which all such software in the GP TOE is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
+*Requirement O.4.2:* <<certification-authority,CA>> MUST verify that the platform on which all such software in the GP TOE is running has security patches no older than the latest patch or version required to fix or otherwise mitigate any vulnerabilities with a CRITICAL or HIGH severity ratings in the NIST Common Vulnerability Scoring System (CVSS, https://nvd.nist.gov/vuln-metrics/cvss[https://nvd.nist.gov/vuln-metrics/cvss]) version 3 or greater, within 90 days of detection, by requesting and validating verifiable artifacts backed by a hardware root of trust.
 <<certification-authority,CA>> MUST NOT issue a certificate if the entity attempting certificate enrollment is unable to present this evidence, or if the values in the hardware-backed artifacts do not meet the aforementioned requirements.
 
-*Requirement:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
+*Requirement O.4.3:* <<certification-authority,CA>> MUST verify, depending on the method which the <<applicant,applicant>> has selected:
 
 . the recency of application of security patches of all such software in the GP TOE is no older than 90 days
 . that the revision (e.g. version, branch, or commit identifier) of the all such software in the GP TOE attempting certificate enrollment is one that is registered in good standing with the <<certification-authority,CA>>, by requesting and validating verifiable artifacts backed by a hardware root of trust.

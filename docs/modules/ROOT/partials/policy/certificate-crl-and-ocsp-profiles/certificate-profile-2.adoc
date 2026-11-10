@@ -326,12 +326,7 @@ Role (1.3.6.1.4.1.52266.2) MUST NOT be present.
 | Prohibited
 |===
 +
-The <<legal-entity-identifier,legal entity identifier (LEI)>> is a 20-character, alphanumeric code used in accordance with ISO 17442-1:2020, Clause 6 and ISO 17442-2:2020, Clause 4.
-+
-[IMPORTANT,role=todo]
-====
-Add links to ISO docs if possible.
-====
+The <<legal-entity-identifier,legal entity identifier (LEI)>> is a 20-character, alphanumeric code used in accordance with <<iso-17442-1,ISO 17442-1:2020>>, Clause 6 and <<iso-17442-2,ISO 17442-2:2020>>, Clause 4.
 +
 The <<certification-authority,CA>> MUST verify that the `RegistrationStatus` for the <<legal-entity-identifier,LEI>> record is `ISSUED` and the `EntityStatus` is `ACTIVE`.
 The <<certification-authority,CA>> MUST only allow use of an <<legal-entity-identifier,LEI>> if the `ValidationSources` entry is `FULLY_CORROBORATED`.
@@ -704,12 +699,7 @@ For example:
 * `VATEL-123456789` (VAT Scheme, Greece using EU Council Directive 2006/112/EC as amended, registration reference is 12345678).
 --
 +
-Registration schemes listed in [.line-through]#Appendix A# are recognized as valid under these requirements.
-+
-[IMPORTANT,role=todo]
-====
-Could not find Appendix A in Google Doc.
-====
+Registration schemes listed in Appendix A of the <<smime-baseline-requirements,S/MIME Baseline Requirements>> are recognized as valid under these requirements.
 +
 The <<certification-authority,CA>> MUST:
 +
@@ -727,12 +717,7 @@ For the <<legal-entity-identifier,LEI>> registration scheme, the ISO 3166-1 code
 +
 [NOTE]
 --
-For the following types of entities that do not have an identifier from the registration schemes listed in [.line-through]#Appendix A#:
-
-[IMPORTANT,role=todo]
-====
-Could not find Appendix A in Google Doc.
-====
+For the following types of entities that do not have an identifier from the registration schemes listed in Appendix A of the <<smime-baseline-requirements,S/MIME Baseline Requirements>>:
 
 * For government entities, the CA MUST enter the registration scheme identifier `GOV` followed by the 2 character ISO 3166-1 country code for the nation in which the government entity is located. If the government entity is verified at a subdivision (state or province) level, then a plus `+` (`0x2B` (ASCII), `U+002B` (UTF-8)) followed by an ISO 3166-2 identifier for the subdivision (up to three alphanumeric characters) is added.
 * For international organization entities, the CA MUST enter the registration scheme identifier `INT` followed by the ISO 3166-1 code `XG`.
@@ -771,14 +756,9 @@ If present, the `subject:pseudonym` field MUST be verified according to <<anonym
 . *Certificate field:* `subject:serialNumber` (2.5.4.5) +
 *Contents:* If present, the `subject:serialNumber` MAY be used to contain an identifier assigned by the <<certification-authority,CA>> or <<registration-authority,RA>> to identify and/or to disambiguate the <<subscriber,subscriber>>.
 +
-In addition, the `subject:serialNumber` MAY be used in the `Sponsor-validated` and `Individual-validated` profiles to contain a <<natural-person,natural person>> identifier as described in ETSI EN 319 412-1 §5.1.3.
-Registration schemes listed in <<appendix-a---registration-schemes, A>> are recognized as valid under these requirements.
+In addition, the `subject:serialNumber` MAY be used in the `Sponsor-validated` and `Individual-validated` profiles to contain a <<natural-person,natural person>> identifier as described in <<etsi-en-319-412-1,ETSI EN 319 412-1>> §5.1.3.
+Registration schemes listed in Appendix A of the <<smime-baseline-requirements,S/MIME Baseline Requirements>> are recognized as valid under these requirements.
 The <<certification-authority,CA>> MUST confirm that the <<individual,individual>> represented by the <<natural-person,natural person>> Identifier is the same as the <<certificate,certificate>> <<subject,subject>> in accordance with <<authentication-of-individual-identity>>.
-+
-[IMPORTANT,role=todo]
-====
-Link to ETSI document section?
-====
 
 . *Certificate field:* `subject:title` (2.5.4.12) +
 *Contents:* If present, the `subject:title` field MUST contain only a organizational role/title or a regulated professional designation verified according to <<authentication-of-individual-identity>>.
@@ -789,17 +769,12 @@ The `subject:streetAddress` field MUST only be used if the `subject:localityName
 
 . *Certificate field:* `subject:localityName` (<<object-identifier,OID>>: 2.5.4.7) +
 *Contents:* If present, the `subject:localityName` field MUST contain the <<subject,subject>>’s locality information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
-If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with <<subscriber-subject-distinguished-name-fields>> (n), the `subject:localityName` field MAY contain the <<subject,subject>>’s locality and/or state or province information.
+If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with the `subject:countryName` requirements below, the `subject:localityName` field MAY contain the <<subject,subject>>’s locality and/or state or province information.
 The `subject:localityName` field MUST only be used if the `subject:countryName` field is present.
-+
-[IMPORTANT,role=todo]
-====
-Check `(n)` reference. Likely incorrect given Asciidoc migration.
-====
 
 . *Certificate field:* `subject:stateOrProvinceName` (<<object-identifier,OID>>: 2.5.4.8) +
 *Contents:* If present, the `subject:stateOrProvinceName` field MUST contain the <<subject,subject>>’s state or province information as verified under <<authentication-of-organization-identity>> for organization-validated and <<sponsor-validated,sponsor-validated>> <<certificate-type,certificate types>> or <<authentication-of-individual-identity>> for <<individual,individual>>-validated <<certificate-type,certificate types>>.
-If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with <<subscriber-subject-distinguished-name-fields>> (n), the `subject:stateOrProvinceName` field MAY contain the full name of the <<subject,subject>>’s country information.
+If the `subject:countryName` field specifies the ISO 3166-1 user-assigned code of `XX` in accordance with the `subject:countryName` requirements below, the `subject:stateOrProvinceName` field MAY contain the full name of the <<subject,subject>>’s country information.
 The `subject:stateOrProvinceName` field MUST only be used if the `subject:countryName` field is present.
 
 . *Certificate field:* `subject:postalCode` (<<object-identifier,OID>>: 2.5.4.17) +

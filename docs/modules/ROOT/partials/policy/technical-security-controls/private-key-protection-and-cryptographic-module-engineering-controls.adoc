@@ -39,12 +39,7 @@ If the <<issuing-ca,issuing CA>> becomes aware that a <<subordinate-ca,subordina
 [[private-key-storage-on-cryptographic-module]]
 ==== Private key storage on cryptographic module
 
-The <<certification-authority,CA>> MUST protect its <<private-key,private key>> in a system or device that has been validated as meeting at least FIPS 140-2 level 3, FIPS 140-3 level 3, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 (or higher), which includes requirements to protect the <<private-key,private key>> and other assets against known threats.
-
-[IMPORTANT,role=todo]
-====
-Consider adding links to the FIPS or CCPP documents above.
-====
+The <<certification-authority,CA>> MUST protect its <<private-key,private key>> in a system or device that has been validated as meeting at least <<fips-140-2,FIPS 140-2>> level 3, https://csrc.nist.gov/pubs/fips/140-3/final[FIPS 140-3] level 3, or an appropriate https://www.commoncriteriaportal.org/pps/index.cfm[Common Criteria Protection Profile] or Security Target, EAL 4 (or higher), which includes requirements to protect the <<private-key,private key>> and other assets against known threats.
 
 [[method-of-activating-private-key]]
 ==== Method of activating private key
