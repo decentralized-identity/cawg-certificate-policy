@@ -254,7 +254,8 @@ A regularly updated time-stamped list of revoked <<certificate,certificates>> th
 [[certificate-type]]Certificate type::
 +
 --
-This <<certificate-policy,CP>> defines <<certificate-profile,certificate profiles>> differentiated by the type of <<subject,subject>>, (for example organization, sponsored, <<individual,individual>>).
+This <<certificate-policy,CP>> defines <<certificate-profile,certificate profiles>> differentiated by the type of <<subject,subject>>: <<mailbox-validated,mailbox-validated>>, <<organization-validated,organization-validated>>, <<sponsor-validated,sponsor-validated>>, and <<individual-validated,individual-validated>>.
+Each certificate type belongs to a <<level-of-assurance,level of assurance>>.
 --
 
 [[common-name]]Common name (or CN)::
@@ -507,12 +508,35 @@ A 20-character alphanumeric code, assigned in accordance with <<iso-17442-1,ISO 
 LEI records are published by the Global Legal Entity Identifier Foundation (https://www.gleif.org/[GLEIF]).
 --
 
+[[level-of-assurance]]Level of assurance (or LOA)::
++
+--
+An indication of how thoroughly the <<certification-authority,CA>> verified the <<subject,subject>> of a <<cawg-identity-certificate,CAWG identity certificate>>, conveyed by the <<certificate-policy,certificate policy>> identifier in the <<certificate,certificate>> (see <<reserved-certificate-policy-identifiers>>).
+
+* *LOA1:* <<mailbox-validated,Mailbox-validated>> certificates. The <<certification-authority,CA>> has verified control of a <<mailbox-address,mailbox address>> only.
+* *LOA2:* <<organization-validated,Organization-validated>>, <<sponsor-validated,sponsor-validated>>, and <<individual-validated,individual-validated>> certificates. The <<certification-authority,CA>> has verified the identity of the organization and/or <<individual,individual>> as described in <<initial-identity-validation>>.
+--
+
 [[linting]]Linting::
 +
 --
 A process in which the content of digitally signed data such as a https://www.rfc-editor.org/info/rfc9162/#section-3.2[precertificate (RFC 9162 §3.2)], <<certificate,certificate>>, <<certificate-revocation-list,CRL>>, or <<online-certificate-status-protocol,OCSP>> response, or data-to-be-signed object such as a https://www.rfc-editor.org/info/rfc5280/#section-4.1.1.1[`tbsCertificate` (RFC 5280 §4.1.1.1)] is checked for conformance with the profiles and requirements defined in these requirements.
 --
 
+
+[[mailbox-address]]Mailbox address::
++
+--
+An email address, as specified in https://datatracker.ietf.org/doc/html/rfc5321#section-4.1.2[RFC 5321, Section 4.1.2] and amended by https://datatracker.ietf.org/doc/html/rfc6532#section-3.2[RFC 6532, Section 3.2], with no additional padding or structure.
+--
+
+[[mailbox-validated]]Mailbox-validated::
++
+--
+Refers to a <<certificate,certificate>> <<subject,subject>> that is limited to (optional) `subject:emailAddress` and/or `subject:serialNumber` attributes, and a `subject:commonName` that contains only a <<mailbox-address,mailbox address>>.
+The <<certification-authority,CA>> verifies control of the mailbox as described in <<validation-of-mailbox-authorization-or-control>>.
+Mailbox-validated <<certificate,certificates>> are at <<level-of-assurance,LOA1>>.
+--
 
 [[mobile-driver-license]]Mobile driver license (or mDL)::
 +
@@ -666,15 +690,10 @@ Before the <<certification-authority,CA>> authorizes a <<delegated-third-party,d
 The <<certification-authority,CA>> MAY delegate to an enterprise <<registration-authority,registration authority>> (<<registration-authority,RA>>) to verify <<certificate-request,certificate requests>> for <<subject,subjects>> within the <<enterprise-ra,enterprise RA>>’s own organization.
 The <<certification-authority,CA>> MUST NOT accept <<certificate-request,certificate requests>> authorized by an <<enterprise-ra,enterprise RA>> unless the following requirements are satisfied:
 
-. If the <<certificate-request,certificate request>> is for a `Organization-validated`, or `Sponsor-validated` profile, the <<certification-authority,CA>> MUST confirm that the <<enterprise-ra,enterprise RA>> has authorization or control of the requested email domain(s) in accordance with <<initial-identity-validation>> or <<initial-identity-validation>>.
+. If the <<certificate-request,certificate request>> includes a <<mailbox-address,mailbox address>>, the <<certification-authority,CA>> MUST confirm that the <<enterprise-ra,enterprise RA>> has authorization or control of the requested email domain(s) in accordance with <<validating-authority-over-mailbox-via-domain>>.
 . The <<certification-authority,CA>> MUST confirm that the `subject:organizationName` name is either that of the delegated enterprise, or an <<affiliate,affiliate>> of the delegated enterprise, or that the delegated enterprise is an agent of the named <<subject,subject>>.
 For example, the <<certification-authority,CA>> MUST NOT issue a <<certificate,certificate>> containing the <<subject,subject>> name “XYZ Co.” on the authority of <<enterprise-ra,enterprise RA>> “ABC Co.”, unless the two companies are Affiliated as defined in <<initial-identity-validation>> or “ABC Co.” is the agent of “XYZ Co.”
-This requirement applies regardless of whether the accompanying requested email domain falls within the subdomains of ABC Co.‘s <<registered-domain-name,registered domain name>>.
-
-[IMPORTANT,role=todo]
-====
-Review applicability of e-mail controls for CAWG.
-====
+This requirement applies regardless of whether the accompanying requested email domain falls within the subdomains of ABC Co.’s <<registered-domain-name,registered domain name>>.
 
 The <<certification-authority,CA>> MUST impose these limitations as a contractual requirement on the <<enterprise-ra,enterprise RA>> and monitor compliance by the <<enterprise-ra,enterprise RA>> in accordance with <<review-of-delegated-parties>>.
 --
@@ -753,12 +772,7 @@ An <<applicant,applicant>> that has become a customer of one of the <<certificat
 +
 --
 The <<natural-person,natural person>>, device, system, unit, or <<legal-entity,legal entity>> identified in a <<certificate,certificate>> as the <<subject,subject>>.
-The <<subject,subject>> is either the <<subscriber,subscriber>> or a mailbox under the control and operation of the <<subscriber,subscriber>>.
-
-[IMPORTANT,role=todo]
-====
-Check reference to mailbox. May not apply here.
-====
+For a <<mailbox-validated,mailbox-validated>> <<certificate,certificate>>, the <<subject,subject>> is a mailbox under the control and operation of the <<subscriber,subscriber>>; otherwise, the <<subject,subject>> is the <<subscriber,subscriber>>.
 --
 
 [[subject-identity-information]]Subject identity information::
@@ -766,11 +780,7 @@ Check reference to mailbox. May not apply here.
 --
 Information that identifies the <<certificate,certificate>> <<subject,subject>>.
 <<subject-identity-information,Subject identity information>> does not include a mailbox address listed in the `subject:commonName` or `subject:emailAddress` fields, or in the `subjectAltName` extension.
-
-[IMPORTANT,role=todo]
-====
-Check reference to mailbox. May not apply here.
-====
+A <<mailbox-address,mailbox address>> is evidence only of mailbox control (<<level-of-assurance,LOA1>>), not of identity.
 --
 
 [[subject-information]]Subject information::

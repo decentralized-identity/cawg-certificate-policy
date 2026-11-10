@@ -6,4 +6,4 @@ The <<applicant,applicant>> MUST provide all requisite information and documenta
 This includes:
 
 . information about the individual or organization for which the certificate is requested, and
-. the <<certificate-type,certificate type>> (`Organization-validated`, `Sponsor-validated`, or `Individual-validated`) of the <<cawg-identity-certificate,CAWG identity certificate>> being requested.
+. the <<certificate-type,certificate type>> (`Mailbox-validated`, `Organization-validated`, `Sponsor-validated`, or `Individual-validated`) of the <<cawg-identity-certificate,CAWG identity certificate>> being requested.

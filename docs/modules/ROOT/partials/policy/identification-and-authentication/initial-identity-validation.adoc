@@ -1,26 +1,67 @@
 [[initial-identity-validation]]
 === Initial identity validation
 
-The <<certification-authority,CA>> MUST authenticate the identity attributes of the <<subject,subject>> to be included in the S/MIME <<certificate,certificate>> according to the requirements of the following sections:
+The <<certification-authority,CA>> MUST authenticate the identity attributes of the <<subject,subject>> to be included in the <<cawg-identity-certificate,CAWG identity certificate>> according to the requirements of the following sections:
 
-[options="header",cols="4,3,3"]
+[options="header",cols="3,1,3,3,3"]
 |===
 | <<certificate-type,Certificate type>>
+| <<level-of-assurance,LOA>>
+| Mailbox control
 | Organization identity
 | <<individual,Individual>> identity
 
+| `Mailbox-validated`
+| LOA1
+| xref:validation-of-mailbox-authorization-or-control[xrefstyle=short]
+| N/A
+| N/A
+
 | `Organization-validated`
+| LOA2
+| If a <<mailbox-address,mailbox address>> is included
 | xref:authentication-of-organization-identity[xrefstyle=short]
 | N/A
 
 | `Sponsor-validated`
+| LOA2
+| If a <<mailbox-address,mailbox address>> is included
 | xref:authentication-of-organization-identity[xrefstyle=short]
 | xref:authentication-of-individual-identity[xrefstyle=short]
 
 | `Individual-validated`
+| LOA2
+| If a <<mailbox-address,mailbox address>> is included
 | N/A
 | xref:authentication-of-individual-identity[xrefstyle=short]
 |===
+
+[[validation-of-mailbox-authorization-or-control]]
+==== Validation of mailbox authorization or control
+
+This section defines the permitted processes and procedures for confirming the <<applicant,applicant>>’s control of a <<mailbox-address,mailbox address>> to be included in a <<certificate,certificate>>.
+It applies to every <<mailbox-address,mailbox address>> in a <<mailbox-validated,mailbox-validated>> (LOA1) <<certificate,certificate>>, and to any <<mailbox-address,mailbox address>> that a <<subscriber,subscriber>> asks to include in an LOA2 <<certificate,certificate>> (see <<email-addresses-in-subscriber-certificates>>).
+
+The <<certification-authority,CA>> MUST verify each <<mailbox-address,mailbox address>> using at least one of the methods below.
+Completed validation of mailbox control MUST be obtained no more than 30 days prior to issuing the <<certificate,certificate>>.
+
+[[validating-authority-over-mailbox-via-domain]]
+===== Validating authority over mailbox via domain
+
+The <<certification-authority,CA>> MAY confirm the <<applicant,applicant>>’s authority to use a <<mailbox-address,mailbox address>> by confirming that the <<applicant,applicant>> controls the domain portion of the address, using one of the domain validation methods in Section 3.2.2.4 of the <<tls-baseline-requirements,TLS Baseline Requirements>>.
+This method is suitable when an organization, or an <<enterprise-ra,enterprise RA>>, requests <<certificate,certificates>> for mailboxes within a domain it controls.
+
+[[validating-control-over-mailbox-via-email]]
+===== Validating control over mailbox via email
+
+The <<certification-authority,CA>> MAY confirm the <<applicant,applicant>>’s control of a <<mailbox-address,mailbox address>> by sending a <<random-value,random value>> to that address and then receiving a confirming response that uses the <<random-value,random value>>.
+The <<random-value,random value>> MUST be unique in each email and MUST remain valid for no more than 24 hours from its creation.
+The <<certification-authority,CA>> MAY resend the email in its entirety, including the same <<random-value,random value>>, within that period.
+
+[[validating-applicant-as-operator-of-associated-mail-servers]]
+===== Validating applicant as operator of associated mail server(s)
+
+The <<certification-authority,CA>> MAY confirm the <<applicant,applicant>>’s control of a <<mailbox-address,mailbox address>> using the email-reply challenge defined in <<rfc-8823,RFC 8823>>.
 
 [[authentication-of-organization-identity]]
 ==== Authentication of organization identity

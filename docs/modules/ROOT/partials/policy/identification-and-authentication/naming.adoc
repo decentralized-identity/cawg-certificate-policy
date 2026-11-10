@@ -6,12 +6,8 @@ No stipulation.
 [[types-of-names]]
 ==== Types of names
 
-When the `subject:commonName` of a <<certificate,certificate>> issued to an <<individual,individual>> does not contain a mailbox address, it is specified as a <<personal-name,personal name>> or <<pseudonym,pseudonym>> as described in <<subscriber-subject-distinguished-name-fields>>(a).
-
-[IMPORTANT,role=todo]
-====
-Review reference to mailbox address. May not apply to CAWG.
-====
+In a <<mailbox-validated,mailbox-validated>> (LOA1) <<certificate,certificate>>, the `subject:commonName`, if present, contains only a <<mailbox-address,mailbox address>>.
+In an LOA2 <<certificate,certificate>> issued to an <<individual,individual>>, the `subject:commonName` is specified as a <<personal-name,personal name>> or <<pseudonym,pseudonym>> as described in <<subscriber-subject-distinguished-name-fields>>.
 
 Names consisting of multiple words are permitted.
 Given names joined with a hyphen are considered as one single given name.

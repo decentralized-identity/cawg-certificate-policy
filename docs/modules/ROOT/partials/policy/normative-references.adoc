@@ -3,7 +3,8 @@
 
 [IMPORTANT,role=todo]
 ====
-* TS 119 495 (PSD2), the DNSSEC RFCs, RFC 8823 and the TLS BRs don’t apply and can be dropped.
+* TS 119 495 (PSD2) and the DNSSEC RFCs don’t apply and can be dropped.
+RFC 8823 and the TLS BRs are now used by <<validation-of-mailbox-authorization-or-control>>.
 * Add FIPS 140-3 alongside 140-2.
 ====
 
