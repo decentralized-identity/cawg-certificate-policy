@@ -10,7 +10,7 @@ As a minimum, verification checks on permanent staff MUST be performed at the ti
 [[training-and-awareness]]
 ==== Training and awareness
 
-. All personnel involved in <<certification-authority,CA>> operations MUST undergo regular security awareness training, including <<public-key-infrastructure,PKI>> concepts, data protection, incident response, attestation validation (if applicable), and their specific roles and responsibilities.
+. All personnel involved in <<certification-authority,CA>> operations MUST undergo regular security awareness training, including <<public-key-infrastructure,PKI>> concepts, data protection, incident response, identity validation, and their specific roles and responsibilities.
 . Periodic retraining MUST occur to verify the continued trustworthiness of personnel involved in the activities related to key management and certificate management.
 This training MUST be performed if there is a material change in <<public-key-infrastructure,PKI>> operation.
 

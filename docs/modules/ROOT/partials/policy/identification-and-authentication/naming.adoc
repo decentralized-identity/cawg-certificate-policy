@@ -50,11 +50,6 @@ If present, the `subject:pseudonym` attribute MUST be:
 [[uniqueness-of-names]]
 ==== Uniqueness of names
 
-The <<subject,subjects>> of claim signing <<subscriber,subscribers>> shall be unique.
+The <<subject,subjects>> of <<cawg-identity-certificate,CAWG identity certificates>> shall be unique.
 Name uniqueness is not violated when multiple certificates are issued to the same entity.
 For example, A <<certification-authority,CA>> MAY issue certificates with the same <<subject,subject>> `DN` under this <<certificate-policy,CP>> to multiple units of the same organization.
-
-[IMPORTANT,role=todo]
-====
-Revisit use of “claim signing subscriber” above. May be hold over from C2PA.
-====

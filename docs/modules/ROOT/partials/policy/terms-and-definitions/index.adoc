@@ -20,7 +20,6 @@ A corporation, partnership, joint venture or other entity controlling, controlle
 --
 The <<natural-person,natural person>> or <<legal-entity,legal entity>> that applies for (or seeks renewal of) a <<certificate,certificate>>.
 Once the <<certificate,certificate>> is issued, the <<applicant,applicant>> is referred to as the <<subscriber,subscriber>>.
-For <<certificate,certificates>> issued to devices, the <<applicant,applicant>> is the entity that controls or operates the device named in the <<certificate,certificate>>, even if the device is sending the actual <<certificate-request,certificate request>>.
 --
 
 [[applicants-representative]]Applicant’s representative::
@@ -62,19 +61,6 @@ Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/
 Also known as “doing business as”, “DBA”, or “d/b/a” name in the US and “trading as” name in the UK.
 --
 
-[[assurance-level]]Assurance level::
-+
---
-[[_CAWG_claim]]
-An indication to a <<relying-party,relying party>> of the level of confidence that it may have that identity assertions and claims signed with a given <<claimsigning-certs,CAWG claim signing certificate>> reflect the actual claimant.
-A higher <<assurance-level,assurance level>> allows the <<relying-party,relying party>> to have a greater level of confidence.
-
-The <<assurance-level,assurance level>> is conveyed through the `CAWG-al` (`TBD`) X.509 v3 certificate extension in a <<claimsigning-certs,CAWG claim signing certificate>>.
-The value of this extension is an encoded <<object-identifier,OID>> value that corresponds to a numeric value no higher than the <<maximum-assurance-level,maximum assurance level>> for a given claim signing issuer.
-The <<object-identifier,OID>> values corresponding to each <<assurance-level,assurance level>> are defined in the CAWG `oid.txt` MIB definition file.
-
-The <<assurance-level,assurance level>> in the <<claimsigning-certs,CAWG claim signing certificate>> that is issued to an organization or individual may be lower than the <<maximum-assurance-level,maximum assurance level>> that the <<issuer,issuer>> is potentially eligible for.
---
 
 [[attestation]]Attestation::
 +
@@ -114,20 +100,6 @@ A document that sets the requirements that MUST be met by <<certification-author
 Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_claim[glossary definition for “claim.”]
 --
 
-[[cawg-claim-signing-certificate]]CAWG claim signing certificate::
-+
---
-[[_generator_product]]
-An X.509 certificate issued by one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>> to an instance of the <<_generator_product,Conforming Implementer>>’s conforming <<_generator_product,generator product>>, and names the <<_generator_product,generator product>> as the subject of the certificate.
-
-[IMPORTANT,role=todo]
-====
-C2PA leftover: this issues the certificate to a generator product, which is C2PA’s claim-signing model.
-====
-A CAWG identity certificate binds a person or organization, not a software product.
-The same applies to the CA, Subscriber and Signer definitions.
-Suggest renaming to CAWG Identity Certificate and defining the subject as the verified person or organization.
---
 
 [[cawg-conformance-program]]CAWG conformance program::
 +
@@ -145,6 +117,20 @@ Processes include:
 +
 --
 A collection of governance documents which defines the CAWG trust ecosystem including roles, requirements and processes used by the CAWG <<governing-authority,governing authority>> to achieve greater assurance over the provenance and authenticity of digital asset content.
+--
+
+[[cawg-identity-assertion]]CAWG identity assertion::
++
+--
+A C2PA assertion, defined in the https://cawg.io/identity/[CAWG identity assertion specification], that enables a credential holder to prove control over a digital identity and to use that identity to document the named actor’s role(s) in the lifecycle of a C2PA <<asset,asset>>.
+--
+
+[[cawg-identity-certificate]]CAWG identity certificate::
++
+--
+An X.509 <<certificate,certificate>> issued under this <<certificate-policy,CP>> by one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>>, whose <<subject,subject>> is a verified <<individual,individual>> or organization.
+A <<cawg-identity-certificate,CAWG identity certificate>> is used to sign <<cawg-identity-assertion,CAWG identity assertions>>.
+It is not issued to devices, software products, or software instances.
 --
 
 [[c2pa-content-credential]]C2PA Content Credential::
@@ -204,9 +190,9 @@ It contains the <<public-key,public key>> to be certified and is signed with the
 A trusted entity that issues, signs, and revokes digital certificates that bind <<public-key,public keys>> to subscriber identities.
 <<certification-authority,CAs>> are also known as <<public-key-infrastructure,PKI>> <<certificate,certificate>> Authorities because they issue certificates based on public key infrastructure (<<public-key-infrastructure,PKI>>).
 These certificates contain credentials that confirm the possession of a <<private-key,private key>> by an entity, among other verified attributes.
-Individualas and organizations sign <<c2pa-manifest,C2PA manifests>> using digital signing credentials issued by <<certification-authority,CAs>>.
+Individuals and organizations sign <<cawg-identity-assertion,CAWG identity assertions>> using digital signing credentials issued by <<certification-authority,CAs>>.
 
-An entity on the <<cawg-trust-list,CAWG trust list>> that is trusted by the <<cawg-conformance-program,CAWG conformance program>> to issue X.509 <<claimsigning-certs,CAWG claim signing certificate>>s to instances of conforming <<_generator_product,generator products>>.
+An entity on the <<cawg-trust-list,CAWG trust list>> that is trusted by the <<cawg-conformance-program,CAWG conformance program>> to issue <<cawg-identity-certificate,CAWG identity certificates>> to verified individuals and organizations.
 
 An organization that operates a <<certification-authority,certification authority>> may also operate a <<time-stamping-authority,time-stamping authority>>.
 --
@@ -421,7 +407,6 @@ It applies to the <<cawg-conformance-program,CAWG conformance program>> which re
 [[governing-authority]]Governing authority::
 +
 --
-[[tee]]
 The organization responsible for the trust of the ecosystem.
 It empowers an <<administering-authority,administering authority>> to manage the ecosystem and certifying entities to convey trust.
 The CAWG is the governing party of its conformance program driven by its Steering Committee.
@@ -528,11 +513,6 @@ LEI records are published by the Global Legal Entity Identifier Foundation (http
 A process in which the content of digitally signed data such as a https://www.rfc-editor.org/info/rfc9162/#section-3.2[precertificate (RFC 9162 §3.2)], <<certificate,certificate>>, <<certificate-revocation-list,CRL>>, or <<online-certificate-status-protocol,OCSP>> response, or data-to-be-signed object such as a https://www.rfc-editor.org/info/rfc5280/#section-4.1.1.1[`tbsCertificate` (RFC 5280 §4.1.1.1)] is checked for conformance with the profiles and requirements defined in these requirements.
 --
 
-[[maximum-assurance-level]]Maximum assurance level::
-+
---
-A numeric designation, using generally accepted market schemes based on degree of validation performed on an individual or organization.
---
 
 [[mobile-driver-license]]Mobile driver license (or mDL)::
 +
@@ -669,13 +649,8 @@ A <<domain-name,domain name>> that has been registered with a <<domain-name,doma
 +
 --
 An entity authorized by the <<certification-authority,certification authority>> to collect, verify, and submit information provided by <<applicant,applicant>>s and/or <<subscriber,subscriber>>s which is to be entered into public key certificates.
-The term <<registration-authority,RA>> refers to hardware, software, and individuals that collectively perform this function, including tasks such as validating platform attestations and presence of potential <<subscriber,subscriber>> implementations on the C2PA Conforming Products List.
-The <<registration-authority,RA>> operates under the <<certification-authority,CA>>’s authority and adheres to the guidelines set forth in the <<cawg-certificate-policy,C2PA certificate policy>>.
-
-[IMPORTANT,role=todo]
-====
-Above is a potential holdover from C2PA CP and should be revisited.
-====
+The term <<registration-authority,RA>> refers to hardware, software, and individuals that collectively perform this function.
+The <<registration-authority,RA>> operates under the <<certification-authority,CA>>’s authority and adheres to the guidelines set forth in the <<cawg-certificate-policy,CAWG certificate policy>>.
 
 The <<certification-authority,CA>> MAY delegate the performance of all, or any part, of <<initial-identity-validation>> requirements to a <<delegated-third-party,delegated third party>>, provided that the process as a whole fulfills all of the requirements of <<initial-identity-validation>>.
 
@@ -725,13 +700,7 @@ A method of communication, such as a postal/courier delivery address, telephone 
 [[relying-party]]Relying party::
 +
 --
-[[claimsigning-certs]]
-An entity that evaluates the trustworthiness of <<assertion,assertion>>s made by a <<signer,signer>> in a C2PA <<asset,asset>>, based on the <<signer,signer>>’s identity and the <<assurance-level,assurance level>> encoded into the <<claimsigning-certs,C2PA claim Signing certificate>>.
-
-[IMPORTANT,role=todo]
-====
-Revisit for CAWG.
-====
+An entity that evaluates a <<cawg-identity-assertion,CAWG identity assertion>> in a C2PA <<asset,asset>>, relying on the <<cawg-identity-certificate,CAWG identity certificate>> to establish the identity of the <<signer,signer>>.
 --
 
 [[repository]]Repository::
@@ -740,11 +709,6 @@ Revisit for CAWG.
 An online database containing publicly-disclosed <<public-key-infrastructure,PKI>> governance documents (such as <<certificate-policy,certificate policies>> and <<certification-practice-statement,certification practice statements>>) and <<certificate,certificate>> status information, either in the form of a <<certificate-revocation-list,CRL>> or an <<online-certificate-status-protocol,OCSP>> response.
 --
 
-[[rich-execution-environment]]Rich execution environment (or REE)::
-+
---
-Refer to the NIST https://csrc.nist.gov/glossary/term/rich_execution_environment[glossary definition for “rich execution environment.”]
---
 
 [[root-certification-authority]]Root certification authority (or Root CA)::
 +
@@ -758,11 +722,6 @@ The top level <<certification-authority,certification authority>> whose <<root-c
 The self-signed <<certificate,certificate>> issued by the <<root-certification-authority,root CA>> to identify itself and to facilitate verification of <<certificate,certificates>> issued to its <<subordinate-ca,subordinate CAs>>.
 --
 
-[[root-of-trust]]Root of trust (or RoT)::
-+
---
-Refer to the NIST https://csrc.nist.gov/glossary/term/roots_of_trust[glossary definition for “root of trust.”]
---
 
 [[security-incident]]Security incident::
 +
@@ -773,19 +732,8 @@ Refer to the NIST https://csrc.nist.gov/glossary/term/security_incident[glossary
 [[signer]]Signer::
 +
 --
-In the CAWG Trust Model, the <<assertion,assertion>>s enumerated in the `created_assertions` object of the <<_CAWG_claim,CAWG Claim>> are attributed to the <<signer,signer>>.
-
-[IMPORTANT,role=todo]
-====
-The term *CAWG Trust Model* is introduced here but not used or defined anywhere else.
-====
-
-[IMPORTANT,role=todo]
-====
-The above definition looks like a holdover from C2PA. Consider rewording to `referenced_assertions` and _named actor_ for consistency with terms used in the identity assertion spec
-====
-
-In the context of the <<cawg-conformance-program,CAWG conformance program>>, an individual or organization identified as the <<subject,subject>> of a CAWG Signing <<certificate,certificate>> is always the <<signer,signer>>.
+The <<individual,individual>> or organization identified as the <<subject,subject>> of a <<cawg-identity-certificate,CAWG identity certificate>>, who uses it to sign a <<cawg-identity-assertion,CAWG identity assertion>>.
+In the terms of the identity assertion specification, the <<signer,signer>> is the credential holder and the named actor, and the <<assertion,assertions>> listed in the `referenced_assertions` field of the `signer_payload` are attributed to the <<signer,signer>>.
 --
 
 [[sponsor-validated]]Sponsor-validated::
@@ -798,12 +746,7 @@ Registration for <<sponsor-validated,sponsor-validated>> <<certificate,certifica
 [[subscriber]]Subscriber::
 +
 --
-An <<applicant,applicant>> that has become a customer of one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>>, and is eligible to receive <<claimsigning-certs,CAWG claim signing certificate>>s for use by instances of their conforming <<_generator_product,generator product>>.
-
-[IMPORTANT,role=todo]
-====
-Check use of “generator product.”
-====
+An <<applicant,applicant>> that has become a customer of one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>>, and is eligible to receive <<cawg-identity-certificate,CAWG identity certificates>>.
 --
 
 [[subject]]Subject::
@@ -893,11 +836,6 @@ This is similar to how a notary acts for online documents.
 The IETF protocol, defined in https://datatracker.ietf.org/doc/html/rfc8446[RFC 8446], that provides authenticated, confidential, and integrity-protected communication over a network.
 --
 
-[[trusted-execution-environment]]Trusted execution environment (or TEE)::
-+
---
-A secure area of a processor, isolated from the main operating system, that protects the confidentiality and integrity of the code and data loaded into it.
---
 
 [[trusted-role]]Trusted role::
 +

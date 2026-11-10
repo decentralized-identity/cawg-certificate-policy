@@ -113,14 +113,14 @@ Extensions:
     Value: MUST contain HTTP URI pointing to CRL location.
 ----
 
-[[claim-signing-issuing-ca]]
-===== Claim signing issuing CA
+[[identity-issuing-ca]]
+===== Identity issuing CA
 
 [source,yaml]
 ----
-# Summary of Certificate Profile Constraints for the last intermediate CA which issues CAWG claim signing leaf certificates
+# Summary of Certificate Profile Constraints for the last intermediate CA which issues CAWG identity leaf certificates
 
-Profile: CAWG claim signing issuing CA
+Profile: CAWG identity issuing CA
 
 Core Fields:
   Version: v3
@@ -293,15 +293,15 @@ Extensions:
     Presence: MUST NOT
 ----
 
-[[cawg-claim-signing-leaf-certificates-any-assurance-level]]
-===== CAWG claim signing leaf certificates - any assurance level
+[[cawg-identity-leaf-certificates]]
+===== CAWG identity leaf certificates
 
 [IMPORTANT,role=todo]
 ====
 Missing subscriber profile: this section has no leaf profile, and the text after it is pasted prose. the identity leaf is the most important profile in the document. suggest: CA=false; digitalsignature (optionally nonrepudiation); CAWG EKU and/or documentsigning; CAWG policy OID plus a validation-type OID; validity of 366 days or less; aia with OCSP.
 ====
 
-[[cawg-claim-signing-leaf-all-certificates]]
+[[cawg-identity-leaf-all-certificates]]
 ====== All certificates
 
 All fields and extensions MUST be set in accordance with <<rfc-5280,RFC 5280>>.
@@ -318,7 +318,7 @@ CAs MUST NOT issue a Certificate with:
 A Certificate that includes such an extension MUST conform to the specifications of the open standard and of these requirements.
 . Field or extension values which have not been validated according to the processes and procedures described in these requirements or the CA’s CP and/or CPS.
 
-[[cawg-claim-signing-leaf-tsa-time-stamp-signing-leaf-certificates]]
+[[cawg-identity-leaf-tsa-time-stamp-signing-leaf-certificates]]
 ====== TSA time-stamp signing leaf certificates
 
 [source,yaml]

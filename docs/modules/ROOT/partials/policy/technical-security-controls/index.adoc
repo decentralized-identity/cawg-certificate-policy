@@ -1,13 +1,7 @@
 [[technical-security-controls]]
 == Technical security controls
 
-This section details the technical measures and safeguards implemented to protect the cryptographic keys and ensure the security of the <<subscriber,subscriber>> generator product and the <<certification-authority,CA>>’s infrastructure.
-
-[IMPORTANT,role=todo]
-====
-Review use of “generator product” term. Likely holdover from C2PA.
-====
-
+This section details the technical measures and safeguards implemented to protect the cryptographic keys and ensure the security of <<subscriber,subscriber>> keys and the <<certification-authority,CA>>’s infrastructure.
 
 include::partial$policy/technical-security-controls/key-pair-generation-and-installation.adoc[]
 

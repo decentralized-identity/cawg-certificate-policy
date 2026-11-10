@@ -37,4 +37,4 @@ Where escrow is supported in accordance with <<key-escrow-and-recovery>>, the <<
 [[controls-for-subscriber-keys]]
 ==== Controls for subscriber keys
 
-<<control,Control>> requirements for <<subscriber,subscriber>> keys MAY vary by the <<assurance-level,assurance level>> of the implementation.
+<<control,Control>> requirements for <<subscriber,subscriber>> keys are specified in <<key-pair-and-certificate-usage>>.

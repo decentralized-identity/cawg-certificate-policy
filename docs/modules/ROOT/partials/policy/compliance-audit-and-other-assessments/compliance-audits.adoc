@@ -6,7 +6,7 @@
 
 . The <<certification-authority,CA>> MUST undergo regular compliance audits conducted by an independent, qualified third-party auditor.
 . Audits MUST assess the <<certification-authority,CA>>’s adherence to this <<certificate-policy,CP>>, relevant industry standards (e.g., WebTrust for <<certification-authority,CA>>), and any applicable legal or regulatory requirements.
-. The audit frequency MUST depend on the risk profile and assurance level, but at a minimum, annual audits are recommended.
+. The audit frequency MUST depend on the risk profile, but at a minimum, annual audits are recommended.
 
 [IMPORTANT,role=todo]
 ====
@@ -20,10 +20,10 @@ Suggest annual audits MUST be done under WebTrust for CAs plus WebTrust S/MIME, 
 Audits SHOULD cover all aspects of the <<certification-authority,CA>>’s operations relevant to this <<certificate-policy,CP>>, with particular emphasis on:
 
 . <<certificate,certificate>> issuance, renewal, and revocation processes;
-. <<attestation,attestation>> validation procedures;
-. key management practices within devices or applications and the <<certification-authority,CA>>’s infrastructure;
+. identity validation procedures;
+. key management practices within the <<certification-authority,CA>>’s infrastructure;
 . logical and procedural security controls;
-. personnel security and training related to attestation validation and certificate management; and
+. personnel security and training related to identity validation and certificate management; and
 . incident response and disaster recovery procedures.
 
 [[audit-reports]]
