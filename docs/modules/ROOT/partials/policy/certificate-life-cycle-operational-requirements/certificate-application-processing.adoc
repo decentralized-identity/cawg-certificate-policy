@@ -4,25 +4,22 @@
 [[performing-identification-and-authentication-functions]]
 ==== Performing identification and authentication functions
 
-<<applicant,Applicant>> information MUST include, but not be limited to, at least one mailbox field to be included in the <<certificate,certificate>>’s `subjectAltName` extension.
+For a <<mailbox-validated,mailbox-validated>> (LOA1) <<certificate,certificate>>, <<applicant,applicant>> information MUST include at least one <<mailbox-address,mailbox address>> to be included in the <<certificate,certificate>>’s `subjectAltName` extension.
 
-[IMPORTANT,role=todo]
-====
-S/MIME leftover with a privacy cost: this requires an email address in the SAN, and commonName may also be an email address.
-A CAWG certificate is embedded in every asset the subscriber signs, permanently, so this publishes their email with all their content.
-Suggest making email optional and off by default; the mailbox-control revocation reasons and Enterprise RA domain-control rules would go with it.
-====
+For LOA2 <<certificate,certificates>>, <<applicant,applicant>> information MAY include a <<mailbox-address,mailbox address>>, which the <<certification-authority,CA>> includes only if the <<applicant,applicant>> explicitly requests it (see <<email-addresses-in-subscriber-certificates>>).
 
 <<certificate-operational-periods-and-key-pair-usage-periods>>, limits the validity period of <<subscriber,subscriber>> <<certificate,certificates>>.
 
 The <<certification-authority,CA>> MAY reuse completed validations and/or supporting evidence performed in accordance with <<initial-identity-validation>>, within the following limits:
+
+. *Validation of mailbox authorization or control*: Completed validation of control of a <<mailbox-address,mailbox address>> in accordance with <<validation-of-mailbox-authorization-or-control>> MUST be obtained no more than 30 days prior to issuing the <<certificate,certificate>>.
 
 . *Authentication of organization identity*: Completed validation of organization identity in accordance with <<authentication-of-organization-identity>>, MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>.
 +
 Validation of authority in accordance with <<validation-of-authority>>, MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>, unless a contract between the <<certification-authority,CA>> and the <<applicant,applicant>> specifies a different term.
 For example, the contract MAY include the perpetual assignment of roles until revoked by the <<applicant,applicant>> or <<certification-authority,CA>>, or until the contract expires or is terminated.
 
-. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>.
+. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 366 days prior to issuing the <<certificate,certificate>>.
 
 A prior validation MUST NOT be reused if any data or document used in the prior validation was obtained more than the maximum time permitted for reuse of the data or document prior to issuing the <<certificate,certificate>>.
 
@@ -34,11 +31,4 @@ One of these individuals must deliberately command the <<root-certification-auth
 . All <<certification-authority,CA>> <<certificate,certificates>> issued by the <<certification-authority,CA>> MUST follow a documented process.
 All <<certification-authority,CA>> certificate issuance MUST be performed by personnel in <<trusted-role,trusted roles>> under the principles of multiple person control and split knowledge.
 . Time stamping <<certificate,certificate>> issuance MUST follow identification, authentication, and verification processes as documented in the <<certification-authority,CA>>’s business practices.
-. Claim signing <<certificate,certificate>> issuance MUST be subject to the process outlined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.
-+
---
-[IMPORTANT,role=todo]
-====
-Check link to this section.
-====
---
+. <<cawg-identity-certificate,CAWG identity certificate>> issuance MUST be subject to the process outlined in <<identification-and-authentication-for-certificate-issuance-and-certificate-renewal>>.

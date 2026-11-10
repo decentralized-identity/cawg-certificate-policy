@@ -11,10 +11,10 @@
 .. <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>>
 .. <<certificate,Certificates>> for infrastructure purposes (administrative role certificates, internal <<certification-authority,CA>> operational device certificates); and
 .. <<certificate,Certificates>> for <<online-certificate-status-protocol,OCSP>> response verification.
-. <<subscriber,Subscriber>> claim signing and time stamping certificates MUST only be issued by <<subordinate-ca,subordinate CAs>> where the Basic Constraints contains a `pathLenConstraint=0`.
+. <<subscriber,Subscriber>> <<cawg-identity-certificate,CAWG identity certificates>> and time stamping certificates MUST only be issued by <<subordinate-ca,subordinate CAs>> where the Basic Constraints contains a `pathLenConstraint=0`.
 . The use of a specific key is determined by the key usage extension in the X.509 certificate.
-. The <<private-key,private key>> associated with the public key to which a claim signing <<certificate,certificate>> has been issued under this <<certificate-policy,CP>> MUST remain under the exclusive control of the <<subscriber,subscriber>> and MUST NOT be exported.
-. Claim signing <<certificate,certificates>> issued under this <<certificate-policy,CP>> are to be used exclusively by individuals or organizations named as subjects of the certificates, to digitally sign CAWG claims at the <<assurance-level,assurance level>> indicated by the certificate.
+. The <<private-key,private key>> associated with the public key to which a <<cawg-identity-certificate,CAWG identity certificate>> has been issued under this <<certificate-policy,CP>> MUST remain under the exclusive control of the <<subscriber,subscriber>> and MUST NOT be exported.
+. <<cawg-identity-certificate,CAWG identity certificates>> issued under this <<certificate-policy,CP>> are to be used exclusively by the individuals or organizations named as subjects of the certificates, to digitally sign <<cawg-identity-assertion,CAWG identity assertions>>.
 Any usage for any other purpose is strictly prohibited.
 . Time stamping certificates issued under this <<certificate-policy,CP>> are to be used exclusively by the time stamping authority or unit named as subjects of the certificates to provide time stamping services.
 . <<ocsp-responder,OCSP responder>> certificates issued under this <<certificate-policy,CP>> are to be used exclusively to sign <<online-certificate-status-protocol,OCSP>> responses for certificates issued by the <<ocsp-responder,OCSP responder>> certificate’s <<issuing-ca,issuing CA>>.

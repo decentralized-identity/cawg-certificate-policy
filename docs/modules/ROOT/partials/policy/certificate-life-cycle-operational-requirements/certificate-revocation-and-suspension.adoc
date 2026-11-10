@@ -13,12 +13,7 @@ The <<certification-authority,CA>> MUST revoke a <<certificate,certificate>> wit
 . the <<subscriber,subscriber>> notifies the <<certification-authority,CA>> that the original <<certificate-request,certificate request>> was not authorized and does not retroactively grant authorization,
 . the <<certification-authority,CA>> obtains evidence that the <<subscriber,subscriber>>’s <<private-key,private key>> corresponding to the <<public-key,public key>> in the <<certificate,certificate>> suffered a <<key-compromise,key compromise>>,
 . the <<certification-authority,CA>> is made aware of a demonstrated or proven method that can easily compute the <<subscriber,subscriber>>’s <<private-key,private key>> based on the <<public-key,public key>> in the <<certificate,certificate>> (such as a Debian weak key, see https://wiki.debian.org/SSLkeys[https://wiki.debian.org/SSLkeys]), or
-. the <<certification-authority,CA>> obtains evidence that the validation of domain authorization or mailbox control for any mailbox address in the <<certificate,certificate>> should not be relied upon.
-
-[IMPORTANT,role=todo]
-====
-Revisit reference to mailboxes. Probably not relevant for CAWG.
-====
+. the <<certification-authority,CA>> obtains evidence that the validation of domain authorization or mailbox control for any <<mailbox-address,mailbox address>> in the <<certificate,certificate>> should not be relied upon.
 
 The <<certification-authority,CA>> SHOULD revoke a <<certificate,certificate>> within 24 hours and MUST revoke a <<certificate,certificate>> within 5 days if one or more of the following occurs:
 
@@ -26,13 +21,6 @@ The <<certification-authority,CA>> SHOULD revoke a <<certificate,certificate>> w
 . the <<certification-authority,CA>> obtains evidence that the <<certificate,certificate>> was misused,
 . the <<certification-authority,CA>> is made aware that a <<subscriber,subscriber>> has violated one or more of its material obligations under the <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>>,
 . the <<certification-authority,CA>> is made aware of any circumstance indicating that use of an email address or <<fully-qualified-domain-name,fully-qualified domain name>> in the <<certificate,certificate>> is no longer legally permitted (e.g., a court or arbitrator has revoked the right to use an email address or <<domain-name,domain name>>, a relevant licensing or services agreement between the <<subscriber,subscriber>> has terminated, or the account holder has failed to maintain the active status of the email address or <<domain-name,domain name>>),
-+
---
-[IMPORTANT,role=todo]
-====
-Revisit reference to mailboxes. Probably not relevant for CAWG.
-====
---
 . the <<certification-authority,CA>> is made aware of a material change in the information contained in the <<certificate,certificate>>,
 . the <<certification-authority,CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>,
 . the <<certification-authority,CA>> determines or is made aware that any of the information appearing in the <<certificate,certificate>> is inaccurate,
@@ -69,12 +57,7 @@ The process MUST be described in the <<certification-authority,CA>>’s <<certif
 The <<certification-authority,CA>> MUST maintain a continuous 24x7 ability to accept and respond to revocation requests and <<certificate-problem-report,certificate problem reports>>.
 
 The <<certification-authority,CA>> MUST provide clear instructions for reporting suspected <<private-key,private key>> compromise, <<certificate,certificate>> misuse, or other types of fraud, compromise, misuse, inappropriate conduct, or any other matter related to <<certificate,certificates>>.
-The <<certification-authority,CA>> MUST publicly disclose the instructions through a readily accessible online means and in Section 1.5.2 of their <<certification-practice-statement,CPS>>.
-
-[IMPORTANT,role=todo]
-====
-Do we know that the CPS will still have the same section 1.5.2 reference?
-====
+The <<certification-authority,CA>> MUST publicly disclose the instructions through a readily accessible online means and in Section 1.5.2 (Contact person) of their <<certification-practice-statement,CPS>>, which is structured according to <<rfc-3647,RFC 3647>>.
 
 [[revocation-request-grace-period]]
 ==== Revocation request grace period

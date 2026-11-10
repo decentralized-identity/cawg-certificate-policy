@@ -13,7 +13,7 @@ The <<certification-authority,CA>> MUST record at least the following events:
 . <<certification-authority,CA>> <<certificate,certificate>> and key lifecycle events, including:
 
 .. key generation, backup, storage, recovery, archival, and destruction;
-.. <<certificate-request,certificate requests>>, renewal, and re-key requests, and revocation;
+.. <<certificate-request,certificate requests>>, renewal requests, and revocation;
 .. approval and rejection of <<certificate-request,certificate requests>>;
 .. cryptographic device lifecycle management events;
 .. generation of <<certificate-revocation-list,certificate revocation lists>>;
@@ -29,7 +29,7 @@ Determine whether to create one, and link to it here and from the audit logging 
 
 . <<subscriber,Subscriber>> <<certificate,certificate>> lifecycle management events, including:
 
-.. <<certificate-request,certificate requests>>, renewal, and re-key requests, and revocation;
+.. <<certificate-request,certificate requests>>, renewal requests, and revocation;
 .. all verification activities stipulated in these requirements and the <<certification-authority,CA>>’s <<certification-practice-statement,certification practice statement>>;
 .. approval and rejection of <<certificate-request,certificate requests>>;
 .. issuance of <<certificate,certificates>>;
@@ -76,22 +76,18 @@ No stipulation.
 [[retention-period-for-audit-log]]
 ==== Retention period for audit log
 
-The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST retain, for at least two (2) years:
+The <<certification-authority,CA>> and each <<delegated-third-party,delegated third party>> MUST retain the following records for the life of the <<issuing-ca,issuing CA>> plus at least seven (7) years:
 
-[IMPORTANT,role=todo]
-====
-Retention too short: two years (and one year for the repository) is the BR minimum.
-Provenance content is validated for decades, so evidence of who was vetted should outlive that.
-Suggest the life of the issuing CA plus 7 years.
-====
+. <<certification-authority,CA>> <<certificate,certificate>> and key lifecycle management event records (as set forth in <<types-of-events-recorded>> (1));
+. <<subscriber,subscriber>> <<certificate,certificate>> lifecycle management event records (as set forth in <<types-of-events-recorded>> (2)); and
+. security event records (as set forth in <<types-of-events-recorded>> (3)).
 
-. <<certification-authority,CA>> <<certificate,certificate>> and key lifecycle management event records (as set forth in <<types-of-events-recorded>> (1)) after the later occurrence of:
+The life of the <<issuing-ca,issuing CA>> ends at the later of:
 
-.. the destruction of the <<certification-authority,CA>> <<private-key,private key>>, or
-.. the revocation or expiration of the final <<certification-authority,CA>> <<certificate,certificate>> in that set of <<certificate,certificates>> that have an X.509v3 `basicConstraints` extension with the `cA` field set to true and which share a common <<public-key,public key>> corresponding to the <<certification-authority,CA>> <<private-key,private key>>;
+. the destruction of the <<issuing-ca,issuing CA>>’s <<private-key,private key>>; or
+. the revocation or expiration of the final <<certification-authority,CA>> <<certificate,certificate>> in the set of <<certificate,certificates>> that have an X.509v3 `basicConstraints` extension with the `cA` field set to true and which share the <<public-key,public key>> corresponding to that <<private-key,private key>>.
 
-. <<subscriber,subscriber>> <<certificate,certificate>> lifecycle management event records (as set forth in <<types-of-events-recorded>> (2)) after the expiration of the <<subscriber,subscriber>> <<certificate,certificate>>;
-. any security event records (as set forth in <<types-of-events-recorded>> (3)) after the event occurred.
+CAWG identity assertions are validated for many years after they are signed, so evidence of how each <<subscriber,subscriber>> was validated needs to remain available for at least as long.
 
 NOTE: While these requirements set the minimum retention period, the <<certification-authority,CA>> MAY choose a greater value as more appropriate in order to be able to investigate possible security or other types of incidents that will require retrospection and examination of past audit log events.
 
