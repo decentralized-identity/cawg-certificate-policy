@@ -22,7 +22,7 @@ The <<certification-authority,CA>> MAY reuse completed validations and/or suppor
 Validation of authority in accordance with <<validation-of-authority>>, MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>, unless a contract between the <<certification-authority,CA>> and the <<applicant,applicant>> specifies a different term.
 For example, the contract MAY include the perpetual assignment of roles until revoked by the <<applicant,applicant>> or <<certification-authority,CA>>, or until the contract expires or is terminated.
 
-. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 825 days prior to issuing the <<certificate,certificate>>.
+. *Authentication of individual identity*: Completed validation of <<individual,individual>> identity in accordance with <<authentication-of-individual-identity>> MUST be obtained no more than 366 days prior to issuing the <<certificate,certificate>>.
 
 A prior validation MUST NOT be reused if any data or document used in the prior validation was obtained more than the maximum time permitted for reuse of the data or document prior to issuing the <<certificate,certificate>>.
 

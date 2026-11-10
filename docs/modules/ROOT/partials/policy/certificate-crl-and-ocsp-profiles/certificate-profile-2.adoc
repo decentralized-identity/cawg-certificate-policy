@@ -225,7 +225,7 @@ This extension SHOULD be marked critical.
 | Generation
 | `rsaEncryption`
 | `id-ecPublicKey`
-| `id-Ed25519`* and *`id-Ed448`
+| `id-Ed25519`
 
 | Strict
 | For signing only, bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
@@ -251,23 +251,6 @@ Not sure we need to carry forward S/MIME’s “legacy” generation certificate
 ====
 +
 Other bit positions MUST NOT be set.
-+
-[options="header",cols="2,4,4"]
-|===
-| Generation
-| `id-ml-dsa`
-| `id-ml-kem`
-
-| Legacy and Multipurpose and Strict
-| Bit positions MUST be set for `digitalSignature` and MAY be set for `nonRepudiation`.
-Other bit positions MUST NOT be set.
-| `keyEncipherment` MUST be the only key usage set.
-|===
-+
-[IMPORTANT,role=todo]
-====
-Not sure we need to carry forward S/MIME’s “legacy” generation certificates.
-====
 
 . `extKeyUsage` (MUST be present)
 +
@@ -404,62 +387,13 @@ When encoded, the `AlgorithmIdentifier` for ECDSA keys MUST be byte-for-byte ide
 [[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-eddsa]]
 ====== EdDSA
 
-The <<certification-authority,CA>> MUST indicate an EdDSA key using one of the following algorithm identifiers below:
-
-* For Curve25519 keys, the `algorithm` MUST be `id-Ed25519` (<<object-identifier,OID>>: 1.3.101.112).
-* For Curve448 keys, the `algorithm` MUST be `id-Ed448` (<<object-identifier,OID>>: 1.3.101.113).
+The <<certification-authority,CA>> MUST indicate an EdDSA key using the `id-Ed25519` algorithm identifier (<<object-identifier,OID>>: 1.3.101.112).
 
 The parameters for EdDSA keys MUST be absent.
 
-When encoded, the `AlgorithmIdentifier` for EdDSA keys MUST be byte-for-byte identical with the following hex-encoded bytes:
+When encoded, the `AlgorithmIdentifier` for EdDSA keys MUST be byte-for-byte identical with the following hex-encoded bytes: `300506032b6570`.
 
-* For Curve25519 keys, `300506032b6570`.
-* For Curve448 keys, `300506032b6571`.
-
-[[certificate-profile-algorithm-object-identifiers-subjectpublickeyinfo-ml-dsa]]
-====== ML-DSA
-
-[IMPORTANT,role=todo]
-====
-Neither CAWG nor C2PA has allowed ML-DSA encryption. Should we remove this section?
-====
-
-The <<certification-authority,CA>> MUST indicate an ML-DSA key using one of the following algorithm identifiers below:
-
-* `ML-DSA-44` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17), or
-* `ML-DSA-65` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18), or
-* `ML-DSA-87` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
-
-The parameters for ML-DSA keys MUST be absent.
-The <<certification-authority,CA>> MUST NOT use HashML-DSA; only “pure” ML-DSA is permitted.
-
-When encoded, the `AlgorithmIdentifier` for ML-DSA keys MUST be byte-for-byte identical with the following hex-encoded bytes:
-
-* For ML-DSA-44, `300b0609608648016503040311`.
-* For ML-DSA-65, `300b0609608648016503040312`.
-* For ML-DSA-87, `300b0609608648016503040313`.
-
-[[ml-kem]]
-====== ML-KEM
-
-[IMPORTANT,role=todo]
-====
-Neither CAWG nor C2PA has allowed ML-KEM encryption. Should we remove this section?
-====
-
-The <<certification-authority,CA>> MUST indicate an ML-KEM key using one of the following algorithm identifiers below:
-
-* `ML-KEM-512` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.1), or
-* `ML-KEM-768` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.2), or
-* `ML-KEM-1024` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.3).
-
-The parameters for ML-KEM keys MUST be absent.
-
-When encoded, the `AlgorithmIdentifier` for ML-KEM keys MUST be byte-for-byte identical with the following hex-encoded bytes:
-
-* For ML-KEM-512, `300b0609608648016503040401`.
-* For ML-KEM-768, `300b0609608648016503040402`.
-* For ML-KEM-1024, `300b0609608648016503040403`.
+ML-DSA and Ed448 keys are reserved for a future version of this <<certificate-policy,CP>>, and ML-KEM keys are not permitted (see the <<reserved-algorithms,note on reserved algorithms>> in <<key-sizes>>).
 
 [[signature-algorithmidentifier]]
 ===== Signature `AlgorithmIdentifier`
@@ -548,28 +482,6 @@ The <<certification-authority,CA>> MUST use the appropriate signature algorithm 
 
 If the signing key is Curve25519, the signature algorithm MUST be id-Ed25519 (<<object-identifier,OID>>: 1.3.101.112).
 When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300506032b6570`.
-
-If the signing key is Curve448, the signature algorithm MUST be id-Ed448 (<<object-identifier,OID>>: 1.3.101.113).
-When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300506032b6571`.
-
-[[certificate-profile-algorithm-object-identifiers-signature-algorithmidentifier-ml-dsa]]
-====== ML-DSA
-
-[IMPORTANT,role=todo]
-====
-Neither CAWG nor C2PA has allowed ML-DSA encryption. Should we remove this section?
-====
-
-The <<certification-authority,CA>> MUST use the appropriate signature algorithm and encoding based upon the signing key used.
-
-If the signing key is ML-DSA-44, the signature algorithm MUST be `id-ml-dsa-44` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17).
-When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040311`.
-
-If the signing key is ML-DSA-65, the signature algorithm MUST be `id-ml-dsa-65` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18).
-When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040312`.
-
-If the signing key is ML-DSA-87, the signature algorithm MUST be `id-ml-dsa-87` (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
-When encoded, the `AlgorithmIdentifier` MUST be byte-for-byte identical with the following hex-encoded bytes: `300b0609608648016503040313`.
 
 [[name-forms]]
 ==== Name forms

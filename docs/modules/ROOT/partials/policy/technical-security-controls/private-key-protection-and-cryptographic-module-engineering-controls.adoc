@@ -18,7 +18,7 @@ No stipulation.
 [[private-key-escrow]]
 ==== Private key escrow
 
-No stipulation.
+<<subscriber,Subscriber>> <<private-key,private keys>> MUST NOT be escrowed (see <<key-escrow-and-recovery>>).
 
 [[private-key-backup]]
 ==== Private key backup

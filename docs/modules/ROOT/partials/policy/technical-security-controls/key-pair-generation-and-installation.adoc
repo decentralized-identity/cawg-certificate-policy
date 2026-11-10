@@ -11,13 +11,7 @@
 . The <<certification-authority,CA>>’s disclosed business practices MUST include but are not limited to:
 .. generation of <<certification-authority,CA>> keys are undertaken in a physically- or cloud-secured environment;
 .. generation of <<certification-authority,CA>> keys are performed by personnel in <<trusted-role,trusted roles>> under the principles of multiple-person control and split knowledge;
-.. generation of <<certification-authority,CA>> keys occur within FIPS 140-2 Level 2 or higher, FIPS 140-3 Level 2 or higher, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 or higher cryptographic modules meeting the applicable technical and business requirements as disclosed in the <<certification-authority,CA>>’s business practices;
-+
-[IMPORTANT,role=todo]
-====
-Inconsistent: CA keys may be generated at FIPS 140 Level 2 but must be stored at Level 3.
-Suggest Level 3 for both.
-====
+.. generation of <<certification-authority,CA>> keys occur within FIPS 140-2 Level 3 or higher, FIPS 140-3 Level 3 or higher, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 or higher cryptographic modules meeting the applicable technical and business requirements as disclosed in the <<certification-authority,CA>>’s business practices, matching the storage requirement in <<private-key-storage-on-cryptographic-module>>;
 .. generation of <<certification-authority,CA>> keys are witnessed by an independent party and/or recorded; and
 .. <<certification-authority,CA>> key generation activities are logged.
 
@@ -44,7 +38,7 @@ The <<certification-authority,CA>> or a <<delegated-third-party,delegated third 
 [[private-key-delivery-to-subscriber]]
 ==== Private key delivery to subscriber
 
-Parties other than the <<subscriber,subscriber>> MUST NOT archive the <<subscriber,subscriber>> <<private-key,private key>> without authorization by the <<subscriber,subscriber>>.
+Parties other than the <<subscriber,subscriber>> MUST NOT archive the <<subscriber,subscriber>> <<private-key,private key>> (see <<key-escrow-and-recovery>>).
 
 If the <<certification-authority,CA>> or any of its designated <<registration-authority,RAs>> become aware that a <<subscriber,subscriber>>’s <<private-key,private key>> has been communicated to a person or organization not authorized by the <<subscriber,subscriber>>, then the <<certification-authority,CA>> MUST revoke all <<certificate,certificates>> that include the <<public-key,public key>> corresponding to the communicated <<private-key,private key>>.
 
@@ -77,30 +71,9 @@ No stipulation.
 
 For RSA key pairs the <<certification-authority,CA>> MUST:
 
-* For keys corresponding to <<certification-authority,CA>> <<certificate,certificates>> (including Root, Subordinate and <<cross-certificate,cross certificates>>) signed on or after 15 September 2026 ensure that the modulus size, when encoded, is at least 4096 bits; and
-+
-[IMPORTANT,role=todo]
-====
-Inconsistent: RSA 4096 here, but the YAML profiles say 3072 or larger, which matches C2PA.
-The 2027 rule below is also keyed to id-kp-emailProtection, which shouldn’t be in CAWG certificates.
-====
+* For keys corresponding to <<certification-authority,CA>> <<certificate,certificates>> (including Root, Subordinate and <<cross-certificate,cross certificates>>), ensure that the modulus size, when encoded, is at least 3072 bits;
 * For keys corresponding to <<subscriber,subscriber>> <<certificate,certificates>>, ensure that the modulus size, when encoded, is at least 2048 bits; and
 * Ensure that the modulus size, in bits, is evenly divisible by 8.
-
-Effective 15 September 2027 the <<certification-authority,CA>> MUST NOT issue <<certificate,certificates>> from any <<certification-authority,CA>> if all of the following conditions are true:
-
-* the `tbsCertificate` contains `id-kp-emailProtection` in the `extKeyUsage` extension; and
-* the `tbsCertificate` contains a `subjectAltName` extension that complies with <<subject-alternative-name-extension>>; and
-* the <<certification-authority,CA>> <<certificate,certificate>>’s RSA Key modulus size, when encoded, is less than 3072 bits.
-
-NOTE: The paragraph above intends to prevent the issuance of S/MIME <<subscriber,subscriber>> <<certificate,certificates>> by existing <<subordinate-ca,subordinate CAs>> which have an RSA key size of less than 3072 bits.
-The issuance of Delegated <<online-certificate-status-protocol,OCSP>> Signing <<certificate,certificates>> by these <<certification-authority,CAs>> remains permitted.
-
-[IMPORTANT,role=todo]
-====
-Review references to S/MIME.
-Also the date-specific references are likely carried over from S/MIME and may not be needed here.
-====
 
 For ECDSA key pairs, the <<certification-authority,CA>> MUST:
 
@@ -108,30 +81,14 @@ For ECDSA key pairs, the <<certification-authority,CA>> MUST:
 
 For EdDSA key pairs, the <<certification-authority,CA>> MUST:
 
-* Ensure that the key represents a valid point on the Curve25519 or Curve448 elliptic curve.
-
-For ML-DSA key pairs, the <<certification-authority,CA>> MUST:
-
-* Ensure the Key uses one of the following parameter sets:
-** ML-DSA-44 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.17), or
-** ML-DSA-65 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.18), or
-** ML-DSA-87 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.3.19).
-
-For ML-KEM key pairs, the <<certification-authority,CA>> MUST:
-
-[IMPORTANT,role=todo]
-====
-Algorithms: ML-KEM is a key-encapsulation mechanism and can’t sign, so it doesn’t belong in a signing-certificate policy (here, in the key usage table and in the algorithm IDs).
-ML-DSA and Ed448 aren’t in the C2PA 2.4 allowed list (ES256/384/512, PS256/384/512, Ed25519), which the CAWG X.509 credential inherits, so validators would reject them.
-Suggest marking them reserved for a future version.
-====
-
-* Ensure the key uses one of the following parameter sets:
-** ML-KEM-512 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.1), or
-** ML-KEM-768 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.2), or
-** ML-KEM-1024 (<<object-identifier,OID>>: 2.16.840.1.101.3.4.4.3).
+* Ensure that the key represents a valid point on the Curve25519 elliptic curve (Ed25519).
 
 No other algorithms or key sizes are permitted.
+
+[[reserved-algorithms]]
+NOTE: ML-DSA and Ed448 are reserved for a future version of this <<certificate-policy,CP>>.
+They are not in the list of signature algorithms allowed by the https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html[C2PA specification], which validators of <<cawg-identity-assertion,CAWG identity assertions>> apply to X.509 credentials, so <<certificate,certificates>> using them would fail validation.
+ML-KEM is not permitted: it is a key-encapsulation mechanism and cannot produce signatures.
 
 [[public-key-parameters-generation-and-quality-checking]]
 ==== Public key parameters generation and quality checking
@@ -145,10 +102,6 @@ For ECDSA key pairs: the <<certification-authority,CA>> SHOULD confirm the valid
 (See https://csrc.nist.gov/pubs/sp/800/56/a/r2/final[NIST SP 800-56A Revision 2], Sections 5.6.2.3.2 and 5.6.2.3.3.)
 
 For EdDSA key pairs: no stipulation.
-
-For ML-DSA key pairs: no stipulation.
-
-For ML-KEM key pairs: no stipulation.
 
 [[key-usage-purposes-as-per-x-509-v3-key-usage-field]]
 ==== Key usage purposes (as per X.509 v3 key usage field)
