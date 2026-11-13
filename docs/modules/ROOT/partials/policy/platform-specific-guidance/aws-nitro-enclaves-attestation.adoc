@@ -1,0 +1,7 @@
+[[aws-nitro-enclaves-attestation]]
+=== AWS Nitro Enclaves attestation
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html[AWS Nitro Enclaves attestation documentation].
+====

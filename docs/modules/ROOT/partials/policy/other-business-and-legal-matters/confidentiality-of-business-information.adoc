@@ -1,0 +1,12 @@
+[[confidentiality-of-business-information]]
+=== Confidentiality of business information
+
+[[cas-commitment-to-confidentiality]]
+==== CA’s commitment to confidentiality
+
+The <<certification-authority,CA>> pledges to uphold the confidentiality of all non-public <<subscriber,subscriber>> business information obtained during the certificate application and validation processes.
+
+[[information-sharing-restrictions]]
+==== Information sharing restrictions
+
+Such information MUST NOT be shared with any third parties without the <<subscriber,subscriber>>’s explicit written consent, except when mandated by law or regulation, or required for independent auditing purposes.

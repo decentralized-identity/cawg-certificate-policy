@@ -1,0 +1,7 @@
+[[google-cloud-confidential-vm-attestation]]
+=== Google Cloud Confidential VM attestation
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://cloud.google.com/confidential-computing/confidential-vm/docs/attestation[GCP Confidential VM attestation documentation].
+====

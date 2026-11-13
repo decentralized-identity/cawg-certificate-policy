@@ -1,0 +1,17 @@
+[[certificate-crl-and-ocsp-profiles]]
+== Certificate, CRL, and OCSP profiles
+
+This section outlines the technical specifications and formats for the certificates, <<certificate-revocation-list,certificate revocation lists>> (<<certificate-revocation-list,CRLs>>), and <<online-certificate-status-protocol,online certificate status protocol>> (<<online-certificate-status-protocol,OCSP>>) responses associated with this <<certificate-policy,CP>>.
+It also defines the X.509 v3 extension to indicate the assurance level of each certificate.
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/certificate-profile-2.adoc[]
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/crl-profile.adoc[]
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/ocsp-profile.adoc[]
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/certificate-profiles.adoc[]
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/crl-profile-2.adoc[]
+
+include::partial$policy/certificate-crl-and-ocsp-profiles/ocsp-profile-2.adoc[]

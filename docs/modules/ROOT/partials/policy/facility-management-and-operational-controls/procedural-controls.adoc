@@ -1,0 +1,27 @@
+[[procedural-controls]]
+=== Procedural controls
+
+[[documented-procedures]]
+==== Documented procedures
+
+Comprehensive and up-to-date documentation MUST be maintained for all <<certification-authority,CA>> operational procedures, including:
+
+. <<certificate,Certificate>> issuance, renewal, and revocation processes.
+. Key generation and management practices within devices or applications.
+. <<attestation,Attestation>> validation procedures when required by a particular <<assurance-level,assurance level>>.
+. Incident response and disaster recovery plans.
+. Security policies, guidelines, and access control measures.
+
+[[separation-of-duties]]
+==== Separation of duties
+
+. Critical functions, such as attestation validation, certificate issuance, and revocation, MUST be segregated among different individuals or teams to prevent conflicts of interest and minimize the risk of fraud or error.
+. Dual control mechanisms MUST be deployed for physical access to <<certification-authority,CA>> equipment and any access required to perform specific <<certification-authority,CA>> operations (i.e., m of n rule where m represents the number of key shareholders required to perform an operation and n represents the total number of key shares).
+. All certificate signing operations performed by a <<root-certification-authority,root CA>> MUST be performed by at least two individuals in <<trusted-role,trusted roles>> (i.e. the <<certification-authority,CA>> system operator, system officer, or <<public-key-infrastructure,PKI>> administrator).
+
+[[change-management]]
+==== Change management
+
+. A formal change management process MUST be established to control and document all changes to the <<certification-authority,CA>>’s infrastructure, software, or procedures.
+. All changes MUST undergo thorough testing and approval before implementation.
+. Rollback and/or roll-forward plans MUST be in place to revert changes in the event of unforeseen issues.

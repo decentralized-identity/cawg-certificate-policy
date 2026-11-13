@@ -1,0 +1,14 @@
+[[certificate-application]]
+=== Certificate application
+
+The <<applicant,applicant>> initiates the certificate request process by submitting a formal application to become a <<subscriber,subscriber>> using the method designated by the <<certification-authority,CA>>.
+The <<applicant,applicant>> MUST provide all requisite information and documentation as specified in this <<certificate-policy,CP>>.
+This includes:
+
+. information about the individual or organization for which the certificate is requested, and
+. the <<assurance-level,assurance level>> of the certificates which the <<applicant,applicant>> will be requesting for their claim signing <<certificate,certificate>>.
+
+[IMPORTANT,role=todo]
+====
+Revisit use of “claim signing certificate.”
+====

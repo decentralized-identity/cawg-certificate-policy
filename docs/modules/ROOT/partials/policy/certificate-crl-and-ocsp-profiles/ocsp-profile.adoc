@@ -1,0 +1,16 @@
+[[ocsp-profile]]
+=== OCSP profile
+
+If an <<online-certificate-status-protocol,OCSP>> response is for a <<root-certification-authority,root CA>> or <<subordinate-ca,subordinate CA>> <<certificate,certificate>>, including <<cross-certificate,cross certificates>>, and that <<certificate,certificate>> has been revoked, then the `revocationReason` field within the `RevokedInfo` of the `CertStatus` MUST be present.
+
+The `CRLReason` indicated MUST contain a value permitted for <<certificate-revocation-list,CRLs>>, as specified in <<crl-and-crl-entry-extensions>>.
+
+[[ocsp-profile-version-numbers]]
+==== Version number(s)
+
+No stipulation.
+
+[[ocsp-extensions]]
+==== OCSP extensions
+
+The `singleExtensions` of an <<online-certificate-status-protocol,OCSP>> response MUST NOT contain the `reasonCode` (<<object-identifier,OID>> 2.5.29.21) <<certificate-revocation-list,CRL>> entry extension.

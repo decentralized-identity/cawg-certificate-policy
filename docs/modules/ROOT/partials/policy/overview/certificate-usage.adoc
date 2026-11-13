@@ -1,0 +1,12 @@
+[[certificate-usage]]
+=== Certificate usage
+
+[[intended-use]]
+==== Intended use
+
+<<certificate,Certificates>> issued under this <<certificate-policy,CP>> are to be used exclusively by individuals and organizations named as the subjects of the certificates, which have been implemented by the <<subscriber,subscribers>>, to digitally sign CAWG claims at the <<assurance-level,assurance level>> indicated by the certificate.
+
+[[prohibited-use]]
+==== Prohibited use
+
+Any use of certificates issued under this policy outside of the <<_CAWG_specification,CAWG Specification>> or the <<cawg-conformance-program,CAWG conformance program>> is strictly prohibited.

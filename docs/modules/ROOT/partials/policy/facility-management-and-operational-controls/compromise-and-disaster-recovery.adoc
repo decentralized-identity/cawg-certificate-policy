@@ -1,0 +1,36 @@
+[[compromise-and-disaster-recovery]]
+=== Compromise and disaster recovery
+
+[[incident-response-plan]]
+==== Incident response plan
+
+<<certification-authority,CA>> operators MUST have an incident response plan and a disaster recovery plan.
+
+The <<certification-authority,CA>> MUST document a business continuity and disaster recovery procedures designed to notify and reasonably protect <<application-software-supplier,application software suppliers>>, <<subscriber,subscribers>>, and <<relying-party,relying parties>> in the event of a disaster, security compromise, or business failure.
+The <<certification-authority,CA>> is not required to publicly disclose its business continuity plans but MUST make its business continuity plan and security plans available to the <<certification-authority,CA>>’s auditors upon request.
+The <<certification-authority,CA>> MUST annually test, review, and update these procedures.
+
+The business continuity plan MUST include:
+
+. the conditions for activating the plan,
+. emergency procedures,
+. fallback procedures,
+. resumption procedures,
+. a maintenance schedule for the plan,
+. awareness and education requirements,
+. the responsibilities of the individuals,
+. recovery time objective (RTO),
+. regular testing of contingency plans,
+. the <<certification-authority,CA>>’s plan to maintain or restore the <<certification-authority,CA>>’s business operations in a timely manner following interruption to or failure of critical business processes,
+. a requirement to store critical cryptographic materials (i.e., secure cryptographic device and activation materials) at an alternate location,
+. what constitutes an acceptable system outage and recovery time,
+. how frequently backup copies of essential business information and software are taken,
+. the distance of recovery facilities to the <<certification-authority,CA>>’s main site, and
+. procedures for securing its facility to the extent possible during the period of time following a disaster and prior to restoring a secure environment either at the original or a remote site.
+
+[[backup-and-recovery]]
+==== Backup and recovery
+
+. Secure backups of all critical data, including certificate databases, <<certification-authority,CA>> key material, configuration files, and audit logs, MUST be maintained.
+. Backups should be stored off-site and regularly tested to ensure recoverability.
+. A documented recovery plan outlining the steps to restore operations after a disaster or system failure MUST be in place.

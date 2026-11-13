@@ -1,0 +1,354 @@
+[[initial-identity-validation]]
+=== Initial identity validation
+
+The <<certification-authority,CA>> MUST authenticate the identity attributes of the <<subject,subject>> to be included in the S/MIME <<certificate,certificate>> according to the requirements of the following sections:
+
+[options="header",cols="4,3,3"]
+|===
+| <<certificate-type,Certificate type>>
+| Organization identity
+| <<individual,Individual>> identity
+
+| `Organization-validated`
+| xref:authentication-of-organization-identity[xrefstyle=short]
+| N/A
+
+| `Sponsor-validated`
+| xref:authentication-of-organization-identity[xrefstyle=short]
+| xref:authentication-of-individual-identity[xrefstyle=short]
+
+| `Individual-validated`
+| N/A
+| xref:authentication-of-individual-identity[xrefstyle=short]
+|===
+
+[[authentication-of-organization-identity]]
+==== Authentication of organization identity
+
+The following requirements MUST be fulfilled to authenticate organization identity included in the `Organization-validated` and `Sponsor-validated` profiles.
+
+[[attribute-collection-of-organization-identity]]
+===== Attribute collection of organization identity
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST collect and retain evidence supporting the following identity attributes for the organization:
+
+. Formal name of the <<legal-entity,legal entity>>;
+. A registered <<assumed-name,assumed name>> for the <<legal-entity,legal entity>> (if included in the <<subject,subject>>);
+. An <<affiliate,affiliate>> of the <<legal-entity,legal entity>> as described in <<subscriber-subject-distinguished-name-fields>> (if included in the <<subject,subject>> as an `subject:organizationalUnitName`);
+. An address of the <<legal-entity,legal entity>> (if included in the <<subject,subject>>);
+. <<jurisdiction-of-incorporation,Jurisdiction of incorporation>> or registration of the <<legal-entity,legal entity>>; and
+. Identifier and type of identifier for the <<legal-entity,legal entity>>.
+
+The identifier MUST be included in the <<certificate,certificate>> `subject:organizationIdentifier` as specified in <<subscriber-subject-distinguished-name-fields>> and <<appendix-a---registration-schemes, Appendix A>>.
+
+[IMPORTANT,role=todo]
+====
+Fix up link to Appendix A. Not quite sure where this was meant to go.
+====
+
+[[validation-of-organization-identity]]
+===== Validation of organization identity
+
+If an <<attestation,attestation>> is used as evidence for the validation of the attributes described in this section, then the <<attestation,attestation>> MUST be verified for authenticity as described in <<reliability-of-verification-sources>>.
+
+[[verification-of-name-address-and-identifier]]
+====== Verification of name, address, and identifier
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify the full legal name and an address (if included in the <<certificate,certificate>> <<subject,subject>>) of the <<legal-entity,legal entity>> <<applicant,applicant>> using documentation provided by, or through communication with, at least one of the following:
+
+. A government agency in the jurisdiction of the <<legal-entity,legal entity>>’s creation, existence, or recognition;
+. A <<legal-entity-identifier,legal entity identifier (LEI)>> data reference;
+. A site visit by the <<certification-authority,CA>> or a third party who is acting as an agent for the <<certification-authority,CA>>; or
+. An <<attestation,attestation>> which includes a copy of supporting documentation used to establish the <<applicant,applicant>>’s legal existence (such as a certificate of registration, articles of incorporation, operating agreement, statute, or regulatory act) and its current status.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY use the same documentation or communication described in 1 through 4 above to verify both the <<applicant,applicant>>’s identity and address.
+
+In cases 1 and 4 above, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify that the status of the <<applicant,applicant>> is not designated by labels such as “ceased,” “inactive,” “invalid,” “not current,” or the equivalent.
+
+In case 2 above when <<legal-entity-identifier,LEI>> data reference is used, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify that the `RegistrationStatus` is `ISSUED` and the `EntityStatus` is `ACTIVE`.
+The <<certification-authority,CA>> MUST only allow use of an <<legal-entity-identifier,LEI>> if the `ValidationSources` entry is `FULLY_CORROBORATED`.
+An <<legal-entity-identifier,LEI>> MUST NOT be used if the `ValidationSources` entry is `PARTIALLY_CORROBORATED`, `PENDING`, or `ENTITY_SUPPLIED_ONLY`.
+
+[[verification-of-assumed-name]]
+====== Verification of assumed name
+
+<<applicant,Applicants>> MAY request an <<assumed-name,assumed name>> to be included in the <<certificate,certificate>>.
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify that:
+
+. The <<applicant,applicant>> has registered its use of the <<assumed-name,assumed name>> with the appropriate government agency for such filings in the jurisdiction of its incorporation or registration; and
+. The <<assumed-name,assumed name>> filing continues to be valid.
+
+The <<certification-authority,CA>> MAY rely on an <<attestation,attestation>> that indicates the <<assumed-name,assumed name>> under which the <<applicant,applicant>> conducts business, the government agency with which the <<assumed-name,assumed name>> is registered, and that such filing continues to be valid.
+
+[[disclosure-of-verification-sources]]
+===== Disclosure of verification sources
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify the <<registration-reference,registration reference>> to be included in the <<certificate,certificate>> from a register that is maintained or authorized by the relevant government agency.
+The <<certification-authority,CA>> MUST disclose the authorized sources it uses to verify the <<applicant,applicant>>’s creation, existence, or recognition.
+This disclosure MUST be through an appropriate and readily accessible online means.
+The <<certification-authority,CA>> MUST document where to obtain this information within Section 3.2 of the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+
+Nothing in these requirements prohibits the use of third-party vendors to obtain regularly-updated and current information from the government register provided that the third party obtains the information directly from the government.
+
+In the case of a <<legal-entity-identifier,LEI>> data reference, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify the associated data record with the https://search.gleif.org/#/search/[Global Legal Entity Identifier Foundation].
+
+[[authentication-of-individual-identity]]
+==== Authentication of individual identity
+
+The following requirements MUST be fulfilled to authenticate <<individual,individual>> identity attributes included in `Sponsor-validated` and `Individual-validated` <<certificate,certificate>> profiles.
+
+The <<certification-authority,CA>>, <<registration-authority,RA>>, or <<enterprise-ra,enterprise RA>> MUST collect and retain evidence supporting the following identity attributes for the <<individual,individual>> <<applicant,applicant>>:
+
+. Given name(s) and surname(s), which MUST be current names;
+. <<pseudonym,Pseudonym>> (if used);
+. Title (if used);
+. Address (if displayed in <<subject,subject>>); and
+. Further information as needed to uniquely identify the <<applicant,applicant>>.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST comply with applicable data protection legislation in the gathering and retention of evidence relating to <<individual,individual>> identity supporting this requirement in accordance with <<information-treated-as-private>>.
+
+[[attribute-collection-of-individual-identity]]
+===== Attribute collection of individual identity
+
+The <<certification-authority,CA>> MUST document and publish the methods it uses to collect <<individual,individual>> identity attributes.
+
+[[from-a-physical-identity-document]]
+====== From a physical identity document
+
+If physical identity documents are used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST accept only government-issued passports or identity cards, and other official identity documents of comparable reliability (such as drivers license or military ID).
+
+The physical identity document used as evidence MUST contain a face photo and/or other information that can be compared with the <<applicant,applicant>>’s physical appearance.
+
+The <<certification-authority,CA>> MUST document and publish information describing the physical or digital identity documents or document types it accepts.
+
+[[from-a-digital-identity-document]]
+====== From a digital identity document
+
+If digital identity documents (such as government-issued passports or national ID cards including a chip bearing digitally signed information about the holder) are used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST only accept eMRTD digital identity documents in compliance with ICAO 9303 part 10.
+
+This method does not include “<<electronic-identification,eID>>” as described in Regulation (EU) 910/2014.
+
+[[using-electronic-identification-schemes-eid]]
+====== Using electronic identification schemes (eID)
+
+If an <<electronic-identification,eID>> is used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST only accept “notified” <<electronic-identification,eID>> schemes according to Article 9 of the https://eur-lex.europa.eu/eli/reg/2014/910/2024-05-20[eIDAS Regulation] and the <<electronic-identification,eID>> shall conform to eIDAS LoA “Substantial” or “High.”
+
+The <<certification-authority,CA>> MUST document and publish information describing the <<electronic-identification,eID>> and associated <<electronic-identification,eID>> attributes it accepts.
+
+[[from-a-certificate-supporting-a-digital-signature-applied-by-the-applicant]]
+====== From a certificate supporting a digital signature applied by the applicant
+
+If a digital signature is used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST have the <<applicant,applicant>> digitally sign the <<certificate-request,certificate request>> using a valid personal <<certificate,certificate>> that was issued under an approved framework described in <<approved-frameworks>>.
+
+Identity attributes are evidenced by the signing <<certificate,certificate>>, not by the content of the signed document.
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST only rely upon the signing <<certificate,certificate>> as evidence for identity attributes if the digital signature is valid in accordance with the requirements of the relevant <<approved-frameworks,approved framework>>.
+
+The <<certification-authority,CA>> SHOULD consider requirements to avoid issuance of consecutive <<certificate,certificates>> that are issued based on a preceding <<certificate,certificate>>, where the original verification of the <<subject,subject>>’s identity may have been conducted in the distant past.
+
+[[approved-frameworks]]
+====== Approved frameworks
+
+[IMPORTANT,role=todo]
+====
+Identify the approved frameworks.
+====
+
+[[criteria-to-propose-additional-frameworks]]
+====== Criteria to propose additional frameworks
+
+The CA/Browser Forum S/MIME <<certificate,certificate>> Working Group may consider additional trust service frameworks that provide an equivalent level of security and validation compared to these requirements.
+Proposals that evaluate the additional framework against the following criteria MAY be submitted to the link:mailto:questions@cabforum.org[questions@cabforum.org] mailing list:
+
+[IMPORTANT,role=todo]
+====
+S/MIME leftover: this routes new identity frameworks to the CA/B Forum S/MIME Working Group, and the <<approved-frameworks,approved frameworks>> are to be added by ballot.
+CAWG can’t change its policy through CA/B Forum ballots.
+Suggest the CAWG Governing Authority approves additional frameworks and lists them in this CP.
+====
+
+* Legal context: the framework MUST be subject to regulatory provisions, which describe the requirements imposed on the <<certificate,certificate>> issuer/trust service provider, the legal effects of the trust services, and the corresponding <<certificate,certificate>> levels;
+* Identity validation: the approved <<certificate,certificate>> levels must provide a level of assurance equivalent to that of the identity validation methods described in these requirements;
+* Supervision and auditing systems: the framework MUST include appropriate rules providing for:
+** supervision to ensure that trust service providers meet regulatory-imposed provisions;
+** requirements imposed on auditing bodies when conducting audits; and
+** supervision of the auditing bodies.
+* Best practices and transparency: the requirements of the trust service framework and evidence of supervision of the approved trust service providers MUST be publicly available.
+The trust service framework shall require trust service providers to disclose their practices in a publicly available <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+
+[[from-enterprise-ra-records]]
+====== From enterprise RA records
+
+In the case of `Sponsor-validated` <<certificate,certificates>> approved by an <<enterprise-ra,enterprise RA>>, records maintained by the <<enterprise-ra,enterprise RA>> MUST be accepted as evidence of <<individual,individual>> identity.
+
+The <<enterprise-ra,enterprise RA>> MUST maintain records to satisfy the requirements of <<registration-authority>> and <<review-of-delegated-parties>>.
+
+[[affiliation-from-company-attestation]]
+====== Affiliation from company attestation
+
+In the case of `Sponsor-validated` <<certificate,certificates>> not approved by an <<enterprise-ra,enterprise RA>>, the <<certification-authority,CA>> or <<registration-authority,RA>> MAY verify the authority or affiliation of an <<individual,individual>> to represent an organization to be included in the `subject:organizationName` of the <<certificate,certificate>> using an <<attestation,attestation>> provided by the organization and verified in accordance with <<reliability-of-verification-sources>>.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST still verify the identity of the <<individual,individual>> in accordance with <<authentication-of-individual-identity>> and the organization in accordance with <<authentication-of-organization-identity>>.
+
+[[from-a-general-attestation]]
+====== From a general attestation
+
+Evidence for <<individual,individual>> identity attributes MAY be gathered using an <<attestation,attestation>> from a qualified legal practitioner or notary in the <<applicant,applicant>>’s jurisdiction.
+
+[[from-authorized-reference-sources-as-supplementary-evidence]]
+====== From authorized reference sources as supplementary evidence
+
+Evidence for <<individual,individual>> identity attributes MUST use at least one of the following sources for authoritative evidence:  a physical or digital identity document, an eligible <<electronic-identification,eID>>, an eligible <<mobile-driver-license,mDL>>, digital signature supported by certificate, <<enterprise-ra,enterprise RA>> records, or suitable <<attestation,attestation>>.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY additionally gather and verify supplementary evidence using authorized sources such as additional official documents, government or regulatory registers, or national population registers.
+
+Examples of this method include:
+
+* If the <<subject,subject>> presents an ID featuring an <<applicant,applicant>> name that has subsequently been changed, the evidence MAY be complemented by inspection of an official document such as a marriage certificate or court order documenting the change.
+* If a professional title of a regulated profession in the `subject:country`, or a corporate title linked to the `subject:organizationName`, is to be used it MUST be verified against supporting documentation, a <<reliable-data-source,reliable data source>>, or <<attestation,attestation>>.
+* In cases where the “role” <<legal-entity-identifier,LEI>> is included in an extension of a `Sponsor-validated` <<certificate,certificate>>, the <<certification-authority,CA>> MUST verify that the <<legal-entity-identifier,LEI>> is assigned to the <<individual,individual>> and the `subject:organizationName` in the <<certificate,certificate>> <<subject,subject>>.
+* The <<certification-authority,CA>> MAY verify the address (but not the identity) of the <<applicant,applicant>> using a utility bill, bank statement, credit card statement, government-issued tax document, or other form of identification that the <<certification-authority,CA>> determines to be reliable.
+
+The <<certification-authority,CA>> MUST internally document the accepted reference sources, including a description of the documents or <<attestation,attestations>> accepted as supplementary evidence.
+
+[[from-a-mobile-driver-license-mdl]]
+====== From a mobile driver license (mDL)
+
+If an <<mobile-driver-license,mDL>> is used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST only accept an <<mobile-driver-license,mDL>> that:
+
+* is issued by an <<issuing-authority,issuing authority>> that is legally authorized by the relevant government or jurisdiction to issue driving licenses;
+* conforms to ISO/IEC 18013-5;
+* supports validation through the verification protocols defined in ISO/IEC 18013-7; and
+* can demonstrate a valid <<certificate,certificate>> chain from the Document <<signer,signer>> <<certificate,certificate>> to an <<issuing-authority,issuing authority>> <<certificate,certificate>> that is verifiable through a publicly available trust anchor or trust list approved by the issuing jurisdiction.
+
+The <<certification-authority,CA>> MUST document and publish information describing the issung jurisdictions and <<mobile-driver-license,mDL>> versions it accepts.
+
+[[validation-of-individual-identity]]
+===== Validation of individual identity
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST validate all identity attributes of the <<individual,individual>> to be included in the <<certificate,certificate>>.
+
+If the evidence has an explicit validity period, the <<certification-authority,CA>> MUST verify that the time of the identity validation is within this validity period.
+In context this can include the `notBefore` and `notAfter` fields of a digital signature <<certificate,certificate>> or the date of expiry of an identity document.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY reuse existing evidence to validate <<individual,individual>> identity subject to the age restrictions in <<performing-identification-and-authentication-functions>>.
+
+[[validation-of-a-physical-identity-document]]
+====== Validation of a physical identity document
+
+The physical identity document MUST be presented in its original form.
+The <<certification-authority,CA>> MUST employ procedures to ensure the evidence presented by the <<applicant,applicant>> is a genuine identity document that is not counterfeited or falsified/modified.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY use manual (in person) or remote procedures.
+A remote process MUST ensure that the <<applicant,applicant>> has the document in hand and presents the document in real-time in front of a camera.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> registration agent MUST make a visual comparison of the physical appearance of the <<applicant,applicant>> and the face photo and/or other information on the physical identity document.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> registration agent MUST have access to authoritative sources of information on document appearance and validation for forms of identity document accepted by the <<certification-authority,CA>>.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST retain information sufficient to evidence the fulfillment of the identity validation process and the verified attributes.
+In addition to identity attributes, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST record the following information: issuer, validity period, and the document’s unique identification number.
+
+Automated and manual processes MAY be used in combination, (for example the <<certification-authority,CA>> or <<registration-authority,RA>> may deploy automated tools to support the work of a registration agent, or an automated process that falls back to a registration agent if the process yields an uncertain result).
+
+[[validation-of-a-digital-identity-document]]
+====== Validation of a digital identity document
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST only accept digital identity documents if the issuer’s digital signature on the document is successfully validated against the relevant country signing <<certificate,certificates>> (e.g., from the https://www.icao.int/icao-pkd[ICAO public key database]).
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST record information obtained from the digital identity document to evidence the identity proofing process.
+In addition to identity attributes and face photo, the following information MUST be recorded: issuer, validity period, and the document’s unique identification number.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> registration agent MUST make a visual comparison of the physical appearance of the <<applicant,applicant>> and the face photo and/or other information on the digital identity document.
+
+Automated and manual processes MAY be used in combination. (For example, using automated tools to support the work of a registration agent, or an automated process that falls back to a registration agent if the process yields an uncertain result.)
+
+[[validation-of-eid]]
+====== Validation of eID
+
+If authentication using an <<electronic-identification,eID>> is used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST confirm that the <<electronic-identification,eID>> scheme is suitable (i.e., that the <<electronic-identification,eID>> is accessible via a “notified” eIDAS-Node), and that the individual <<electronic-identification,eID>> is valid (i.e., not expired, suspended, or revoked).
+
+The authentication using the <<electronic-identification,eID>> MUST be created as part of the identity validation process, and evidence of the validation with the <<electronic-identification,eID>>’s Identity Provider (IdP) MUST be retained by the <<certification-authority,CA>> or <<registration-authority,RA>>.
+
+[[validation-of-digital-signature-with-certificate]]
+====== Validation of digital signature with certificate
+
+If a digital signature with <<certificate,certificate>> is used to provide evidence, the signature MUST be created as part of the identity validation process.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST validate the digital signature and MUST only use the signing <<certificate,certificate>> as evidence for identity attributes if the signature is valid.
+
+If required identity attributes to be collected are not present in the <<certificate,certificate>>, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST collect these attributes from other sources and validate them accordingly.
+
+[[validation-using-an-enterprise-ra-record]]
+====== Validation using an enterprise RA record
+
+An <<enterprise-ra,enterprise RA>> issuing a <<sponsor-validated,sponsor-validated>> <<certificate,certificate>> MUST validate all identity attributes of an <<individual,individual>> to be included in the <<certificate,certificate>>.
+The <<enterprise-ra,enterprise RA>> MAY rely upon existing internal records to validate <<individual,individual>> identity.
+
+[[validation-of-affiliation-from-a-company-attestation]]
+====== Validation of affiliation from a company attestation
+
+The reliability of the <<attestation,attestation>> MUST be verified according to <<reliability-of-verification-sources>>.
+
+[[validation-of-a-general-attestation]]
+====== Validation of a general attestation
+
+The reliability of the <<attestation,attestation>> MUST be verified according to <<reliability-of-verification-sources>>.
+
+[[validation-of-a-supplementary-evidence]]
+====== Validation of a supplementary evidence
+
+No stipulation.
+
+[[validation-of-an-mdl]]
+====== Validation of an mDL
+
+If an <<mobile-driver-license,mDL>> is used to provide evidence, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST:
+
+* Authenticate to the <<mobile-driver-license,mDL>> holder’s device and request data in conformance with ISO/IEC 18013-5 and ISO/IEC 18013-7;
+* Verify the authenticity and integrity of the <<mobile-driver-license,mDL>> data through validation of the Mobile Security Object (MSO) and its signature chain;
+* Validate the document <<signer,signer>> <<certificate,certificate>> chain against the issuing jurisdiction’s published trust infrastructure; and
+* Verify that the <<mobile-driver-license,mDL>> is current and has not been revoked or expired.
+
+The <<mobile-driver-license,mDL>> authentication MUST be performed in real-time as part of the identity validation process, and MUST NOT rely on previously captured <<mobile-driver-license,mDL>> data.
+
+[[non-verified-subscriber-information]]
+==== Non-verified subscriber information
+
+<<subscriber,Subscriber>> information that has not been verified in accordance with these requirements MUST NOT be included in publicly-trusted S/MIME <<certificate,certificates>>.
+
+[IMPORTANT,role=todo]
+====
+Reword since this isn't an S/MIME policy document.
+====
+
+[[validation-of-authority]]
+==== Validation of authority
+
+Before commencing to issue `Organization-validated` and `Sponsor-validated` <<certificate,certificates>> for an <<applicant,applicant>>, the <<certification-authority,CA>> or <<registration-authority,RA>> MUST use a <<reliable-method-of-communication,reliable method of communication>> to verify the authority and approval of an <<applicant,applicant>> representative to perform one or more of the following:
+
+* to act as an <<enterprise-ra,enterprise RA>>;
+* to request issuance or revocation of <<certificate,certificates>>; or
+* to assign responsibilities to others to act in these roles.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY establish a process that allows an <<applicant,applicant>> to specify the individuals who may act as <<applicant,applicant>> representatives on an ongoing basis.
+The <<certification-authority,CA>> MUST provide an <<applicant,applicant>> with a list of its authorized <<applicant,applicant>> representatives upon the <<applicant,applicant>>’s verified written request.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY use the sources listed in <<attribute-collection-of-organization-identity>> to verify the <<reliable-method-of-communication,reliable method of communication>>.
+Provided that the <<certification-authority,CA>> or <<registration-authority,RA>> uses a <<reliable-method-of-communication,reliable method of communication>>, the <<certification-authority,CA>> or <<registration-authority,RA>> MAY establish the authenticity of the <<certificate-request,certificate request>> directly with the <<applicant,applicant>> representative or with an authoritative source within the <<applicant,applicant>>’s organization, such as the <<applicant,applicant>>’s main business offices, corporate offices, human resource offices, information technology offices, or other department that the <<certification-authority,CA>> or <<registration-authority,RA>> deems appropriate.
+
+[[criteria-for-interoperation]]
+==== Criteria for interoperation
+
+The <<certification-authority,CA>> MUST disclose all <<cross-certificate,cross certificates>> that identify the <<certification-authority,CA>> as the <<subject,subject>>, provided that the <<certification-authority,CA>> arranged for or accepted the establishment of the trust relationship (i.e., the <<cross-certificate,cross certificate>> at issue).
+
+[[reliability-of-verification-sources]]
+==== Reliability of verification sources
+
+Before relying on a source of verification data to validate <<certificate-request,certificate requests>>, the <<certification-authority,CA>> MUST verify its suitability as a <<reliable-data-source,reliable data source>>.
+<<enterprise-ra,Enterprise RA>> records are a <<reliable-data-source,reliable data source>> for <<individual,individual>> <<subject,subject>> attributes included in <<sponsor-validated,sponsor-validated>> <<certificate,certificates>> issued to the <<enterprise-ra,enterprise RA>>’s organization.
+
+The <<certification-authority,CA>> or <<registration-authority,RA>> MAY rely upon a letter attesting that <<subject-information,subject information>> or other fact is correct.
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify that the letter was written by an accountant, lawyer, government official, or other reliable third party in the <<applicant,applicant>>’s jurisdiction customarily relied upon for such information.
+
+An <<attestation,attestation>> MUST include a copy of documentation supporting the fact to be attested.
+The <<certification-authority,CA>> or <<registration-authority,RA>> MUST use a <<reliable-method-of-communication,reliable method of communication>> to contact the sender and to confirm the <<attestation,attestation>> is authentic.

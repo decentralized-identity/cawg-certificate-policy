@@ -1,0 +1,7 @@
+[[compliance-with-applicable-law]]
+=== Compliance with applicable law
+
+[[legal-compliance]]
+==== Legal compliance
+
+Both the <<certification-authority,CA>> and the <<subscriber,subscriber>> are obligated to comply with all applicable laws and regulations pertaining to the issuance, use, and management of certificates under this <<certificate-policy,CP>>.

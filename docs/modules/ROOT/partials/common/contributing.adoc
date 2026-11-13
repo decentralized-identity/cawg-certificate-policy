@@ -1,4 +1,5 @@
 [discrete]
+[[contributing]]
 == Contributing
 
 _This section is non-normative._

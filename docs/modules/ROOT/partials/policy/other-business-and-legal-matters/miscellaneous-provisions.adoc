@@ -1,0 +1,25 @@
+[[miscellaneous-provisions]]
+=== Miscellaneous provisions
+
+[[governing-agreements]]
+==== Governing agreements
+
+[[between-the-cawg-governing-authority-and-cas]]
+===== Between the CAWG governing authority and CAs
+
+The relationship between the CAWG <<governing-authority,governing authority>> and the <<certification-authority,CAs>> MUST be governed by the <<certification-authority,certification authority>> agreement and this <<certificate-policy,certificate policy>>.
+
+[[between-cas-and-subscribers]]
+===== Between CAs and subscribers
+
+The relationship between the <<certification-authority,CA>> and the <<subscriber,subscriber>> MUST be governed by the <<certification-authority,CA>>’s <<subscriber-agreement,subscriber agreement>>.
+
+[[waiver]]
+==== Waiver
+
+No stipulation.
+
+[[severability]]
+==== Severability
+
+In the event that any provision of this <<certificate-policy,CP>> is deemed invalid or unenforceable, the remaining provisions MUST remain in full force and effect, and the invalid or unenforceable provision MUST be replaced with a valid and enforceable provision that most closely approximates the intent of the original provision.

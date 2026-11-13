@@ -1,0 +1,7 @@
+[[ietf-remote-attestation-procedures-rats]]
+=== IETF remote attestation procedures (RATS)
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://datatracker.ietf.org/doc/html/rfc9334[RFC 9334].
+====

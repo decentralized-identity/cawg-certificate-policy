@@ -1,0 +1,6 @@
+[[activation-data]]
+=== Activation data
+
+The <<certification-authority,CA>> MUST protect activation data from compromise or disclosure.
+Appropriate cryptographic and physical access controls MUST be implemented to prevent unauthorized use of any <<certification-authority,CA>> <<private-key,private key>> or <<hardware-security-module,HSM>> 
+activation data.

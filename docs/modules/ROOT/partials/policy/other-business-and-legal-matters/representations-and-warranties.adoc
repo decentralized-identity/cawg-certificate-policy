@@ -1,0 +1,60 @@
+[[representations-and-warranties]]
+=== Representations and warranties
+
+[[ca-representations]]
+==== CA representations
+
+By issuing a <<certificate,certificate>>, the <<certification-authority,CA>> makes the certificate warranties listed herein to the following <<certificate,certificate>> beneficiaries:
+
+. The <<subscriber,subscriber>> that is a party to the <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>> for the <<certificate,certificate>>;
+. The CAWG with whom the <<issuing-ca,issuing CA>> has entered into a contract for inclusion of a <<certification-authority,CA>> record in the <<cawg-trust-list,CAWG trust list>>; and
++
+[IMPORTANT,role=todo]
+====
+Legal: contracting requires a legal entity; under the LF JDF structure that would be the project’s series LLC, so check with LF counsel, including the Delaware clause (which also reads governed by MUST be construed).
+The Right to Use Domain Name warranty refers to a product name, a C2PA leftover.
+Disclaimers, liability and dispute resolution are all No stipulation; CAs should at least have to state these in their CPS.
+====
+. All <<relying-party,relying parties>> who reasonably rely on a valid <<certificate,certificate>>.
+
+The <<certification-authority,CA>> represents and warrants to the <<certificate,certificate>> beneficiaries that, during the period when the <<certificate,certificate>> is valid, the <<certification-authority,CA>> has complied with these requirements and its disclosed business practices in issuing and managing the <<certificate,certificate>>.
+
+The <<certificate,certificate>> warranties specifically include, but are not limited to, the following:
+
+. *Right to use <<domain-name,domain name>> or IP address*: That, at the time of issuance, the <<certification-authority,CA>>
+.. implemented a procedure for verifying that the <<applicant,applicant>> either had the right to use, or had control of, product name listed in the <<certificate,certificate>>’s `subject` field and `subjectAltName` extension;
++
+[IMPORTANT,role=todo]
+====
+Not sure domain name, IP address, or product name make sense in the CAWG context.
+====
+.. followed the procedure when issuing the <<certificate,certificate>>; and
+.. accurately described the procedure in the <<certification-authority,CA>>’s <<certificate-policy,certificate policy>> and/or <<certification-practice-statement,certification practice statement>>;
+
+. *Authorization for <<certificate,certificate>>*: That, at the time of issuance, the <<certification-authority,CA>>
+.. implemented a procedure for verifying that the <<subject,subject>> authorized the issuance of the <<certificate,certificate>> and that the <<applicant,applicant>> representative is authorized to request the <<certificate,certificate>> on behalf of the <<subject,subject>>;
+.. followed the procedure when issuing the <<certificate,certificate>>; and
+.. accurately described the procedure in the <<certification-authority,CA>>’s <<certificate-policy,certificate policy>> and/or <<certification-practice-statement,certification practice statement>>;
+
+. *Accuracy of information*: That, at the time of issuance, the <<certification-authority,CA>>
+.. implemented a procedure for verifying the accuracy of all of the information contained in the <<certificate,certificate>>;
+.. followed the procedure when issuing the <<certificate,certificate>>; and
+.. accurately described the procedure in the <<certification-authority,CA>>’s <<certificate-policy,certificate policy>> and/or <<certification-practice-statement,certification practice statement>>;
+
+. *<<subscriber-agreement,Subscriber agreement>>*: That, if the <<certification-authority,CA>> and <<subscriber,subscriber>> are not affiliated, the <<subscriber,subscriber>> and <<certification-authority,CA>> are parties to a legally valid and enforceable <<subscriber-agreement,subscriber agreement>> that satisfies these requirements, or, if the <<certification-authority,CA>> and <<subscriber,subscriber>> are the same entity or are Affiliated, the <<applicant,applicant>> representative acknowledged the <<terms-of-use,terms of use>>;
+
+. *Status*: That the <<certification-authority,CA>> maintains a 24×7 publicly-accessible <<repository,repository>> with current information regarding the status (valid or revoked) of all unexpired <<certificate,certificates>>; and
+
+. *Revocation*: That the <<certification-authority,CA>> revokes the <<certificate,certificate>> for any of the reasons specified in this <<certificate-policy,CP>>.
+
+A <<root-certification-authority,root CA>> MUST be responsible for the performance and warranties of the <<issuing-ca,issuing CA>>, for the <<issuing-ca,issuing CA>>’s compliance with this <<certificate-policy,CP>>, and for all liabilities and indemnification obligations of the <<issuing-ca,issuing CA>> under this <<certificate-policy,CP>>, as if the <<root-certification-authority,root CA>> were the <<issuing-ca,issuing CA>> issuing the <<certificate,certificates>>.
+
+[[subscriber-representations]]
+==== Subscriber representations
+
+By applying for and utilizing certificates under this <<certificate-policy,CP>>, the <<subscriber,subscriber>> represents and warrants the following:
+
+. The information furnished in the certificate application is accurate, complete, and truthful.
+. They possess the requisite legal authority to request and utilize certificates under this <<certificate-policy,CP>>.
+. They MUST adhere to all stipulations and restrictions delineated in this <<certificate-policy,CP>>.
+. They MUST employ the certificates solely for their intended purpose, refraining from any prohibited activities.

@@ -1,0 +1,14 @@
+[[key-changeover]]
+=== Key changeover
+
+[[key-changeover-process]]
+==== Key changeover process
+
+. A secure and documented process MUST be in place for the periodic rotation of <<certification-authority,CA>> keys.
+. The changeover process should minimize disruption to <<subscriber,subscribers>> and maintain the chain of trust.
+. <<certification-authority,CAs>> SHOULD encourage <<subscriber,subscribers>> to retain key rotation agility.
+
+[[key-changeover-subscriber-notification]]
+==== Subscriber notification
+
+<<subscriber,Subscribers>> SHOULD be notified in advance of any planned key changeover events, allowing them sufficient time to update their systems and configurations.

@@ -1,0 +1,5 @@
+[[certificate-modification]]
+=== Certificate modification
+
+<<certificate,Certificate>> modifications MUST NOT be permitted by <<certification-authority,CAs>> operating in conformance with this <<certificate-policy,CP>>.
+If changes to the <<subject-information,subject information>> are necessary, the <<certification-authority,CA>> and the <<subscriber,subscriber>> MUST follow the process outlined in <<initial-identity-validation>>.

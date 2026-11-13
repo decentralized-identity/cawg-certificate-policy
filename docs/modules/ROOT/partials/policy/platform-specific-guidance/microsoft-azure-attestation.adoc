@@ -1,0 +1,7 @@
+[[microsoft-azure-attestation]]
+=== Microsoft Azure attestation
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://learn.microsoft.com/en-us/azure/attestation/overview[Azure attestation documentation].
+====

@@ -1,0 +1,14 @@
+[[ocsp-profile-2]]
+=== OCSP profile
+
+[IMPORTANT,role=todo]
+====
+See identically-named <<ocsp-profile>> in this same major section. Can we merge these?
+====
+
+<<online-certificate-status-protocol,OCSP>> responses MUST, at a minimum, conform to profile specified in the RFC 6960.
+
+[IMPORTANT,role=todo]
+====
+Add link to RFC.
+====

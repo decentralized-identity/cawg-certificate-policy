@@ -1,0 +1,12 @@
+[[intellectual-property-rights]]
+=== Intellectual property rights
+
+[[subscribers-ownership]]
+==== Subscriber’s ownership
+
+The <<subscriber,subscriber>> maintains full ownership and control over all intellectual property rights associated with the claim generation implementation that signs using certificates issued under this <<certificate-policy,CP>>.
+
+[[cas-non-claim]]
+==== CA’s non-claim
+
+The <<certification-authority,CA>> asserts no claim or ownership over any intellectual property rights pertaining to the <<subscriber,subscriber>>’s implementation.

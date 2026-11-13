@@ -1,0 +1,15 @@
+[[identification-and-authentication]]
+== Identification and authentication
+
+
+include::partial$policy/identification-and-authentication/naming.adoc[]
+
+include::partial$policy/identification-and-authentication/initial-identity-validation.adoc[]
+
+include::partial$policy/identification-and-authentication/identification-and-authentication-for-certificate-issuance-and-certificate-renewal.adoc[]
+
+include::partial$policy/identification-and-authentication/ongoing-subscriber-identification-and-authentication.adoc[]
+
+include::partial$policy/identification-and-authentication/identification-and-authentication-for-re-key-requests.adoc[]
+
+include::partial$policy/identification-and-authentication/identification-and-authentication-for-revocation-requests.adoc[]

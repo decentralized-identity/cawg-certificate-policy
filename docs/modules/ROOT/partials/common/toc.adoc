@@ -1,4 +1,5 @@
 [discrete]
+[[table-of-contents]]
 == Table of contents
 
 toc::[]

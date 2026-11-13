@@ -1,0 +1,167 @@
+[[certificate-revocation-and-suspension]]
+=== Certificate revocation and suspension
+
+[[circumstances-for-revocation]]
+==== Circumstances for revocation
+
+[[reasons-for-revoking-a-subscriber-certificate]]
+===== Reasons for revoking a subscriber certificate
+
+The <<certification-authority,CA>> MUST revoke a <<certificate,certificate>> within 24 hours if one or more of the following occurs:
+
+. the <<subscriber,subscriber>> requests in writing that the <<certification-authority,CA>> revoke the <<certificate,certificate>>,
+. the <<subscriber,subscriber>> notifies the <<certification-authority,CA>> that the original <<certificate-request,certificate request>> was not authorized and does not retroactively grant authorization,
+. the <<certification-authority,CA>> obtains evidence that the <<subscriber,subscriber>>’s <<private-key,private key>> corresponding to the <<public-key,public key>> in the <<certificate,certificate>> suffered a <<key-compromise,key compromise>>,
+. the <<certification-authority,CA>> is made aware of a demonstrated or proven method that can easily compute the <<subscriber,subscriber>>’s <<private-key,private key>> based on the <<public-key,public key>> in the <<certificate,certificate>> (such as a Debian weak key, see https://wiki.debian.org/SSLkeys[https://wiki.debian.org/SSLkeys]), or
+. the <<certification-authority,CA>> obtains evidence that the validation of domain authorization or mailbox control for any mailbox address in the <<certificate,certificate>> should not be relied upon.
+
+[IMPORTANT,role=todo]
+====
+Revisit reference to mailboxes. Probably not relevant for CAWG.
+====
+
+The <<certification-authority,CA>> SHOULD revoke a <<certificate,certificate>> within 24 hours and MUST revoke a <<certificate,certificate>> within 5 days if one or more of the following occurs:
+
+. the <<certificate,certificate>> no longer complies with the requirements of <<key-sizes>> and <<public-key-parameters-generation-and-quality-checking>>,
+. the <<certification-authority,CA>> obtains evidence that the <<certificate,certificate>> was misused,
+. the <<certification-authority,CA>> is made aware that a <<subscriber,subscriber>> has violated one or more of its material obligations under the <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>>,
+. the <<certification-authority,CA>> is made aware of any circumstance indicating that use of an email address or <<fully-qualified-domain-name,fully-qualified domain name>> in the <<certificate,certificate>> is no longer legally permitted (e.g., a court or arbitrator has revoked the right to use an email address or <<domain-name,domain name>>, a relevant licensing or services agreement between the <<subscriber,subscriber>> has terminated, or the account holder has failed to maintain the active status of the email address or <<domain-name,domain name>>),
++
+--
+[IMPORTANT,role=todo]
+====
+Revisit reference to mailboxes. Probably not relevant for CAWG.
+====
+--
+. the <<certification-authority,CA>> is made aware of a material change in the information contained in the <<certificate,certificate>>,
+. the <<certification-authority,CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with these requirements or the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>,
+. the <<certification-authority,CA>> determines or is made aware that any of the information appearing in the <<certificate,certificate>> is inaccurate,
+. the <<certification-authority,CA>>’s right to issue <<certificate,certificates>> under these requirements expires or is revoked or terminated, unless the <<certification-authority,CA>> has made arrangements to continue maintaining the CRL/OCSP <<repository,repository>>,
+. revocation is required by the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>, or
+. the <<certification-authority,CA>> is made aware of a demonstrated or proven method that exposes the <<subscriber,subscriber>>’s <<private-key,private key>> to compromise or if there is clear evidence that the specific method used to generate the <<private-key,private key>> was flawed.
+
+[[reasons-for-revoking-a-subordinate-ca-certificate]]
+===== Reasons for revoking a subordinate CA certificate
+
+The <<issuing-ca,issuing CA>> MUST revoke a <<subordinate-ca,subordinate CA>> <<certificate,certificate>> within seven (7) days if one or more of the following occurs:
+
+. the <<subordinate-ca,subordinate CA>> requests revocation in writing;
+. the <<subordinate-ca,subordinate CA>> notifies the <<issuing-ca,issuing CA>> that the original <<certificate-request,certificate request>> was not authorized and does not retroactively grant authorization;
+. the <<issuing-ca,issuing CA>> obtains evidence that the <<subordinate-ca,subordinate CA>>’s <<private-key,private key>> corresponding to the <<public-key,public key>> in the <<certificate,certificate>> suffered a <<key-compromise,key compromise>> or no longer complies with the requirements of <<key-sizes>> and <<public-key-parameters-generation-and-quality-checking>>;
+. the <<issuing-ca,issuing CA>> obtains evidence that the <<certificate,certificate>> was misused;
+. the <<issuing-ca,issuing CA>> is made aware that the <<certificate,certificate>> was not issued in accordance with or that <<subordinate-ca,subordinate CA>> has not complied with this document or the applicable <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>;
+. the <<issuing-ca,issuing CA>> determines that any of the information appearing in the <<certificate,certificate>> is inaccurate or misleading;
+. the <<issuing-ca,issuing CA>> or <<subordinate-ca,subordinate CA>> ceases operations for any reason and has not made arrangements for another <<certification-authority,CA>> to provide revocation support for the <<certificate,certificate>>;
+. the <<issuing-ca,issuing CA>>’s or <<subordinate-ca,subordinate CA>>’s right to issue <<certificate,certificates>> under these requirements expires or is revoked or terminated, unless the <<issuing-ca,issuing CA>> has made arrangements to continue maintaining the CRL/OCSP <<repository,repository>>; or
+. revocation is required by the <<issuing-ca,issuing CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+
+[[who-can-request-revocation]]
+==== Who can request revocation
+
+The <<subscriber,subscriber>>, <<registration-authority,RA>>, or <<issuing-ca,issuing CA>> can initiate revocation.
+Additionally, <<subscriber,subscribers>>, <<relying-party,relying parties>>, <<application-software-supplier,application software suppliers>>, and other third parties MAY submit <<certificate-problem-report,certificate problem reports>> informing the <<issuing-ca,issuing CA>> of reasonable cause to revoke a <<certificate,certificate>>.
+
+[[procedure-for-revocation-request]]
+==== Procedure for revocation request
+
+The <<certification-authority,CA>> MUST provide a process for <<subscriber,subscribers>> to request revocation of their own <<certificate,certificates>>.
+The process MUST be described in the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The <<certification-authority,CA>> MUST maintain a continuous 24x7 ability to accept and respond to revocation requests and <<certificate-problem-report,certificate problem reports>>.
+
+The <<certification-authority,CA>> MUST provide clear instructions for reporting suspected <<private-key,private key>> compromise, <<certificate,certificate>> misuse, or other types of fraud, compromise, misuse, inappropriate conduct, or any other matter related to <<certificate,certificates>>.
+The <<certification-authority,CA>> MUST publicly disclose the instructions through a readily accessible online means and in Section 1.5.2 of their <<certification-practice-statement,CPS>>.
+
+[IMPORTANT,role=todo]
+====
+Do we know that the CPS will still have the same section 1.5.2 reference?
+====
+
+[[revocation-request-grace-period]]
+==== Revocation request grace period
+
+No stipulation.
+
+[[time-within-which-ca-must-process-the-revocation-request]]
+==== Time within which CA must process the revocation request
+
+Within 24 hours after receiving a <<certificate-problem-report,certificate problem report>>, the <<certification-authority,CA>> MUST investigate the facts and circumstances related to a <<certificate-problem-report,certificate problem report>> and provide a preliminary report on its findings to both the <<subscriber,subscriber>> and the entity who filed the <<certificate-problem-report,certificate problem report>>.
+
+After reviewing the facts and circumstances, the <<certification-authority,CA>> MUST work with the <<subscriber,subscriber>> and any entity reporting the <<certificate-problem-report,certificate problem report>> or other revocation-related notice to establish whether or not the <<certificate,certificate>> will be revoked, and if so, a date on which the <<certification-authority,CA>> will revoke the <<certificate,certificate>>.
+The period from receipt of the <<certificate-problem-report,certificate problem report>> or revocation-related notice to published revocation MUST NOT exceed the time frame set forth in <<reasons-for-revoking-a-subscriber-certificate>>.
+The date selected by the <<certification-authority,CA>> SHOULD consider the following criteria:
+
+. the nature of the alleged problem (scope, context, severity, magnitude, risk of harm),
+. the consequences of revocation (direct and collateral impacts to <<subscriber,subscribers>> and <<relying-party,relying parties>>),
+. the number of <<certificate-problem-report,certificate problem reports>> received about a particular <<certificate,certificate>> or <<subscriber,subscriber>>,
+. the entity making the complaint (for example, a complaint from a law enforcement official should be addressed with higher priority), and
+. relevant legislation.
+
+[[revocation-checking-requirement-for-relying-parties]]
+==== Revocation checking requirement for relying parties
+
+No stipulation.
+
+NOTE: Following <<certificate,certificate>> issuance, a <<certificate,certificate>> may be revoked for reasons stated in <<certificate-revocation-and-suspension>>.
+Therefore, <<relying-party,relying parties>> SHOULD check the revocation status of all <<certificate,certificates>> that contain a CDP or <<online-certificate-status-protocol,OCSP>> pointer.
+
+[[crl-issuance-frequency]]
+==== CRL issuance frequency
+
+For the status of <<subscriber,subscriber>> <<certificate,certificates>>: the <<certification-authority,CA>> MUST update and reissue <<certificate-revocation-list,CRLs>> at least once every seven days, and the value of the `nextUpdate` field MUST NOT be more than ten days beyond the value of the `thisUpdate` field.
+
+For the status of <<subordinate-ca,subordinate CA>> <<certificate,certificates>>: the <<certification-authority,CA>> MUST update and reissue <<certificate-revocation-list,CRLs>> at least:
+
+. once every twelve months; and
+. within 24 hours after revoking a <<subordinate-ca,subordinate CA>> <<certificate,certificate>>.
+
+The value of the `nextUpdate` field MUST NOT be more than twelve months beyond the value of the `thisUpdate` field.
+
+--
+[IMPORTANT,role=todo]
+====
+Use of MUST and MUST NOT potentially conflicts with optionality of CRLs. Maybe preface by saying "If CRLs are used ..."
+
+Suggested new wording: For the use of certificate status information, whether sourced by CRL or OCSP, participants shall make every reasonable effort to use the newest/freshest possible status information when evaluating certificate status as part of a CAWG transaction.
+====
+--
+
+[[maximum-latency-for-crls]]
+==== Maximum latency for CRLs
+
+No stipulation.
+
+[[on-line-revocation-status-checking-availability]]
+==== On-line revocation/status checking availability
+
+When provided, <<online-certificate-status-protocol,OCSP>> responses MUST conform to https://datatracker.ietf.org/doc/html/rfc6960[RFC 6960] and/or https://datatracker.ietf.org/doc/html/rfc5019[RFC 5019].
+<<online-certificate-status-protocol,OCSP>> responses MUST either:
+
+. be signed by the <<certification-authority,CA>> that issued the <<certificate,certificates>> whose revocation status is being checked, or
+. be signed by an <<ocsp-responder,OCSP responder>> whose <<certificate,certificate>> is signed by the <<certification-authority,CA>> that issued the <<certificate,certificate>> whose revocation status is being checked.
+
+In the latter case, the <<online-certificate-status-protocol,OCSP>> signing <<certificate,certificate>> MUST contain the `ocspSigning` <<extended-key-usage,EKU>> (1.3.6.1.5.5.7.3.9) and an extension of type `id-pkix-ocsp-nocheck`, as defined by https://datatracker.ietf.org/doc/html/rfc6960[RFC 6960].
+
+[[on-line-revocation-checking-requirements]]
+==== On-line revocation checking requirements
+
+<<online-certificate-status-protocol,OCSP>> responders operated by the <<certification-authority,CA>> MUST support the HTTP GET method, as described in https://datatracker.ietf.org/doc/html/rfc6960[RFC 6960] and/or https://datatracker.ietf.org/doc/html/rfc5019[RFC 5019].
+
+The validity interval of an <<online-certificate-status-protocol,OCSP>> response is the difference in time between the `thisUpdate` and `nextUpdate` field, inclusive.
+For purposes of computing differences, a difference of 3,600 seconds MUST be equal to one hour, and a difference of 86,400 seconds MUST be equal to one day, ignoring leap seconds.
+
+For the status of <<subscriber,subscriber>> <<certificate,certificates>>:
+
+. <<online-certificate-status-protocol,OCSP>> responses MUST have a validity interval greater than or equal to eight hours;
+. <<online-certificate-status-protocol,OCSP>> responses MUST have a validity interval less than or equal to ten days;
+. for <<online-certificate-status-protocol,OCSP>> responses with validity intervals less than sixteen hours, then the <<certification-authority,CA>> MUST update the information provided via an <<online-certificate-status-protocol,online certificate status protocol>> prior to one-half of the validity period before the `nextUpdate`; and
+. for <<online-certificate-status-protocol,OCSP>> responses with validity intervals greater than or equal to sixteen hours, then the <<certification-authority,CA>> MUST update the information provided via an <<online-certificate-status-protocol,online certificate status protocol>> at least eight hours prior to the `nextUpdate`, and no later than four days after the `thisUpdate`.
+
+For the status of <<subordinate-ca,subordinate CA>> <<certificate,certificates>>, the <<certification-authority,CA>> MUST update information provided via <<online-certificate-status-protocol,OCSP>>:
+
+. at least every twelve months, and
+. within 24 hours after revoking a <<subordinate-ca,subordinate CA>> <<certificate,certificate>>.
+
+If the <<online-certificate-status-protocol,OCSP>> responder receives a request for the status of a <<certificate,certificate>> serial number that is “unused,” then the responder SHOULD NOT respond with a “good” status.
+If the <<online-certificate-status-protocol,OCSP>> responder is for a <<certification-authority,CA>> that is not <<technically-constrained-subordinate-ca-certificate,technically-constrained>> in line with <<name-constraints>>, the responder MUST NOT respond with a “good” status for such requests.
+
+A <<certificate,certificate>> serial number within an <<online-certificate-status-protocol,OCSP>> request is “assigned” if a <<certificate,certificate>> with that serial number has been issued by the <<issuing-ca,issuing CA>>, using any current or previous key associated with that <<certification-authority,CA>> subject, or “unused” if otherwise.

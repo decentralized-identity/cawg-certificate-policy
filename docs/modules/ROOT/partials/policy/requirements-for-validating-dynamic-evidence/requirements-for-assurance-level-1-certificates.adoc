@@ -1,0 +1,32 @@
+[[requirements-for-assurance-level-1-certificates]]
+=== Requirements for assurance level 1 certificates
+
+[[assurance-level-1-objective-1]]
+==== O.1 Conforming GP instance provides proof of its eligibility during automated certificate enrollment.
+
+*Requirement:* <<certification-authority,CA>> MUST verify that the entity attempting certificate enrollment is an instance of a <<subscriber,subscriber>>’s generator product, through an authentication method commonly accepted for certificate enrollment (e.g. SCEP, EST, ACME, client certificates, etc.).
+
+[[assurance-level-1-objective-2]]
+==== O.2 GP TOE protects the confidentiality of the signing key.
+
+No stipulation.
+
+[[assurance-level-1-objective-3]]
+==== O.3 - GP TOE protects the Claim Generator from exploits, misconfiguration and misuse.
+
+No stipulation.
+
+[[assurance-level-1-objective-4]]
+==== O.4 - GP TOE protects the asset and assertions from being tampered with at generation.
+
+No stipulation.
+
+[[assurance-level-1-objective-5]]
+==== O.5 - GP TOE protects the traffic between subsystems and components of those subsystems from being intercepted and/or modified.
+
+No stipulation.
+
+[[assurance-level-1-objective-6]]
+==== O.6 - Hosting environment is protected from exploit, misconfiguration and misuse.
+
+No stipulation.

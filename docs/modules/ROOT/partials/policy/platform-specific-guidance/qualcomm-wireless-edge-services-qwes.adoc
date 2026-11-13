@@ -1,0 +1,7 @@
+[[qualcomm-wireless-edge-services-qwes]]
+=== Qualcomm Wireless Edge Services (QWES)
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://docs.qualcomm.com/bundle/publicresource/topics/80-70018-11/qwes.html[Qualcomm WES documentation].
+====

@@ -1,0 +1,44 @@
+[[time-stamping-authorities]]
+=== Time-stamping authorities
+
+Organizations that operate <<certification-authority,CAs>> that issue certificates in accordance with this <<certificate-policy,CP>> MAY also provide an RFC 3161-compliant <<time-stamping-authority,time-stamping authority>> (<<time-stamping-authority,TSA>>), and the organization MAY apply to the conformance program for inclusion on the <<cawg-tsa-trust-list,CAWG TSA trust list>>.
+The <<time-stamping-authority,TSA>> MAY operate several identifiable time-stamp units (TSU).
+
+[IMPORTANT,role=todo]
+====
+Does CAWG need to operate a TSA registry at launch? I’d recommend we delete this section.
+====
+
+Two forms of <<time-stamping-authority,time-stamping authorities>> are permitted under this <<certificate-policy,CP>>:
+
+* Backend <<time-stamping-authority,TSA>>, operated as a service by the <<certification-authority,CA>>.
+* On-Device <<time-stamping-authority,TSA>>, intended for use on mobile/edge devices to support local time-stamping without requiring a network connection.
+
+[[general-tsa-requirements]]
+==== General TSA requirements
+
+. The <<certification-authority,CA>> MUST disclose its <<time-stamping-authority,TSA>> practices including the hashing algorithms, the expected life time of the time-stamp signature, subscriber and relying party obligations (if any), any limitations on the use of the time-stamp and information on how to verify the time-stamp, the intended time-accuracy, and logging of <<time-stamping-authority,TSA>> events including how long logs are maintained (and hence are available to provide supporting evidence).
+. The time values the TSU uses in the time-stamp shall be traceable to at least one of the real time values distributed by a UTC(k) laboratory.
+. The intended accuracy MUST be defined in the time-stamp, and the time included in the time-stamp MUST be synchronized with this accuracy.
+The declared accuracy SHOULD be of 1 second or better.
+<<time-stamping-authority,TSA>> clock synchronization MUST be maintained when a leap second occurs as notified by the appropriate body.
+. The <<time-stamping-authority,TSA>> MUST detect if the time that would be applied in a time-stamp drifts outside the declared accuracy.
+In this situation, the TSU MUST stop time-stamp issuance.
+. The time-stamp MUST be signed using <<private-key,private keys>> that are reserved exclusively for this purpose.
+A TSU MUST have a single time-stamp signing key active at a time.
+. The <<time-stamping-authority,TSA>> MUST only accept time-stamp requests that use SHA2-256, SHA2-384, and SHA2-512 hashing algorithms.
+
+[[backend-tsa]]
+==== Backend TSA
+
+. TSU signing keys MUST be generated and stored within a secure cryptographic device which is a trustworthy system that has been assured to EAL 4 or higher in accordance with ISO/IEC 15408, or equivalent internationally recognized evaluation criteria for IT security, or as meeting at least FIPS 140-2 level 3, FIPS 140-3 level 3, or an appropriate Common Criteria Protection Profile or Security Target, EAL 4 (or higher), which includes requirements to protect the <<private-key,private key>> and other assets against known threats.
+
+[[on-device-tsa]]
+==== On-device TSA
+
+. The On-Device <<time-stamping-authority,TSA>> MUST attempt to synchronize its time at least once every 24 hours with an online time source whose time values are traceable to at least one of the real time values distributed by a UTC(k) laboratory.
+The trusted online time source MAY be a Backend <<time-stamping-authority,TSA>> on the C2PA <<time-stamping-authority,TSA>> Trust List.
+In such a case, the On-Device <<time-stamping-authority,TSA>> MUST adhere to the following procedure:
+. The On-Device <<time-stamping-authority,TSA>> application MUST run in a <<tee,Trusted Execution Environment>>.
+The On-Device <<time-stamping-authority,TSA>> application can accept `MessageImprint` and `nonce` (optional) from outside of the <<tee,Trusted Execution Environment>>.
+. TSU signing keys MUST be generated and stored within a Trusted Execution Environment.

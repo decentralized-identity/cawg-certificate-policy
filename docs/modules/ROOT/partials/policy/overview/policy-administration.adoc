@@ -1,0 +1,28 @@
+[[policy-administration]]
+=== Policy administration
+
+This <<certificate-policy,CP>> is administered by the <<administering-authority,administering authority>> on behalf of the <<governing-authority,governing authority>>.
+
+[IMPORTANT,role=todo]
+====
+This makes the Trust Task Force the Administering Authority that operates the program.
+That conflicts with the 2 Oct Friends of CAWG decision that CAWG designates and sets requirements but does not operate registries or conformance programs.
+Suggest a Program Administrator independent of applicants, appointed by the Steering Committee as Governing Authority, with two-person approval for list changes.
+====
+
+[[policy-administration-contact-information]]
+==== Contact information
+
+link:mailto:trust-list-admin@cawg.io[trust-list-admin@cawg.io]
+
+[IMPORTANT,role=todo]
+====
+This e-mail address doesn’t exist yet and will likely change as CAWG reconsiders its name.
+====
+
+[[cp-approval-procedures]]
+==== CP approval procedures
+
+The <<governing-authority,governing authority>> approves the <<certificate-policy,CP>> and any amendments.
+Amendments are made either by updating the entire <<certificate-policy,CP>> or by publishing an addendum.
+The <<governing-authority,governing authority>> determines whether an amendment to this <<certificate-policy,CP>> requires notice or an <<object-identifier,OID>> change.

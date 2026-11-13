@@ -1,0 +1,12 @@
+[[disclaimers-of-warranties]]
+=== Disclaimers of warranties
+
+[[cas-disclaimer]]
+==== CA’s disclaimer
+
+No stipulation.
+
+[[content-disclaimer]]
+==== Content disclaimer
+
+No stipulation.

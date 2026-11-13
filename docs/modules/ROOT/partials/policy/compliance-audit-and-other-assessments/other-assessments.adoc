@@ -1,0 +1,30 @@
+[[other-assessments]]
+=== Other assessments
+
+[[vulnerability-assessments-and-penetration-tests]]
+==== Vulnerability assessments and penetration tests
+
+. The <<certification-authority,CA>> SHOULD conduct regular vulnerability assessments and penetration tests on its infrastructure, systems, and attestation validation processes (if applicable) to identify and address security weaknesses.
+
+. These assessments SHOULD be performed by qualified security professionals and SHOULD also include reviews of the security of the generator product platforms and any attestation services used.
++
+[IMPORTANT,role=todo]
+====
+Revisit reference to generator product. Likely holdover from C2PA.
+====
+
+. Remediation plans SHOULD be developed and implemented to address any identified vulnerabilities.
+
+[[security-incident-reviews]]
+==== Security incident reviews
+
+. In the event of a https://csrc.nist.gov/glossary/term/security_incident[security incident], the <<certification-authority,CA>> MUST conduct a thorough review to determine the root cause, impact, and lessons learned.
+. The review MUST result in actionable recommendations to prevent similar incidents in the future.
+. Incident reports MUST be shared with the CAWG steering committee and the CAWG trust task force.
++
+[IMPORTANT,role=todo]
+====
+Do we want to add any stipulation about privacy or confidentiality in meetings where incident reports are discussed?
+====
+
+The <<certification-authority,CA>>’s commitment to regular compliance audits and other assessments demonstrates its dedication to maintaining a secure and trustworthy <<public-key-infrastructure,PKI>> environment for CAWG content origination.

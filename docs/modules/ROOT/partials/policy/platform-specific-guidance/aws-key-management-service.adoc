@@ -1,0 +1,7 @@
+[[aws-key-management-service]]
+=== AWS Key Management Service
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://docs.aws.amazon.com/kms/latest/developerguide/overview.html[AWS KMS documentation].
+====

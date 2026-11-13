@@ -1,0 +1,7 @@
+[[google-cloud-platform-cloud-hsm-key-attestation]]
+=== Google Cloud Platform Cloud HSM Key attestation
+
+[IMPORTANT,role=todo]
+====
+Add guidance based on https://cloud.google.com/kms/docs/attestation[GCP Cloud HSM Key attestation documentation].
+====

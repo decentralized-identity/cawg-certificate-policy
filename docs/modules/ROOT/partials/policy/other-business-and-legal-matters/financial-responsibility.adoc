@@ -1,0 +1,12 @@
+[[financial-responsibility]]
+=== Financial responsibility
+
+[[subscribers-financial-obligation]]
+==== Subscriber’s financial obligation
+
+The <<subscriber,subscriber>> bears the financial responsibility for all fees associated with the certificate lifecycle, including issuance, renewal, and any potential revocation fees.
+
+[[financial-responsibility-cas-limited-liability]]
+==== CA’s limited liability
+
+The <<certification-authority,CA>> MUST NOT be held liable for any financial losses or damages incurred by the <<subscriber,subscriber>> as a consequence of certificate misuse, compromise, or revocation, unless such losses directly arise from the <<certification-authority,CA>>’s negligence or willful misconduct.

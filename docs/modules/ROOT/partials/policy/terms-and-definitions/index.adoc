@@ -1,0 +1,982 @@
+[[terms-and-definitions]]
+== Terms and definitions
+
+[[administering-authority]]Administering authority::
++
+--
+The party that the CAWG <<governing-authority,governing authority>> empowers to operate its <<cawg-conformance-program,conformance program>> on its behalf.
+It recognizes and accredits key conformance roles which agree to participate in the program.
+The CAWG Trust Task Force of the Creator Assertions Working Group operates in this capacity.
+--
+
+[[affiliate]]Affiliate::
++
+--
+A corporation, partnership, joint venture or other entity controlling, controlled by, or under common control with another entity, or an agency, department, political subdivision, or any entity operating under the direct control of a <<government-entity,government entity>>.
+--
+
+[[applicant]]Applicant::
++
+--
+The <<natural-person,natural person>> or <<legal-entity,legal entity>> that applies for (or seeks renewal of) a <<certificate,certificate>>.
+Once the <<certificate,certificate>> is issued, the <<applicant,applicant>> is referred to as the <<subscriber,subscriber>>.
+For <<certificate,certificates>> issued to devices, the <<applicant,applicant>> is the entity that controls or operates the device named in the <<certificate,certificate>>, even if the device is sending the actual <<certificate-request,certificate request>>.
+--
+
+[[applicants-representative]]Applicant’s representative::
++
+--
+A <<natural-person,natural person>> or human sponsor who is either the <<applicant,applicant>>, employed by the <<applicant,applicant>>, or an authorized agent who has express authority to represent the <<applicant,applicant>>:
+
+. who signs and submits, or approves a <<certificate-request,certificate request>> on behalf of the <<applicant,applicant>>;
+. who signs and submits a <<subscriber-agreement,subscriber agreement>> on behalf of the <<applicant,applicant>>; and/or
+. who acknowledges the <<terms-of-use,terms of use>> on behalf of the <<applicant,applicant>> when the <<applicant,applicant>> is an <<affiliate,affiliate>> of the <<certification-authority,CA>> or is the <<certification-authority,CA>>.
+--
+
+[[application-software-supplier]]Application software supplier::
++
+--
+A supplier of email client software or other relying-party application software such as mail user agents (web-based or application based) and email service providers that process S/MIME <<certificate,certificates>>.
+
+[IMPORTANT,role=todo]
+====
+Reconsider definition — likely holdover from S/MIME policy.
+====
+--
+
+[[assertion]]Assertion::
++
+--
+Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_assertion[glossary definition for “assertion.”]
+--
+
+[[asset]]Asset::
++
+--
+Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_asset[glossary definition for “asset.”]
+--
+
+[[assumed-name]]Assumed name (or doing business as, DBA)::
++
+--
+Also known as “doing business as”, “DBA”, or “d/b/a” name in the US and “trading as” name in the UK.
+--
+
+[[assurance-level]]Assurance level::
++
+--
+[[_CAWG_claim]]
+An indication to a <<relying-party,relying party>> of the level of confidence that it may have that identity assertions and claims signed with a given <<claimsigning-certs,CAWG claim signing certificate>> reflect the actual claimant.
+A higher <<assurance-level,assurance level>> allows the <<relying-party,relying party>> to have a greater level of confidence.
+
+The <<assurance-level,assurance level>> is conveyed through the `CAWG-al` (`TBD`) X.509 v3 certificate extension in a <<claimsigning-certs,CAWG claim signing certificate>>.
+The value of this extension is an encoded <<object-identifier,OID>> value that corresponds to a numeric value no higher than the <<maximum-assurance-level,maximum assurance level>> for a given claim signing issuer.
+The <<object-identifier,OID>> values corresponding to each <<assurance-level,assurance level>> are defined in the CAWG `oid.txt` MIB definition file.
+
+The <<assurance-level,assurance level>> in the <<claimsigning-certs,CAWG claim signing certificate>> that is issued to an organization or individual may be lower than the <<maximum-assurance-level,maximum assurance level>> that the <<issuer,issuer>> is potentially eligible for.
+--
+
+[[attestation]]Attestation::
++
+--
+A letter attesting that <<subject-information,subject information>> is correct written by an accountant, lawyer, government official, or other reliable third party customarily relied upon for such information.
+--
+
+[[audit-period]]Audit period::
++
+--
+In a period-of-time audit, the period between the first day (start) and the last day of operations (end) covered by the auditors in their engagement.
+(This is not the same as the period of time when the auditors are on-site at the <<certification-authority,CA>>.)
+The coverage rules and maximum length of audit periods are defined in <<compliance-audits>>.
+--
+
+[[audit-report]]Audit report::
++
+--
+A report from a <<qualified-auditor,qualified auditor>> stating the <<qualified-auditor,qualified auditor>>’s opinion on whether an entity’s processes and controls comply with the mandatory provisions of these requirements.
+--
+
+[[ca-key-pair]]CA key pair::
++
+--
+A <<key-pair,key pair>> where the <<public-key,public key>> appears as the <<subject-public-key-info,subject public key info>> in one or more <<root-certification-authority-certificate,root CA certificate>>(s) and/or <<subordinate-ca,subordinate CA>> <<certificate,certificate>>(s).
+--
+
+[[cawg-certificate-policy]]CAWG certificate policy::
++
+--
+A document that sets the requirements that MUST be met by <<certification-authority,certification authorities>> (<<certification-authority,CAs>>) in the process of issuing digital certificates to <<subscriber,subscribers>> that intend to sign CAWG digital assertions, and the requirements that MUST be met by the <<subscriber,subscribers>> in their use of the certificates.
+--
+
+[[c2pa-claim]]C2PA claim::
++
+--
+Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_claim[glossary definition for “claim.”]
+--
+
+[[cawg-claim-signing-certificate]]CAWG claim signing certificate::
++
+--
+[[_generator_product]]
+An X.509 certificate issued by one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>> to an instance of the <<_generator_product,Conforming Implementer>>’s conforming <<_generator_product,generator product>>, and names the <<_generator_product,generator product>> as the subject of the certificate.
+
+[IMPORTANT,role=todo]
+====
+C2PA leftover: this issues the certificate to a generator product, which is C2PA’s claim-signing model.
+====
+A CAWG identity certificate binds a person or organization, not a software product.
+The same applies to the CA, Subscriber and Signer definitions.
+Suggest renaming to CAWG Identity Certificate and defining the subject as the verified person or organization.
+--
+
+[[cawg-conformance-program]]CAWG conformance program::
++
+--
+A risk-based governance program intended to hold <<applicant,applicants>> who want to demonstrate their conformance to its requirements and then differentiate themselves through CAWG recognition by satisfying program requirements being acknowledged as achieving that level of conformance.
+It consists of a set of processes, policies, and requirements governing the designation of <<applicant,applicant>> <<certification-authority,certification authorities>> as adhering to the <<cawg-certificate-policy,CAWG certificate policy>>, as defined by the CAWG Trust Task Force.
+
+Processes include:
+
+* Evaluation of the processes, controls, and technical capabilities of <<certification-authority,certification authorities>> as required by the <<cawg-certificate-policy,CAWG certificate policy>>
+* Signing of the requisite legal agreements to become a member of the program.
+--
+
+[[cawg-governance-framework]]CAWG governance framework::
++
+--
+A collection of governance documents which defines the CAWG trust ecosystem including roles, requirements and processes used by the CAWG <<governing-authority,governing authority>> to achieve greater assurance over the provenance and authenticity of digital asset content.
+--
+
+[[c2pa-content-credential]]C2PA Content Credential::
++
+--
+Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_content_credential[glossary definition for “Content Credential.”]
+--
+
+[[c2pa-content-credentials-specification]]C2PA Content Credentials specification::
++
+--
+A globally recognized standard for providing digital asset content provenance and authenticity.
+It is designed to enable global, opt-in, adoption of digital provenance techniques through the creation of a rich ecosystem of digital provenance enabled applications for a wide range of individuals and organizations while meeting appropriate security requirements.
+--
+
+[[c2pa-manifest]]C2PA manifest::
++
+--
+Refer to the C2PA https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html#_c2pa_manifest[glossary definition for “C2PA manifest.”]
+--
+
+[[cawg-trust-list]]CAWG trust list::
++
+--
+In the context of the <<cawg-conformance-program,CAWG conformance program>>, a CAWG-managed list of X.509 certificate trust anchors (either root or subordinate <<certification-authority,certification authorities>>) that issue certificates to individualas and organizationss under the <<cawg-certificate-policy,CAWG certificate policy>>.
+--
+
+[[cawg-tsa-trust-list]]CAWG TSA trust list::
++
+--
+A CAWG-managed list of X.509 certificate trust anchors (either root or subordinate <<certification-authority,certification authorities>>) that issue time-stamp signing certificates to <<time-stamping-authority,time-stamping authorities>> (<<time-stamping-authority,TSA>>).
+
+[IMPORTANT,role=todo]
+====
+Separate TSA list: CAWG Identity Assertion 1.3 already uses the C2PA TSA Trust List, which this draft also cites later.
+====
+A second CAWG TSA list, the TSA requirements (including the On-Device TSA) and the TSA profiles all duplicate C2PA.
+Suggest deleting them and pointing to the C2PA TSA Trust List.
+--
+
+[[certificate]]Certificate::
++
+--
+An electronic document that uses a digital signature to bind a <<public-key,public key>> and an identity.
+--
+
+[[certificate-signing-request]]Certificate signing request (or CSR)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[certification-authority]]Certification authority (or CA)::
++
+--
+A trusted entity that issues, signs, and revokes digital certificates that bind <<public-key,public keys>> to subscriber identities.
+<<certification-authority,CAs>> are also known as <<public-key-infrastructure,PKI>> <<certificate,certificate>> Authorities because they issue certificates based on public key infrastructure (<<public-key-infrastructure,PKI>>).
+These certificates contain credentials that confirm the possession of a <<private-key,private key>> by an entity, among other verified attributes.
+Individualas and organizations sign <<c2pa-manifest,C2PA manifests>> using digital signing credentials issued by <<certification-authority,CAs>>.
+
+An entity on the <<cawg-trust-list,CAWG trust list>> that is trusted by the <<cawg-conformance-program,CAWG conformance program>> to issue X.509 <<claimsigning-certs,CAWG claim signing certificate>>s to instances of conforming <<_generator_product,generator products>>.
+
+An organization that operates a <<certification-authority,certification authority>> may also operate a <<time-stamping-authority,time-stamping authority>>.
+--
+
+[[certification-authority-authorization]]Certification authority authorization (or CAA)::
++
+--
+From https://www.rfc-editor.org/rfc/rfc9495.html[RFC 9495]: “The <<certification-authority-authorization,certification authority authorization>> (<<certification-authority-authorization,CAA>>) DNS resource record (RR) provides a mechanism for domains to express the allowed set of <<certification-authority,certification authorities>> that are authorized to issue certificates for the domain.
+--
+
+[[certificate-data]]Certificate data::
++
+--
+<<certificate-request,Certificate requests>> and data related thereto (whether obtained from the <<applicant,applicant>> or otherwise) in the <<certification-authority,CA>>’s possession or control or to which the <<certification-authority,CA>> has access.
+--
+
+[[certificate-management-process]]Certificate management process::
++
+--
+Processes, practices, and procedures associated with the use of keys, software, and hardware, by which the <<certification-authority,CA>> verifies <<certificate-data,certificate data>>, issues <<certificate,certificates>>, maintains a <<repository,repository>>, and revokes <<certificate,certificates>>.
+--
+
+[[certificate-policy]]Certificate policy (or CP)::
++
+--
+A set of rules that indicates the applicability of a named <<certificate,certificate>> to a particular community and/or <<public-key-infrastructure,PKI>> implementation with common security requirements.
+--
+
+[[certification-practice-statement]]Certification practice statement (or CPS)::
++
+--
+One of several documents forming the governance framework in which <<certificate,certificates>> are created, issued, managed, and used.
+--
+
+[[certificate-problem-report]]Certificate problem report::
++
+--
+Complaint of suspected <<key-compromise,key compromise>>, <<certificate,certificate>> misuse, or other types of fraud, compromise, misuse, or inappropriate conduct related to <<certificate,certificates>>.
+--
+
+[[certificate-profile]]Certificate profile::
++
+--
+A set of documents or files that defines requirements for <<certificate,certificate>> content and <<certificate,certificate>> extensions in accordance with <<certificate-crl-and-ocsp-profiles>> e.g., a section in a <<certification-authority,CA>>’s <<certification-practice-statement,CPS>> or a <<certificate,certificate>> template file used by <<certification-authority,CA>> software.
+--
+
+[[certificate-request]]Certificate request::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[certificate-revocation-list]]Certificate revocation list (or CRL)::
++
+--
+A regularly updated time-stamped list of revoked <<certificate,certificates>> that is created and digitally signed by the <<certification-authority,CA>> that issued the <<certificate,certificates>>.
+--
+
+[[certificate-type]]Certificate type::
++
+--
+This <<certificate-policy,CP>> defines <<certificate-profile,certificate profiles>> differentiated by the type of <<subject,subject>>, (for example organization, sponsored, <<individual,individual>>).
+--
+
+[[common-name]]Common name (or CN)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[conformance-criteria]]Conformance criteria::
++
+--
+A set of normative requirements that the CAWG expects a <<governed-party,governed party>> to demonstrate its conformance as part of the <<cawg-conformance-program,CAWG conformance program>>.
+This criteria consists of requirements in the <<cawg-certificate-policy,CAWG certificate policy>>.
+--
+
+[[control]]Control::
++
+--
+Possession, directly or indirectly, of the power to: (1) direct the management, personnel, finances, or plans of such entity; (2) control the election of a majority of the directors; or (3) vote that portion of voting shares required for “control” under the law of the entity’s <<jurisdiction-of-incorporation,jurisdiction of incorporation>> or registration but in no case less than 10%.
+--
+
+[[conversion]]Conversion::
++
+--
+The process of converting text from one writing system to ASCII characters.
+--
+
+[[country]]Country::
++
+--
+Either a member of the United Nations OR a geographic region recognized as a sovereign state by at least two UN member nations.
+--
+
+[[cross-certificate]]Cross certificate::
++
+--
+A <<certificate,certificate>> that is used to establish a trust relationship between two <<root-certification-authority,root CAs>>.
+--
+
+[[cryptographically-secure-pseudo-random-number-generator]]Cryptographically secure pseudo-random number generator (or CSPRNG)::
++
+--
+A pseudo-random number generator intended for use in a cryptographic system.
+--
+
+[[delegated-third-party]]Delegated third party::
++
+--
+A <<natural-person,natural person>> or <<legal-entity,legal entity>> that is not the <<certification-authority,CA>> but is authorized by the <<certification-authority,CA>>, and whose activities are not within the scope of the appropriate <<certification-authority,CA>> audits, to assist in the <<certificate-management-process,certificate management process>> by performing or fulfilling one or more of the <<certification-authority,CA>> requirements found herein.
+--
+
+[[digital-identity-document]]Digital identity document::
++
+--
+A government-issued identity document that is issued in a machine-processable form, that is digitally signed by the issuer, and that is in purely digital form.
+--
+
+[[digital-signature]]Digital signature::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[distinguished-name]]Distinguished name (or DN)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[domain-label]]Domain label::
++
+--
+From https://tools.ietf.org/html/rfc8499[RFC 8499]: “An ordered list of zero or more octets that makes up a portion of a domain name.
+Using graph theory, a label identifies one node in a portion of the graph of all possible domain names.”
+--
+
+[[domain-name]]Domain name::
++
+--
+An ordered list of one or more <<domain-label,domain labels>> assigned to a node in the <<domain-name-system,domain name system>>.
+--
+
+[[domain-name-system]]Domain name system (or DNS)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[electronic-identification]]Electronic identification (or eID)::
++
+--
+A credential containing <<individual,individual>> identification data and/or attributes and which is used for authentication for an online service.
+--
+
+[[enterprise-ra]]Enterprise RA::
++
+--
+An employee or agent of an organization unaffiliated with the <<certification-authority,CA>> who authorizes issuance of <<certificate,certificates>> to that organization.
+--
+
+[[european-telecommunications-standards-institute]]European Telecommunications Standards Institute (or ETSI)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[european-unique-identifier]]European unique identifier (or EUID)::
++
+--
+The <<european-unique-identifier,EUID>> uniquely identifies officially-registered organizations, <<legal-entity,legal entities>>, and branch offices within the European Union or the European Economic Area.
+The <<european-unique-identifier,EUID>> is specified in chapter 9 of the Annex contained in the Implementing Regulation (EU) 2021/1042 which describes rules for the application of Directive (EU) 2017/1132 “relating to certain aspects of company law (codification).”
+--
+
+[[extended-key-usage]]Extended key usage (or EKU)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[expiry-date]]Expiry date::
++
+--
+The “Not After” date in a <<certificate,certificate>> that defines the end of a <<certificate,certificate>>’s validity period.
+--
+
+[[federal-information-processing-standard]]Federal Information Processing Standard (or FIPS)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending. (US Government)
+====
+--
+
+[[fully-qualified-domain-name]]Fully-qualified domain name::
++
+--
+A <<domain-name,domain name>> that includes the <<domain-label,domain labels>> of all superior nodes in the Internet <<domain-name-system,domain name system>>.
+--
+
+[[governed-party]]Governed party::
++
+--
+An organization which desires to play a recognized role in the <<cawg-conformance-program,CAWG conformance program>>.
+It applies to the <<cawg-conformance-program,CAWG conformance program>> which requires them to sign a legal agreement and have their application reviewed prior to entering them on the <<cawg-trust-list,CAWG trust list>>.
+<<governed-party,Governed parties>> of the C2PA ecosystem are <<certification-authority,certification authorities>> that elect to apply and and abide by the <<cawg-conformance-program,CAWG conformance program>> requirements.
+--
+
+[[governing-authority]]Governing authority::
++
+--
+[[tee]]
+The organization responsible for the trust of the ecosystem.
+It empowers an <<administering-authority,administering authority>> to manage the ecosystem and certifying entities to convey trust.
+The CAWG is the governing party of its conformance program driven by its Steering Committee.
+--
+
+[[government-entity]]Government entity::
++
+--
+A government-operated legal entity, agency, department, ministry, branch, or similar element of the government of a country, or political subdivision within such country (such as a state, province, city, county, etc.).
+--
+
+[[hardware-security-module]]Hardware security module (or HSM)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[individual]]Individual::
++
+--
+A <<natural-person,natural person>>.
+--
+
+[[individual-validated]]Individual-validated::
++
+--
+Refers to a <<certificate,certificate>> <<subject,subject>> that includes only <<individual,individual>> (<<natural-person,natural person>>) attributes, rather than attributes linked to an organization.
+--
+
+[[international-civil-aviation-organization]]International Civil Aviation Organization (or ICAO)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[international-organization-for-standardization]]International Organization for Standardization (or ISO)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[issuer]]Issuer::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[issuing-authority]]Issuing authority::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[issuing-ca]]Issuing CA::
++
+--
+In relation to a particular <<certificate,certificate>>, the <<certification-authority,CA>> that issued the <<certificate,certificate>>.
+This could be either a <<root-certification-authority,root CA>> or a <<subordinate-ca,subordinate CA>>.
+--
+
+[[jurisdiction-of-incorporation]]Jurisdiction of incorporation::
++
+--
+The country and (where applicable) the state or province or locality where the organization’s legal existence was established by a filing with (or an act of) an appropriate government agency or entity (e.g., where it was incorporated).
+In the context of a <<government-entity,government entity>>, the country and (where applicable) the state or province where the entity’s legal existence was created by law.
+--
+
+[[key-compromise]]Key compromise::
++
+--
+A <<private-key,private key>> is said to be compromised if its value has been disclosed to an unauthorized person, or an unauthorized person has had access to it.
+--
+
+[[key-generation-script]]Key generation script::
++
+--
+A documented plan of procedures for the generation of a <<ca-key-pair,CA key pair>>.
+--
+
+[[key-pair]]Key pair::
++
+--
+A <<private-key,private key>> and its associated <<public-key,public key>>.
+--
+
+[[legal-entity]]Legal entity::
++
+--
+An association, corporation, partnership, proprietorship, trust, government entity or other entity with legal standing in a country’s legal system.
+--
+
+[[legal-entity-identifier]]Legal entity identifier (or LEI)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[linting]]Linting::
++
+--
+A process in which the content of digitally signed data such as a https://www.rfc-editor.org/info/rfc9162/#section-3.2[precertificate (RFC 9162 §3.2)], <<certificate,certificate>>, <<certificate-revocation-list,CRL>>, or <<online-certificate-status-protocol,OCSP>> response, or data-to-be-signed object such as a https://www.rfc-editor.org/info/rfc5280/#section-4.1.1.1[`tbsCertificate` (RFC 5280 §4.1.1.1)] is checked for conformance with the profiles and requirements defined in these requirements.
+--
+
+[[maximum-assurance-level]]Maximum assurance level::
++
+--
+A numeric designation, using generally accepted market schemes based on degree of validation performed on an individual or organization.
+--
+
+[[mobile-driver-license]]Mobile driver license (or mDL)::
++
+--
+A driver license that is issued in digital format by an <<issuing-authority,issuing authority>> that is authorized by the relevant government or jurisdiction to issue driving licenses in accordance with applicable law, and conforms to ISO/IEC 18013-5 and ISO/IEC 18013-7.
+--
+
+[[national-institute-of-standards-and-technology]]National Institute of Standards and Technology (or NIST)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending. (US Government)
+====
+--
+
+[[natural-person]]Natural person::
++
+--
+An <<individual,individual>>; a human being as distinguished from a <<legal-entity,legal entity>>.
+--
+
+[[name-constraint]]Name constraint::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[object-identifier]]Object identifier (or OID)::
++
+--
+A unique alphanumeric or numeric identifier registered under the International Organization for Standardization’s applicable standard for a specific object or object class.
+--
+
+[[ocsp-responder]]OCSP responder::
++
+--
+An online server operated under the authority of the <<certification-authority,CA>> and connected to its <<repository,repository>> for processing <<certificate,certificate>> status requests.
+See also, <<online-certificate-status-protocol,online certificate status protocol>>.
+--
+
+[[online-certificate-status-protocol]]Online certificate status protocol (or OCSP)::
++
+--
+An online <<certificate,certificate>>-checking protocol that enables relying-party application software to determine the status of an identified <<certificate,certificate>>.
+See also <<ocsp-responder,OCSP responder>>.
+--
+
+[[organization]]Organization (or O)::
++
+--
+In the distinguished name field of a certificate.
+--
+
+[[organization-validated]]Organization-validated::
++
+--
+Refers to a <<certificate,certificate>> <<subject,subject>> that includes only Organizational (<<legal-entity,legal entity>>) attributes, rather than attributes linked to an <<individual,individual>>.
+--
+
+[[organizational-unit]]Organizational unit (or OU)::
++
+--
+In the distinguished name field of a certificate.
+--
+
+[[parent-company]]Parent company::
++
+--
+A company that <<control,controls>> a <<subsidiary-company,subsidiary company>>.
+--
+
+[[personal-name]]Personal name::
++
+--
+<<personal-name,Personal name>> is a name of an <<individual,individual>> <<subject,subject>> typically presented as `subject:givenName` and/or `subject:surname`.
+However, the <<personal-name,personal name>> may be in a format preferred by the <<subject,subject>>, the <<certification-authority,CA>>, or <<enterprise-ra,enterprise RA>> as long as it remains a meaningful representation of the <<subject,subject>>’s verified name.
+--
+
+[[physical-identity-document]]Physical identity document::
++
+--
+A government-issued identity document issued in physical and human-readable form (such as a passport or national identity card).
+--
+
+[[private-key]]Private key::
++
+--
+The key of a <<key-pair,key pair>> that is kept secret by the holder of the <<key-pair,key pair>>, and that is used to create <<digital-signature,digital signatures>> and/or to decrypt electronic records or files that were encrypted with the corresponding <<public-key,public key>>.
+--
+
+[[pseudonym]]Pseudonym::
++
+--
+A fictitious identity that a person assumes for a particular purpose.
+Unlike an anonymous identity, a pseudonym can be linked to the person’s real identity.
+--
+
+[[public-key]]Public key::
++
+--
+The key of a <<key-pair,key pair>> that can be publicly disclosed by the holder of the corresponding <<private-key,private key>> and that is used by a <<relying-party,relying party>> to verify <<digital-signature,digital signatures>> created with the holder’s corresponding <<private-key,private key>> and/or to encrypt messages so that they can be decrypted only with the holder’s corresponding <<private-key,private key>>.
+--
+
+[[public-key-infrastructure]]Public key infrastructure (or PKI)::
++
+--
+A set of hardware, software, people, procedures, rules, policies, and obligations used to facilitate the trustworthy creation, issuance, management, and use of <<certificate,certificates>> and keys based on public key cryptography.
+--
+
+[[publicly-trusted-certificate]]Publicly-trusted certificate::
++
+--
+A <<certificate,certificate>> that is trusted by virtue of the fact that its corresponding <<root-certification-authority-certificate,root CA certificate>> is distributed as a trust anchor in widely-available application software.
+--
+
+[[qualified-auditor]]Qualified auditor::
++
+--
+A <<natural-person,natural person>> or <<legal-entity,legal entity>> that meets the requirements of <<review-of-delegated-parties>>.
+--
+
+[[random-value]]Random value::
++
+--
+A value specified by a <<certification-authority,CA>> to the <<applicant,applicant>> that exhibits at least 112 bits of entropy.
+--
+
+[[registered-domain-name]]Registered domain name::
++
+--
+A <<domain-name,domain name>> that has been registered with a <<domain-name,domain name>> registrar.
+--
+
+[[registration-authority]]Registration authority (or RA)::
++
+--
+An entity authorized by the <<certification-authority,certification authority>> to collect, verify, and submit information provided by <<applicant,applicant>>s and/or <<subscriber,subscriber>>s which is to be entered into public key certificates.
+The term <<registration-authority,RA>> refers to hardware, software, and individuals that collectively perform this function, including tasks such as validating platform attestations and presence of potential <<subscriber,subscriber>> implementations on the C2PA Conforming Products List.
+The <<registration-authority,RA>> operates under the <<certification-authority,CA>>’s authority and adheres to the guidelines set forth in the <<cawg-certificate-policy,C2PA certificate policy>>.
+
+[IMPORTANT,role=todo]
+====
+Above is a potential holdover from C2PA CP and should be revisited.
+====
+
+The <<certification-authority,CA>> MAY delegate the performance of all, or any part, of <<initial-identity-validation>> requirements to a <<delegated-third-party,delegated third party>>, provided that the process as a whole fulfills all of the requirements of <<initial-identity-validation>>.
+
+Before the <<certification-authority,CA>> authorizes a <<delegated-third-party,delegated third party>> to perform a delegated function, the <<certification-authority,CA>> MUST contractually require the <<delegated-third-party,delegated third party>> to:
+
+. Meet the qualification requirements of <<personnel-controls>>, when applicable to the delegated function;
+. Retain documentation in accordance with <<retention-period-for-archive>>;
+. Abide by the other provisions of these requirements that are applicable to the delegated function; and
+. Comply with (a) the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> or (b) the <<delegated-third-party,delegated third party>>’s practice statement that the <<certification-authority,CA>> has verified complies with these requirements.
+
+[[enterprise-registration-authorities]]*Enterprise registration authorities*
+
+The <<certification-authority,CA>> MAY delegate to an enterprise <<registration-authority,registration authority>> (<<registration-authority,RA>>) to verify <<certificate-request,certificate requests>> for <<subject,subjects>> within the <<enterprise-ra,enterprise RA>>’s own organization.
+The <<certification-authority,CA>> MUST NOT accept <<certificate-request,certificate requests>> authorized by an <<enterprise-ra,enterprise RA>> unless the following requirements are satisfied:
+
+. If the <<certificate-request,certificate request>> is for a `Organization-validated`, or `Sponsor-validated` profile, the <<certification-authority,CA>> MUST confirm that the <<enterprise-ra,enterprise RA>> has authorization or control of the requested email domain(s) in accordance with <<initial-identity-validation>> or <<initial-identity-validation>>.
+. The <<certification-authority,CA>> MUST confirm that the `subject:organizationName` name is either that of the delegated enterprise, or an <<affiliate,affiliate>> of the delegated enterprise, or that the delegated enterprise is an agent of the named <<subject,subject>>.
+For example, the <<certification-authority,CA>> MUST NOT issue a <<certificate,certificate>> containing the <<subject,subject>> name “XYZ Co.” on the authority of <<enterprise-ra,enterprise RA>> “ABC Co.”, unless the two companies are Affiliated as defined in <<initial-identity-validation>> or “ABC Co.” is the agent of “XYZ Co.”
+This requirement applies regardless of whether the accompanying requested email domain falls within the subdomains of ABC Co.‘s <<registered-domain-name,registered domain name>>.
+
+[IMPORTANT,role=todo]
+====
+Review applicability of e-mail controls for CAWG.
+====
+
+The <<certification-authority,CA>> MUST impose these limitations as a contractual requirement on the <<enterprise-ra,enterprise RA>> and monitor compliance by the <<enterprise-ra,enterprise RA>> in accordance with <<review-of-delegated-parties>>.
+--
+
+[[registration-reference]]Registration reference::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[reliable-data-source]]Reliable data source::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[reliable-method-of-communication]]Reliable method of communication::
++
+--
+A method of communication, such as a postal/courier delivery address, telephone number, or email address, that was verified using a source other than the <<applicants-representative,applicant’s representative>>.
+--
+
+[[relying-party]]Relying party::
++
+--
+[[claimsigning-certs]]
+An entity that evaluates the trustworthiness of <<assertion,assertion>>s made by a <<signer,signer>> in a C2PA <<asset,asset>>, based on the <<signer,signer>>’s identity and the <<assurance-level,assurance level>> encoded into the <<claimsigning-certs,C2PA claim Signing certificate>>.
+
+[IMPORTANT,role=todo]
+====
+Revisit for CAWG.
+====
+--
+
+[[repository]]Repository::
++
+--
+An online database containing publicly-disclosed <<public-key-infrastructure,PKI>> governance documents (such as <<certificate-policy,certificate policies>> and <<certification-practice-statement,certification practice statements>>) and <<certificate,certificate>> status information, either in the form of a <<certificate-revocation-list,CRL>> or an <<online-certificate-status-protocol,OCSP>> response.
+--
+
+[[rich-execution-environment]]Rich execution environment (or REE)::
++
+--
+Refer to the NIST https://csrc.nist.gov/glossary/term/rich_execution_environment[glossary definition for “rich execution environment.”]
+--
+
+[[root-certification-authority]]Root certification authority (or Root CA)::
++
+--
+The top level <<certification-authority,certification authority>> whose <<root-certification-authority-certificate,root CA certificate>> is distributed by <<application-software-supplier,application software suppliers>> and that issues <<subordinate-ca,subordinate CA>> <<certificate,certificates>>.
+--
+
+[[root-certification-authority-certificate]]Root certification authority certificate (or Root CA certificate)::
++
+--
+The self-signed <<certificate,certificate>> issued by the <<root-certification-authority,root CA>> to identify itself and to facilitate verification of <<certificate,certificates>> issued to its <<subordinate-ca,subordinate CAs>>.
+--
+
+[[root-of-trust]]Root of trust (or RoT)::
++
+--
+Refer to the NIST https://csrc.nist.gov/glossary/term/roots_of_trust[glossary definition for “root of trust.”]
+--
+
+[[security-incident]]Security incident::
++
+--
+Refer to the NIST https://csrc.nist.gov/glossary/term/security_incident[glossary definition for “security incident.”]
+--
+
+[[signer]]Signer::
++
+--
+In the CAWG Trust Model, the <<assertion,assertion>>s enumerated in the `created_assertions` object of the <<_CAWG_claim,CAWG Claim>> are attributed to the <<signer,signer>>.
+
+[IMPORTANT,role=todo]
+====
+The term *CAWG Trust Model* is introduced here but not used or defined anywhere else.
+====
+
+[IMPORTANT,role=todo]
+====
+The above definition looks like a holdover from C2PA. Consider rewording to `referenced_assertions` and _named actor_ for consistency with terms used in the identity assertion spec
+====
+
+In the context of the <<cawg-conformance-program,CAWG conformance program>>, an indiviual or organization identified as the <<subject,subject>> of a CAWG Signing <<certificate,certificate>>  is always the <<signer,signer>>.
+--
+
+[[sponsor-validated]]Sponsor-validated::
++
+--
+Refers to a <<certificate,certificate>> <<subject,subject>> which combines <<individual,individual>> (<<natural-person,natural person>>) attributes in conjunction with an `subject:organizationName` (an associated <<legal-entity,legal entity>>) attribute.
+Registration for <<sponsor-validated,sponsor-validated>> <<certificate,certificates>> MAY be performed by an <<enterprise-ra,enterprise RA>> where the `subject:organizationName` is either that of the delegated enterprise, or an <<affiliate,affiliate>> of the delegated enterprise, or that the delegated enterprise is an agent of the named <<subject,subject>> organization.
+--
+
+[[subscriber]]Subscriber::
++
+--
+An <<applicant,applicant>> that has become a customer of one of the <<certification-authority,certification authorities>> on the <<cawg-trust-list,CAWG trust list>>, and is eligible to receive <<claimsigning-certs,CAWG claim signing certificate>>s for use by instances of their conforming <<_generator_product,generator product>>.
+
+[IMPORTANT,role=todo]
+====
+Check use of “generator product.”
+====
+--
+
+[[subject]]Subject::
++
+--
+The <<natural-person,natural person>>, device, system, unit, or <<legal-entity,legal entity>> identified in a <<certificate,certificate>> as the <<subject,subject>>.
+The <<subject,subject>> is either the <<subscriber,subscriber>> or a mailbox under the control and operation of the <<subscriber,subscriber>>.
+
+[IMPORTANT,role=todo]
+====
+Check reference to mailbox. May not apply here.
+====
+--
+
+[[subject-identity-information]]Subject identity information::
++
+--
+Information that identifies the <<certificate,certificate>> <<subject,subject>>.
+<<subject-identity-information,Subject identity information>> does not include a mailbox address listed in the `subject:commonName` or `subject:emailAddress` fields, or in the `subjectAltName` extension.
+
+[IMPORTANT,role=todo]
+====
+Check reference to mailbox. May not apply here.
+====
+--
+
+[[subject-information]]Subject information::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[subject-public-key-info]]Subject public key info::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[subordinate-ca]]Subordinate CA::
++
+--
+A <<certification-authority,certification authority>> whose <<certificate,certificate>> is signed by the <<root-certification-authority,root CA>>, or another <<subordinate-ca,subordinate CA>>.
+--
+
+[[subscriber-2]]Subscriber::
++
+--
+A <<natural-person,natural person>> or <<legal-entity,legal entity>> to whom a <<certificate,certificate>> is issued and who is legally bound by a <<subscriber-agreement,subscriber agreement>> or <<terms-of-use,terms of use>>.
+--
++
+--
+[IMPORTANT,role=todo]
+====
+Second definition is out of sequence. Favor the earlier definition as it appears more CAWG-specific.
+====
+--
+
+[[subscriber-agreement]]Subscriber agreement::
++
+--
+An agreement between the <<certification-authority,CA>> and the <<applicant,applicant>>/<<subscriber,subscriber>> that specifies the rights and responsibilities of the parties.
+--
+
+[[subsidiary-company]]Subsidiary company::
++
+--
+A company that is controlled by a <<parent-company,parent company>>.
+--
+
+[[supplementary-evidence]]Supplementary evidence::
++
+--
+Used in addition to authoritative evidence to strengthen the reliability of the identity verification and/or as evidence for attributes that are not evidenced by the authoritative evidence.
+--
+
+[[technically-constrained-subordinate-ca-certificate]]Technically-constrained subordinate CA certificate::
++
+--
+A <<subordinate-ca,subordinate CA>> <<certificate,certificate>> which uses a combination of <<extended-key-usage,extended key usage>> settings and <<name-constraint,name constraint>> settings to limit the scope within which the <<subordinate-ca,subordinate CA>> <<certificate,certificate>> MAY issue <<certificate,certificates>> to <<subscriber,subscriber>> or additional <<subordinate-ca,subordinate CAs>>.
+--
+
+[[terms-of-use]]Terms of use::
++
+--
+Provisions regarding the safekeeping and acceptable uses of a <<certificate,certificate>> issued in accordance with these requirements when the <<applicant,applicant>>/<<subscriber,subscriber>> is an <<affiliate,affiliate>> of the <<certification-authority,CA>> or is the <<certification-authority,CA>>.
+--
+
+[[time-stamping-authority]]Time-stamping authority (or TSA)::
++
+--
+A server that provides electronic certification and trust services by creating a hash of a document or digital information.
+The hash verifies the date and time of the document’s creation or last modification, and acts as an independent witness to prove that the document has not changed since it was signed.
+This is similar to how a notary acts for online documents.
+<<time-stamping-authority,TSAs>> that are part of <<applicant,applicant>> <<certification-authority,certification authorities>> that want to be recognized as issuing digital signing credentials approved by the CAWG, must satisfy the requirements of the program to be considered approved and designated as such within its governance records.
+--
+
+[[transport-layer-security]]Transport Layer Security (or TLS)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[trusted-execution-environment]]Trusted execution environment (or TEE)::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--
+
+[[trusted-role]]Trusted role::
++
+--
+[IMPORTANT,role=todo]
+====
+Definition pending.
+====
+--

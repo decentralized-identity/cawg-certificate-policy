@@ -1,0 +1,4 @@
+[[end-of-subscription]]
+=== End of subscription
+
+Upon termination of the subscription or cessation of relevant activities, the <<subscriber,subscriber>> MUST follow industry best practices for destroying the <<private-key,private key(s)>>.

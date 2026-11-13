@@ -1,0 +1,28 @@
+[[key-pair-and-certificate-usage]]
+=== Key pair and certificate usage
+
+. <<private-key,Private keys>> corresponding to root certificates MUST NOT be used to create signatures except for the following purposes:
+
+.. Self-signed certificates to represent the <<root-certification-authority,root CA>> itself;
+.. <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>> and cross-certified <<certification-authority,CA>> certificates;
+.. <<certificate,Certificates>> for <<ocsp-responder,OCSP responders>>; and
+.. <<certificate-revocation-list,Certificate revocation lists>>.
+. <<private-key,Private keys>> corresponding to intermediate <<certification-authority,CA>> certificates where the Basic Constraints contains `pathLenContraint=1` MUST NOT be used to sign certificates except in the following cases:
+.. <<certificate,Certificates>> for <<subordinate-ca,subordinate CAs>>
+.. <<certificate,Certificates>> for infrastructure purposes (administrative role certificates, internal <<certification-authority,CA>> operational device certificates); and
+.. <<certificate,Certificates>> for <<online-certificate-status-protocol,OCSP>> response verification.
+. <<subscriber,Subscriber>> claim signing and time stamping certificates MUST only be issued by <<subordinate-ca,subordinate CAs>> where the Basic Constraints contains a `pathLenConstraint=0`.
+. The use of a specific key is determined by the key usage extension in the X.509 certificate.
+. The <<private-key,private key>> associated with the public key to which a claim signing <<certificate,certificate>> has been issued under this <<certificate-policy,CP>> MUST remain under the exclusive control of the <<subscriber,subscriber>> and MUST NOT be exported.
+. Claim signing <<certificate,certificates>> issued under this <<certificate-policy,CP>> are to be used exclusively by individuals or organizations named as subjects of the certificates, to digitally sign CAWG claims at the <<assurance-level,assurance level>> indicated by the certificate.
+Any usage for any other purpose is strictly prohibited.
+. Time stamping certificates issued under this <<certificate-policy,CP>> are to be used exclusively by the time stamping authority or unit named as subjects of the certificates to provide time stamping services.
+. <<ocsp-responder,OCSP responder>> certificates issued under this <<certificate-policy,CP>> are to be used exclusively to sign <<online-certificate-status-protocol,OCSP>> responses for certificates issued by the <<ocsp-responder,OCSP responder>> certificate’s <<issuing-ca,issuing CA>>.
+. Any other use of a <<private-key,private key>> or certificate shall be deemed as misuse and its corresponding certificate subject to revocation per <<certificate-revocation-list,certificate revocation>>.
+
+--
+[IMPORTANT,role=todo]
+====
+There's a near-duplicate section "Key usage purposes."
+====
+--
