@@ -1,12 +1,14 @@
 [[overview]]
 == Overview
 
-This <<certificate-policy,certificate policy>> (<<certificate-policy,CP>>) establishes the requirements governing the issuance of <<claimsigning-certs,CAWG claim signing certificates>> for use by individuals or organizations abiding by the technical specifications developed by the https://cawg.io[Creator Assertions Working Group].
+This <<certificate-policy,certificate policy>> (<<certificate-policy,CP>>) establishes the requirements governing the issuance of <<cawg-identity-certificate,CAWG identity certificates>> to individuals and organizations abiding by the technical specifications developed by the https://cawg.io[Creator Assertions Working Group].
 
-The policy sets the requirements that MUST be met by a <<certification-authority,certification authority>> (<<certification-authority,CA>>) in the process of issuing <<claimsigning-certs,CAWG claim signing certificates>> to <<subscriber,subscriber>>s that intends to make CAWG claims on digital assets.
+The policy sets the requirements that MUST be met by a <<certification-authority,certification authority>> (<<certification-authority,CA>>) in the process of issuing <<cawg-identity-certificate,CAWG identity certificates>> to <<subscriber,subscribers>> that intend to sign <<cawg-identity-assertion,CAWG identity assertions>>.
+A <<cawg-identity-certificate,CAWG identity certificate>> identifies a verified person or organization.
+Certificates under this policy are not issued to devices, software products, or software instances.
 
-<<claimsigning-certs,CAWG claim signing certificates>> under this policy MUST only be issued by <<certification-authority,certification authorities>> that have successfully passed the <<cawg-conformance-program,CAWG conformance program>>, as documented through their inclusion in the <<cawg-trust-list,CAWG trust list>>.
-Digital certificates issued under this <<certificate-policy,CP>> indicate an <<assurance-level,assurance level>> that can be used by a <<relying-party,relying party>> as part of its trust evaluation of an <<subscriber,subscriber>> that makes claims on CAWG assertions.
+<<cawg-identity-certificate,CAWG identity certificates>> under this policy MUST only be issued by <<certification-authority,certification authorities>> that have successfully passed the <<cawg-conformance-program,CAWG conformance program>>, as documented through their inclusion in the <<cawg-trust-list,CAWG trust list>>.
+Digital certificates issued under this <<certificate-policy,CP>> indicate the <<certificate-type,certificate type>>, which a <<relying-party,relying party>> can use as part of its trust evaluation of the <<subscriber,subscriber>> named in a <<cawg-identity-assertion,CAWG identity assertion>>.
 
 <<certification-authority,Certification authorities>> that comply with this <<certificate-policy,certificate policy>> and want to issue certificates under the <<cawg-conformance-program,CAWG conformance program>> MUST apply to the CAWG <<governing-authority,governing authority>> for inclusion on the <<cawg-trust-list,CAWG trust list>>.
 
@@ -17,7 +19,7 @@ This <<certificate-policy,certificate policy>> considers the Baseline Requiremen
 Is the above paragraph still true and relevant?
 ====
 
-These requirements describe three <<certificate,certificate>> profiles differentiated by the type of <<subject,subject>> that apply to CAWG claim-signing certificates:
+These requirements describe three <<certificate,certificate>> profiles differentiated by the type of <<subject,subject>> that apply to <<cawg-identity-certificate,CAWG identity certificates>>:
 
 [options="header",cols="2,5"]
 |===
