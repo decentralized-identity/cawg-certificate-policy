@@ -1,0 +1,11 @@
+[appendix]
+[[appendix-a---registration-schemes]]
+== Registration schemes
+
+[IMPORTANT,role=todo]
+====
+This appendix is referenced by the `subject:organizationIdentifier` and `subject:serialNumber` requirements, but it was not in the Google Doc.
+The S/MIME Baseline Requirements define their Appendix A, “Registration Schemes”, for the same purpose.
+Decide whether to carry it forward for CAWG, and which schemes to recognize.
+The legal entity schemes (`NTR`, `VAT`, `PSD`, `LEI`, `GOV`, `INT`) are already described in <<subscriber-subject-distinguished-name-fields>>.
+====

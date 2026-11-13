@@ -9,4 +9,4 @@
 [[prohibited-use]]
 ==== Prohibited use
 
-Any use of certificates issued under this policy outside of the <<_CAWG_specification,CAWG Specification>> or the <<cawg-conformance-program,CAWG conformance program>> is strictly prohibited.
+Any use of certificates issued under this policy outside of the https://cawg.io/specs/[CAWG specifications] or the <<cawg-conformance-program,CAWG conformance program>> is strictly prohibited.

@@ -692,7 +692,12 @@ A <<certificate,certificate>> that is trusted by virtue of the fact that its cor
 [[qualified-auditor]]Qualified auditor::
 +
 --
-A <<natural-person,natural person>> or <<legal-entity,legal entity>> that meets the requirements of <<review-of-delegated-parties>>.
+A <<natural-person,natural person>> or <<legal-entity,legal entity>> that meets the requirements of <<compliance-audits>>.
+
+[IMPORTANT,role=todo]
+====
+The Google Doc pointed this at review of delegated parties. The S/MIME Baseline Requirements define a qualified auditor by their section 8.2, “Identity/qualifications of assessor”, which this policy doesn't have yet.
+====
 --
 
 [[random-value]]Random value::

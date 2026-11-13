@@ -704,12 +704,7 @@ For example:
 * `VATEL-123456789` (VAT Scheme, Greece using EU Council Directive 2006/112/EC as amended, registration reference is 12345678).
 --
 +
-Registration schemes listed in [.line-through]#Appendix A# are recognized as valid under these requirements.
-+
-[IMPORTANT,role=todo]
-====
-Could not find Appendix A in Google Doc.
-====
+Registration schemes listed in <<appendix-a---registration-schemes>> are recognized as valid under these requirements.
 +
 The <<certification-authority,CA>> MUST:
 +
@@ -727,12 +722,7 @@ For the <<legal-entity-identifier,LEI>> registration scheme, the ISO 3166-1 code
 +
 [NOTE]
 --
-For the following types of entities that do not have an identifier from the registration schemes listed in [.line-through]#Appendix A#:
-
-[IMPORTANT,role=todo]
-====
-Could not find Appendix A in Google Doc.
-====
+For the following types of entities that do not have an identifier from the registration schemes listed in <<appendix-a---registration-schemes>>:
 
 * For government entities, the CA MUST enter the registration scheme identifier `GOV` followed by the 2 character ISO 3166-1 country code for the nation in which the government entity is located. If the government entity is verified at a subdivision (state or province) level, then a plus `+` (`0x2B` (ASCII), `U+002B` (UTF-8)) followed by an ISO 3166-2 identifier for the subdivision (up to three alphanumeric characters) is added.
 * For international organization entities, the CA MUST enter the registration scheme identifier `INT` followed by the ISO 3166-1 code `XG`.
@@ -772,7 +762,7 @@ If present, the `subject:pseudonym` field MUST be verified according to <<anonym
 *Contents:* If present, the `subject:serialNumber` MAY be used to contain an identifier assigned by the <<certification-authority,CA>> or <<registration-authority,RA>> to identify and/or to disambiguate the <<subscriber,subscriber>>.
 +
 In addition, the `subject:serialNumber` MAY be used in the `Sponsor-validated` and `Individual-validated` profiles to contain a <<natural-person,natural person>> identifier as described in ETSI EN 319 412-1 §5.1.3.
-Registration schemes listed in <<appendix-a---registration-schemes, A>> are recognized as valid under these requirements.
+Registration schemes listed in <<appendix-a---registration-schemes>> are recognized as valid under these requirements.
 The <<certification-authority,CA>> MUST confirm that the <<individual,individual>> represented by the <<natural-person,natural person>> Identifier is the same as the <<certificate,certificate>> <<subject,subject>> in accordance with <<authentication-of-individual-identity>>.
 +
 [IMPORTANT,role=todo]

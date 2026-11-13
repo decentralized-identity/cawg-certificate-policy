@@ -1,0 +1,9 @@
+[[review-of-delegated-parties]]
+=== Review of delegated parties
+
+[IMPORTANT,role=todo]
+====
+This section is referenced by the <<enterprise-ra,enterprise RA>> requirements, but it was not in the Google Doc.
+The S/MIME Baseline Requirements cover this in section 8.8, “Review of delegated parties”.
+Decide what review CAWG requires of delegated third parties and enterprise RAs.
+====
