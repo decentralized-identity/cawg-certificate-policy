@@ -726,7 +726,7 @@ Before the <<certification-authority,CA>> authorizes a <<delegated-third-party,d
 . Meet the qualification requirements of <<personnel-controls>>, when applicable to the delegated function;
 . Retain documentation in accordance with <<retention-period-for-archive>>;
 . Abide by the other provisions of these requirements that are applicable to the delegated function; and
-. Comply with (a) the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> or (b) the <<delegated-third-party,delegated third party>>’s practice statement that the <<certification-authority,CA>> has verified complies with these requirements.
+. Comply with (a) the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>> or (b) the <<delegated-third-party,delegated third party>>’s practice statement that the <<certification-authority,CA>> has verified complies with these requirements.
 
 [[enterprise-registration-authorities]]*Enterprise registration authorities*
 

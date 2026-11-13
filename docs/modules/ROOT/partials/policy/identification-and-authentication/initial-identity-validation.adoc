@@ -86,7 +86,7 @@ The <<certification-authority,CA>> MAY rely on an <<attestation,attestation>> th
 The <<certification-authority,CA>> or <<registration-authority,RA>> MUST verify the <<registration-reference,registration reference>> to be included in the <<certificate,certificate>> from a register that is maintained or authorized by the relevant government agency.
 The <<certification-authority,CA>> MUST disclose the authorized sources it uses to verify the <<applicant,applicant>>’s creation, existence, or recognition.
 This disclosure MUST be through an appropriate and readily accessible online means.
-The <<certification-authority,CA>> MUST document where to obtain this information within Section 3.2 of the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The <<certification-authority,CA>> MUST document where to obtain this information within Section 3.2 of the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 Nothing in these requirements prohibits the use of third-party vendors to obtain regularly-updated and current information from the government register provided that the third party obtains the information directly from the government.
 
@@ -173,7 +173,7 @@ Suggest the CAWG Governing Authority approves additional frameworks and lists th
 ** requirements imposed on auditing bodies when conducting audits; and
 ** supervision of the auditing bodies.
 * Best practices and transparency: the requirements of the trust service framework and evidence of supervision of the approved trust service providers MUST be publicly available.
-The trust service framework shall require trust service providers to disclose their practices in a publicly available <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The trust service framework shall require trust service providers to disclose their practices in a publicly available <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 [[from-enterprise-ra-records]]
 ====== From enterprise RA records

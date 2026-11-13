@@ -30,7 +30,7 @@ The <<certification-authority,CA>> MAY allow common variations or abbreviations 
 
 The purpose of a <<pseudonym,pseudonym>> is to provide a unique identifier linked to an <<individual,individual>> in a pseudonymized manner when certain privacy conditions are required.
 For example, a <<pseudonym,pseudonym>> may be used if a government agency requires officials to sign certain decisions via S/MIME so those decisions trace back to individuals, but emphasize the importance of the role over <<individual,individual>> identity in the <<certificate,certificate>>.
-The <<certification-authority,CA>> MUST disclose in its <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>> if it allows the use of <<pseudonym,pseudonyms>>.
+The <<certification-authority,CA>> MUST disclose in its <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>> if it allows the use of <<pseudonym,pseudonyms>>.
 
 For `Sponsor-validated` certificates, the <<certification-authority,CA>> MAY use a `subject:pseudonym` attribute in the <<certificate,certificate>> if the associated <<subject,subject>> has been verified according to <<authentication-of-individual-identity>>.
 If present, the `subject:pseudonym` attribute MUST be:

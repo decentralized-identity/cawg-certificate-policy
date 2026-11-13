@@ -1,7 +1,7 @@
 [[key-escrow-and-recovery]]
 === Key escrow and recovery
 
-The <<certification-authority,CA>> MAY escrow the <<subscriber,subscriber>>’s <<private-key,private key>> as specified in the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The <<certification-authority,CA>> MAY escrow the <<subscriber,subscriber>>’s <<private-key,private key>> as specified in the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
 
 [IMPORTANT,role=todo]
 ====
@@ -16,4 +16,4 @@ The <<certification-authority,CA>> MUST notify <<subscriber,subscribers>> when t
 Escrowed <<private-key,private keys>> MUST be stored in encrypted form.
 The <<certification-authority,CA>> MUST protect escrowed <<private-key,private keys>> from unauthorized disclosure.
 
-The <<certification-authority,CA>> MUST recover <<subscriber,subscriber>> <<private-key,private keys>> only under the circumstances permitted within the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/<<certification-practice-statement,or CPS>>.
+The <<certification-authority,CA>> MUST recover <<subscriber,subscriber>> <<private-key,private keys>> only under the circumstances permitted within the <<certification-authority,CA>>’s <<certificate-policy,CP>> and/or <<certification-practice-statement,CPS>>.
